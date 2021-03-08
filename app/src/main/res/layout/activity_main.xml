@@ -40,7 +40,7 @@
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="E-mail"
+            android:hint="@string/E_mail"
             android:backgroundTint="@color/black"
             android:textColor="@color/white"
             android:inputType="text"
@@ -71,7 +71,7 @@ app:passwordToggleTint="@color/white"
         android:id="@+id/button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Log in"
+        android:text="@string/Log_in"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textInputLayout2" />
@@ -80,7 +80,7 @@ app:passwordToggleTint="@color/white"
         android:id="@+id/tvEsqueciSenha"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Esqueceu a senha?"
+        android:text="@string/Esqueceu_a_senha"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/button"
@@ -92,12 +92,13 @@ app:passwordToggleTint="@color/white"
         android:id="@+id/tvNovo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Novo por aqui? Inscreva-se agora"
+        android:text="@string/novo_por_aqui_inscreva_se_agora"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvEsqueciSenha"
         android:textColor="@color/material_on_primary_disabled"
         android:layout_marginTop="5dp"
+        android:layout_marginBottom="50dp"
         />
 
     <View
@@ -108,14 +109,15 @@ app:passwordToggleTint="@color/white"
 
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvNovo"
-        android:background="@color/white"/>
+        android:background="@color/white"
+        />
 
 
     <TextView
         android:id="@+id/tvOr"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Ou"
+        android:text="@string/ou"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toTopOf="@+id/btnFacebook"
@@ -130,17 +132,19 @@ app:passwordToggleTint="@color/white"
         android:layout_width="50dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvNovo"
-        android:background="@color/white"/>
+        android:background="@color/white"
+        />
 
     <Button
         android:id="@+id/btnFacebook"
         android:layout_marginTop="5dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Login com Facebook"
+        android:text="@string/Login_com_facebook"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/vwLinha"
+        android:backgroundTint="@color/facebook_blue"
         />
 
     <Button
@@ -148,10 +152,11 @@ app:passwordToggleTint="@color/white"
         android:layout_marginTop="5dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Login com Google"
+        android:text="@string/Login_com_google"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btnFacebook"
+        android:backgroundTint="@color/google_red"
         />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
