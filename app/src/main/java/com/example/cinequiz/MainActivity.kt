@@ -10,7 +10,9 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 
 class MainActivity : AppCompatActivity() {
-    lateinit var textView: TextView
+    lateinit var tvNovoCadastro: TextView
+    lateinit var tvEsqueciASenha: TextView
+    lateinit var btnLogin: Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -23,11 +25,25 @@ class MainActivity : AppCompatActivity() {
 
         setContentView(R.layout.activity_main)
 
-        textView = findViewById(R.id.tvNovo)
+        btnLogin = findViewById(R.id.btnLogin)
 
-        textView.setOnClickListener {
+        btnLogin.setOnClickListener {
+            Toast.makeText(this, "Logando...", Toast.LENGTH_LONG).show();
+        }
+
+        tvNovoCadastro = findViewById(R.id.tvNovo)
+
+        tvNovoCadastro.setOnClickListener {
             val intent = Intent(this, CadastroActivity::class.java)
             startActivity(intent)
         }
+
+        tvEsqueciASenha = findViewById(R.id.tvEsqueciSenha)
+
+        tvEsqueciASenha.setOnClickListener {
+            val intent = Intent(this, EsqueciASenhaActivity::class.java)
+            startActivity(intent)
+        }
+
     }
 }
