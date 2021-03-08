@@ -55,7 +55,7 @@
         android:textColorHint="@color/white"
         app:layout_constraintTop_toBottomOf="@+id/textIpuntLayout"
         app:passwordToggleEnabled="true"
-app:passwordToggleTint="@color/white"
+        app:passwordToggleTint="@color/white"
         >
 
         <com.google.android.material.textfield.TextInputEditText
