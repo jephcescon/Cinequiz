@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/cine_nav"
+    app:startDestination="@id/homeFragment">
+
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.example.cinequiz.HomeFragment"
+        android:label="@string/home"
+        tools:layout="@layout/fragment_home" />
+    <fragment
+        android:id="@+id/quizFragment"
+        android:name="com.example.cinequiz.QuizFragment"
+        android:label="@string/quiz"
+        tools:layout="@layout/fragment_quiz" />
+    <fragment
+        android:id="@+id/catalogFragment"
+        android:name="com.example.cinequiz.CatalogFragment"
+        android:label="@string/catalog"
+        tools:layout="@layout/fragment_catalog" />
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="com.example.cinequiz.ProfileFragment"
+        android:label="@string/profile"
+        tools:layout="@layout/fragment_profile" />
+</navigation>
