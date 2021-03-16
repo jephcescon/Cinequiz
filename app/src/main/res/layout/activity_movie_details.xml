@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/black"
+    tools:context=".MainActivity">
+
+
+    <ImageView
+        android:id="@+id/ic_star01"
+        android:layout_width="40px"
+        android:layout_height="40px"
+        android:layout_marginTop="355dp"
+        android:layout_marginStart="75dp"
+        android:elevation="@android:dimen/app_icon_size"
+        app:srcCompat="@android:drawable/btn_star_big_on" />
+    <ImageView
+        android:id="@+id/ic_star02"
+        android:layout_width="40px"
+        android:layout_height="40px"
+        android:layout_marginTop="355dp"
+        android:layout_marginStart="90dp"
+        android:elevation="@android:dimen/app_icon_size"
+        app:srcCompat="@android:drawable/btn_star_big_on" />
+    <ImageView
+        android:id="@+id/ic_star03"
+        android:layout_width="40px"
+        android:layout_height="40px"
+        android:layout_marginTop="355dp"
+        android:layout_marginStart="105dp"
+        android:elevation="@android:dimen/app_icon_size"
+        app:srcCompat="@android:drawable/btn_star_big_on" />
+    <ImageView
+        android:id="@+id/ic_star04"
+        android:layout_width="40px"
+        android:layout_height="40px"
+        android:layout_marginTop="355dp"
+        android:layout_marginStart="120dp"
+        android:elevation="@android:dimen/app_icon_size"
+        app:srcCompat="@android:drawable/btn_star_big_on" />
+    <ImageView
+        android:id="@+id/ic_star05"
+        android:layout_width="40px"
+        android:layout_height="40px"
+        android:layout_marginTop="355dp"
+        android:layout_marginStart="135dp"
+        android:elevation="@android:dimen/app_icon_size"
+        app:srcCompat="@android:drawable/btn_star_big_on" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:elevation="@android:dimen/app_icon_size"
+        android:backgroundTint="#00000000"
+        android:src="@android:drawable/ic_menu_search"
+        android:layout_gravity="right"
+        app:tint="@color/white"
+        app:borderWidth="0dp"/>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fb_back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:elevation="@android:dimen/app_icon_size"
+        android:backgroundTint="#00000000"
+        android:src="?attr/actionModeCloseDrawable"
+        android:layout_gravity="left"
+        app:tint="@color/white"
+        app:borderWidth="0dp"/>
+
+
+
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/black"
+        >
+
+        <ImageView
+            android:id="@+id/iv_logo"
+            android:layout_width="106dp"
+            android:layout_height="51dp"
+            android:layout_gravity="center"
+            android:background="@drawable/ic_logo_cinequiz" />
+
+
+
+        <ImageView
+            android:id="@+id/iv_movie_img"
+            android:layout_width="match_parent"
+            android:layout_height="250dp"
+            android:background="@drawable/filme"/>
+
+        <TextView
+            android:id="@+id/tv_movie_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Título do Filme"
+            android:textSize="72px"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="15dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Crítica:"
+            android:textColor="@color/white"
+            android:textSize="35px"
+            android:textStyle="bold"
+            android:layout_marginStart="32dp"/>
+
+
+
+
+
+
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tb_movie_details"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:tabSelectedTextColor="@color/white"
+            app:tabIndicatorColor="@color/design_default_color_error"
+            app:tabTextColor="#B1A9A9"
+            android:background="@color/black" />
+
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/vp_movie_details"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottomNavigationView_movie_details"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/black"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:itemIconTint="@drawable/item_selector"
+        app:itemTextColor="@drawable/item_selector"
+        app:menu="@menu/bottom_nav_menu"
+        android:layout_gravity="bottom"/>
+
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
