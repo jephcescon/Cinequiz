@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".HomeFragment">
+    tools:context=".home.HomeFragment">
 
     <LinearLayout
         android:id="@+id/home_welcome"
@@ -21,7 +21,7 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:padding="15dp"
-            android:text="Bem Vindo Fulano!"
+            android:text="@string/welcome"
             android:textColor="@color/white"
             android:textSize="18sp"
             android:textStyle="bold" />

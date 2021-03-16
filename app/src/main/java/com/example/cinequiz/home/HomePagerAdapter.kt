@@ -1,8 +1,9 @@
-package com.example.cinequiz
+package com.example.cinequiz.home
 
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
+
 
 class HomePagerAdapter(fm: FragmentManager) : FragmentPagerAdapter(fm) {
 

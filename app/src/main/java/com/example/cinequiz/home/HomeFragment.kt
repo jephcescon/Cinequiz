@@ -1,4 +1,4 @@
-package com.example.cinequiz
+package com.example.cinequiz.home
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.viewpager.widget.ViewPager
+import com.example.cinequiz.R
 import com.google.android.material.tabs.TabLayout
 
 

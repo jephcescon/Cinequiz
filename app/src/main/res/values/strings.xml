@@ -7,7 +7,6 @@
     <string name="conquers_tab">Conquistas</string>
     <string name="recent_searches">Buscas recentes</string>
     <string name="recent_matches">Partidas Recentes</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="achievements">Conquistas</string>
+    <string name="welcome">Bem Vindo Fulano!</string>
 </resources>

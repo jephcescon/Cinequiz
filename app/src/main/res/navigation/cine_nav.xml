@@ -7,22 +7,22 @@
 
     <fragment
         android:id="@+id/homeFragment"
-        android:name="com.example.cinequiz.HomeFragment"
+        android:name="com.example.cinequiz.home.HomeFragment"
         android:label="@string/home"
         tools:layout="@layout/fragment_home" />
     <fragment
         android:id="@+id/quizFragment"
-        android:name="com.example.cinequiz.QuizFragment"
+        android:name="com.example.cinequiz.quiz.QuizFragment"
         android:label="@string/quiz"
         tools:layout="@layout/fragment_quiz" />
     <fragment
         android:id="@+id/catalogFragment"
-        android:name="com.example.cinequiz.CatalogFragment"
+        android:name="com.example.cinequiz.catalog.CatalogFragment"
         android:label="@string/catalog"
         tools:layout="@layout/fragment_catalog" />
     <fragment
         android:id="@+id/profileFragment"
-        android:name="com.example.cinequiz.ProfileFragment"
+        android:name="com.example.cinequiz.profile.ProfileFragment"
         android:label="@string/profile"
         tools:layout="@layout/fragment_profile" />
 </navigation>
