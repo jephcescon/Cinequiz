@@ -13,7 +13,7 @@
         android:id="@+id/ic_star01"
         android:layout_width="40px"
         android:layout_height="40px"
-        android:layout_marginTop="355dp"
+        android:layout_marginTop="303dp"
         android:layout_marginStart="75dp"
         android:elevation="@android:dimen/app_icon_size"
         app:srcCompat="@android:drawable/btn_star_big_on" />
@@ -21,7 +21,7 @@
         android:id="@+id/ic_star02"
         android:layout_width="40px"
         android:layout_height="40px"
-        android:layout_marginTop="355dp"
+        android:layout_marginTop="303dp"
         android:layout_marginStart="90dp"
         android:elevation="@android:dimen/app_icon_size"
         app:srcCompat="@android:drawable/btn_star_big_on" />
@@ -29,7 +29,7 @@
         android:id="@+id/ic_star03"
         android:layout_width="40px"
         android:layout_height="40px"
-        android:layout_marginTop="355dp"
+        android:layout_marginTop="303dp"
         android:layout_marginStart="105dp"
         android:elevation="@android:dimen/app_icon_size"
         app:srcCompat="@android:drawable/btn_star_big_on" />
@@ -37,7 +37,7 @@
         android:id="@+id/ic_star04"
         android:layout_width="40px"
         android:layout_height="40px"
-        android:layout_marginTop="355dp"
+        android:layout_marginTop="303dp"
         android:layout_marginStart="120dp"
         android:elevation="@android:dimen/app_icon_size"
         app:srcCompat="@android:drawable/btn_star_big_on" />
@@ -45,31 +45,12 @@
         android:id="@+id/ic_star05"
         android:layout_width="40px"
         android:layout_height="40px"
-        android:layout_marginTop="355dp"
+        android:layout_marginTop="303dp"
         android:layout_marginStart="135dp"
         android:elevation="@android:dimen/app_icon_size"
         app:srcCompat="@android:drawable/btn_star_big_on" />
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:elevation="@android:dimen/app_icon_size"
-        android:backgroundTint="#00000000"
-        android:src="@android:drawable/ic_menu_search"
-        android:layout_gravity="right"
-        app:tint="@color/white"
-        app:borderWidth="0dp"/>
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fb_back"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:elevation="@android:dimen/app_icon_size"
-        android:backgroundTint="#00000000"
-        android:src="?attr/actionModeCloseDrawable"
-        android:layout_gravity="left"
-        app:tint="@color/white"
-        app:borderWidth="0dp"/>
 
 
 
@@ -79,13 +60,6 @@
         android:layout_height="wrap_content"
         android:background="@color/black"
         >
-
-        <ImageView
-            android:id="@+id/iv_logo"
-            android:layout_width="106dp"
-            android:layout_height="51dp"
-            android:layout_gravity="center"
-            android:background="@drawable/ic_logo_cinequiz" />
 
 
 
