@@ -9,4 +9,6 @@
     <string name="recent_matches">Partidas Recentes</string>
     <string name="achievements">Conquistas</string>
     <string name="welcome">Bem Vindo Fulano!</string>
+    <string name="open_drawer">Abrir</string>
+    <string name="close_drawer">Fechar</string>
 </resources>
