@@ -9,4 +9,22 @@
     <string name="recent_matches">Partidas Recentes</string>
     <string name="achievements">Conquistas</string>
     <string name="welcome">Bem Vindo Fulano!</string>
+    <string name="won">Ganhou!</string>
+    <string name="matches_date">30/02</string>
+    <string name="achievements_row10">Alcançou 10 acertos seguidos!</string>
+    <string name="achievements_row9">Alcançou 9 acertos seguidos!</string>
+    <string name="achievements_row8">Alcançou 8 acertos seguidos!</string>
+    <string name="achievements_row7">Alcançou 7 acertos seguidos!</string>
+    <string name="achievements_row6">Alcançou 6 acertos seguidos!</string>
+    <string name="achievements_row5">Alcançou 5 acertos seguidos!</string>
+    <string name="achievements_row4">Alcançou 4 acertos seguidos!</string>
+    <string name="achievements_row3">Alcançou 3 acertos seguidos!</string>
+    <string name="achievements_row2">Alcançou 2 acertos seguidos!</string>
+    <string name="achievements_row1">Alcançou 1 acerto!</string>
+    <string name="achievement_horror">Completou categoria: Terror</string>
+    <string name="achievement_adv">Completou a categoria: Aventura</string>
+    <string name="achievement_fiction">Completou a categoria: Ficçâo</string>
+    <string name="user_profile_image">User profile image</string>
+
+
 </resources>

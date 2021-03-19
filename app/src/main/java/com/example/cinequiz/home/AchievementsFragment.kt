@@ -5,30 +5,14 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.cinequiz.R
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
 
-/**
- * A simple [Fragment] subclass.
- * Use the [AchievementsFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
-class AchievementsFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
+class AchievementsFragment: Fragment() {
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
+    private lateinit var achievementRecycler: RecyclerView
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -38,23 +22,31 @@ class AchievementsFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_achievements, container, false)
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment AchievementsFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            AchievementsFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        val goalsList = mutableListOf<Achievement>()
+        goalsList.add(Achievement("Completou a categoria: Terror!"))
+        goalsList.add(Achievement("Completou a categoria: Aventura!"))
+        goalsList.add(Achievement("Completou a categoria: Suspense!"))
+        goalsList.add(Achievement("Completou a categoria: Drama!"))
+        goalsList.add(Achievement("Completou a categoria: Ficção!"))
+        goalsList.add(Achievement("Completou a categoria: Comédia!"))
+        goalsList.add(Achievement("Alcançou 10 vitórias!"))
+        goalsList.add(Achievement("Alcançou 9 vitória!"))
+        goalsList.add(Achievement("Alcançou 8 vitória!"))
+        goalsList.add(Achievement("Alcançou 7 vitórias!"))
+        goalsList.add(Achievement("Alcançou 6 vitórias!"))
+        goalsList.add(Achievement("Alcançou 5 vitórias!"))
+        goalsList.add(Achievement("Alcançou 4 vitórias!"))
+        goalsList.add(Achievement("Alcançou 3 vitórias!"))
+        goalsList.add(Achievement("Alcançou 2 vitórias!"))
+        goalsList.add(Achievement("Alcançou 1 vitória!"))
+
+
+        achievementRecycler = view.findViewById(R.id.achievements_recycler)
+        achievementRecycler.layoutManager = LinearLayoutManager(context)
+        val adapter = AchievementsAdapter(goalsList)
+        achievementRecycler.adapter = adapter
     }
 }
