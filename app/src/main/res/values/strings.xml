@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">Cinequiz</string>
+    <string name="home">Home</string>
+    <string name="quiz">Quiz</string>
+    <string name="catalog">Catálogo</string>
+    <string name="profile">Perfil</string>
+    <string name="conquers_tab">Conquistas</string>
+    <string name="recent_searches">Buscas recentes</string>
+    <string name="recent_matches">Partidas Recentes</string>
+    <string name="achievements">Conquistas</string>
+    <string name="welcome">Bem Vindo Fulano!</string>
 </resources>

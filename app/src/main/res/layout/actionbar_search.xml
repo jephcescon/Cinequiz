@@ -19,7 +19,7 @@
         app:srcCompat="@drawable/ic_logo_cinequiz" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fb_back"
+        android:id="@+id/fb_back_searchmenu"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="left"
@@ -30,22 +30,6 @@
         app:layout_constraintEnd_toStartOf="@+id/iv_logo"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:tint="@color/white" />
-
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fb_serch_moviedetailes"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="right"
-        android:layout_marginTop="0dp"
-        android:backgroundTint="#00000000"
-        android:elevation="@android:dimen/app_icon_size"
-        android:src="@android:drawable/ic_menu_search"
-        app:borderWidth="0dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toEndOf="@+id/iv_logo"
         app:layout_constraintTop_toTopOf="parent"
         app:tint="@color/white" />
 

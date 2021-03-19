@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.viewpager2.widget.ViewPager2
 import com.example.cinequiz.MainActivity
 import com.example.cinequiz.R
+import com.example.cinequiz.search.SearchMenu
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.tabs.TabLayout
@@ -20,7 +21,7 @@ class MovieDetails : AppCompatActivity() {
     val tabs by lazy { findViewById<TabLayout>(R.id.tb_movie_details) }
     val bottomNav by lazy { findViewById<BottomNavigationView>(R.id.bottomNavigationView_movie_details) }
     val back by lazy { findViewById<FloatingActionButton>(R.id.fb_back) }
-    val search by lazy { findViewById<FloatingActionButton>(R.id.fb_serch) }
+    val search by lazy { findViewById<FloatingActionButton>(R.id.fb_serch_moviedetailes) }
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -51,6 +52,11 @@ class MovieDetails : AppCompatActivity() {
 
         back.setOnClickListener {
             super.onBackPressed()
+        }
+
+                search.setOnClickListener {
+            val intent = Intent(this, SearchMenu::class.java)
+            startActivity(intent)
         }
 
     }
