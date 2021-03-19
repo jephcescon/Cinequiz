@@ -3,46 +3,45 @@
 
 
     <item
-        android:id="@+id/subtitle"
+        android:id="@+id/movie"
         android:title="FILMES" />
 
     <item
-        android:id="@+id/item1"
+        android:id="@+id/movie_horror"
         android:title="         Terror" />
 
     <item
-        android:id="@+id/item2"
+        android:id="@+id/movie_romance"
         android:title="         Romance" />
     <item
-        android:id="@+id/item3"
+        android:id="@+id/movie_scifi"
         android:title="         Ficção Científica" />
     <item
-        android:id="@+id/item4"
+        android:id="@+id/movie_fantasy"
         android:title="         Fantasia" />
     <item
-        android:id="@+id/item5"
-        android:title="         Suspence" />
+        android:id="@+id/movie_thriller"
+        android:title="         Suspense" />
 
 
     <item
-        android:id="@+id/subtitle2"
+        android:id="@+id/series"
         android:title="SÉRIES" />
-
     <item
-        android:id="@+id/item6"
+        android:id="@+id/series_horror"
         android:title="         Terror" />
 
     <item
-        android:id="@+id/item7"
+        android:id="@+id/series_romance"
         android:title="         Romance" />
     <item
-        android:id="@+id/item8"
+        android:id="@+id/series_scifi"
         android:title="         Ficção Científica" />
     <item
-        android:id="@+id/item9"
+        android:id="@+id/series_fantasy"
         android:title="         Fantasia" />
     <item
-        android:id="@+id/item10"
+        android:id="@+id/series_thriller"
         android:title="         Suspence" />
 
 

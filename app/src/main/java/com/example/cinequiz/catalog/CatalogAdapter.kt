@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.cinequiz.R
 import com.google.android.material.snackbar.Snackbar
 
-class CatalogAdapter(private val bannerList:List<Int>): RecyclerView.Adapter<CatalogAdapter.CatalogViewHolder>(){
+class CatalogAdapter(private val bannerList:List<Movie>, val callback :(Int)->Unit): RecyclerView.Adapter<CatalogAdapter.CatalogViewHolder>(){
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CatalogViewHolder {
@@ -21,12 +21,12 @@ class CatalogAdapter(private val bannerList:List<Int>): RecyclerView.Adapter<Cat
 
     override fun onBindViewHolder(holder: CatalogViewHolder, position: Int) {
         holder.cardBanner.setOnClickListener{
-            Snackbar.make(it,"Figura $position",Snackbar.LENGTH_SHORT).show()
+            callback(position)
         }
     }
 
     inner class CatalogViewHolder(view: View):RecyclerView.ViewHolder(view){
-        val cardBanner by lazy { view.findViewById<CardView>(R.id.cardBanner) }
+        val cardBanner: CardView by lazy { view.findViewById<CardView>(R.id.cardBanner) }
         val banner by lazy { view.findViewById<ImageView>(R.id.bannerCatalog) }
     }
 }
