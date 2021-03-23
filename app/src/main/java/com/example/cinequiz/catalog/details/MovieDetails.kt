@@ -2,37 +2,37 @@ package com.example.cinequiz.catalog.details
 
 import android.app.ActionBar
 import android.content.Intent
+import android.content.res.Resources
+import android.icu.util.TimeUnit.values
 import android.os.Bundle
+
+import android.widget.Button
+
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.widget.ActionBarContextView
+import androidx.appcompat.widget.Toolbar
+
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.widget.ViewPager2
-import com.example.cinequiz.MainActivity
+
 import com.example.cinequiz.R
 import com.example.cinequiz.search.SearchMenu
-import com.google.android.material.bottomnavigation.BottomNavigationView
-import com.google.android.material.floatingactionbutton.FloatingActionButton
+
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
+
 
 class MovieDetails : AppCompatActivity() {
 
     val viewPager by lazy { findViewById<ViewPager2>(R.id.vp_movie_details) }
     val tabs by lazy { findViewById<TabLayout>(R.id.tb_movie_details) }
-    val bottomNav by lazy { findViewById<BottomNavigationView>(R.id.bottomNavigationView_movie_details) }
-    val back by lazy { findViewById<FloatingActionButton>(R.id.fb_back) }
-    val search by lazy { findViewById<FloatingActionButton>(R.id.fb_serch_moviedetailes) }
+    val back by lazy { findViewById<Button>(R.id.bt_return_movie_details) }
+    val search by lazy { findViewById<Button>(R.id.bt_search_movie_details) }
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_movie_details)
 
-
-        // ****COLOCANDO ACTIONBAR NO PROJETO****
-        val action = supportActionBar!!
-        action.setDisplayShowCustomEnabled(true)
-        action.setCustomView(R.layout.actionbar)
 
 
 
@@ -54,7 +54,7 @@ class MovieDetails : AppCompatActivity() {
             super.onBackPressed()
         }
 
-                search.setOnClickListener {
+        search.setOnClickListener {
             val intent = Intent(this, SearchMenu::class.java)
             startActivity(intent)
         }

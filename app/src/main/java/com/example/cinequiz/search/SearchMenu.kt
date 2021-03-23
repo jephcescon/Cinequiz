@@ -1,19 +1,19 @@
 package com.example.cinequiz.search
 
-import android.content.Intent
 import android.os.Bundle
+import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.cinequiz.R
 import com.example.cinequiz.search.adapter.ItemSearchAdapter
 import com.example.cinequiz.search.model.ItemSearch
-import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 class SearchMenu : AppCompatActivity() {
 
     val recyle by lazy { findViewById<RecyclerView>(R.id.rv_last_search) }
-    val fbBackPress by lazy { findViewById<FloatingActionButton>(R.id.fb_back_searchmenu) }
+    val btBackPress by lazy { findViewById<Button>(R.id.bt_return_search_movie) }
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -25,13 +25,9 @@ class SearchMenu : AppCompatActivity() {
         val adapter = ItemSearchAdapter(moviesList)
         recyle.adapter = adapter
 
-        // ****COLOCANDO ACTIONBAR NO PROJETO****
-        val action = supportActionBar!!
-        action.setDisplayShowCustomEnabled(true)
-        action.setCustomView(R.layout.actionbar_search)
 
 
-        fbBackPress.setOnClickListener {
+        btBackPress.setOnClickListener {
             super.onBackPressed()
         }
 
