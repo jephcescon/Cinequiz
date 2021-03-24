@@ -7,6 +7,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.widget.Toolbar
 import androidx.core.view.ViewCompat
@@ -16,9 +17,13 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.cinequiz.MainActivity
 import com.example.cinequiz.R
+import com.example.cinequiz.catalog.details.MovieDetails
+import com.example.cinequiz.search.SearchMenu
 import com.synnapps.carouselview.CarouselView
 
 class CatalogFragment : Fragment() {
+
+    val search by lazy { view?.findViewById<Button>(R.id.searchButton) }
     private val carousel by lazy { view?.findViewById<CarouselView>(R.id.carouselView) }
     private val bannerRecycle by lazy {
         view?.findViewById<androidx.recyclerview.widget.RecyclerView>(
@@ -116,7 +121,7 @@ class CatalogFragment : Fragment() {
         bannerRecycle?.layoutManager = GridLayoutManager(view.context, 2)
         viewModel.movieLiveData.observe(viewLifecycleOwner) { movie->
             bannerRecycle?.adapter = CatalogAdapter(movie) { position ->
-                val intent = Intent(view.context,MainActivity::class.java)
+                val intent = Intent(view.context,MovieDetails::class.java)
                 intent.putExtra("BANNER", movie[position].imagem)
                 startActivity(intent)
             }
@@ -149,6 +154,12 @@ class CatalogFragment : Fragment() {
                 intent.putExtra("BANNER", movie[position].imagem)
                 startActivity(intent)
             }
+        }
+
+        //BOTÃO DE PESQUISA
+        search?.setOnClickListener {
+            val intent = Intent(view.context, SearchMenu::class.java)
+            startActivity(intent)
         }
 
     }

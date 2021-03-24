@@ -16,7 +16,9 @@
         app:layout_constraintStart_toStartOf="parent"
         app:itemIconTint="@drawable/item_selector"
         app:itemTextColor="@drawable/item_selector"
-        app:menu="@menu/bottom_nav_menu"/>
+        app:menu="@menu/bottom_nav_menu">
+
+    </com.google.android.material.bottomnavigation.BottomNavigationView>
 
     <fragment
         android:id="@+id/navHostFragment"
