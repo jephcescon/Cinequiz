@@ -1,23 +1,170 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/profileFragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/black"
-    tools:context=".ProfileFragment">
+    android:orientation="vertical"
+    tools:context="profile.ProfileFragment">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="236dp"
+                android:layout_height="90dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="30dp"
+                android:scaleType="fitCenter"
+                android:src="@drawable/cine_logo" />
+
+            <ImageView
+                android:id="@+id/imageView2"
+                android:layout_width="141dp"
+                android:layout_height="102dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="30dp"
+                android:src="@drawable/profile_image" />
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="15dp"
+                app:cardCornerRadius="20dp">
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="211dp"
+                    android:layout_height="55dp"
+                    android:background="#00FFFFFF">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:fontFamily="sans-serif-black"
+                        android:padding="15dp"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                        android:textColor="#555555"
+                        android:background="#00FFFFFF"
+                        android:text="Nome do Jogador" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+            </androidx.cardview.widget.CardView>
 
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Perfil Fragment"
-        android:textColor="#FF0000"
-        android:textSize="25sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+            <androidx.appcompat.widget.SwitchCompat
+                android:id="@+id/switch_public_profile"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:layout_marginStart="15dp"
+                android:layout_marginEnd="20dp"
+                android:text="Perfil Público"
+                android:textColor="@color/white"
+                app:trackTint="@color/cardview_dark_background" />
+
+            <androidx.appcompat.widget.SwitchCompat
+                android:id="@+id/switch_ranking_position"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:layout_marginEnd="20dp"
+                android:text="Posição no Ranking"
+                android:textColor="@color/white"
+                app:trackTint="@color/cardview_dark_background" />
+
+            <androidx.appcompat.widget.SwitchCompat
+                android:id="@+id/switch_notification"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:layout_marginEnd="20dp"
+                android:text="Notificações"
+                android:textColor="@color/white"
+                app:trackTint="@color/cardview_dark_background" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/textView2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="15dp"
+                    android:layout_weight="1"
+                    android:text="Atualizar Perfil"
+                    android:textColor="@color/white" />
+
+                <Button
+                    android:id="@+id/button_update"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Atualizar" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/textview_about"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginStart="15dp"
+                android:text="Sobre o App"
+                android:textColor="@color/white" />
+
+            <TextView
+                android:id="@+id/textview_ranking"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_marginStart="15dp"
+                android:text="Ver Ranking"
+                android:textColor="@color/white" />
+
+            <TextView
+                android:id="@+id/textview_help"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_marginStart="15dp"
+                android:text="Ajuda"
+                android:textColor="@color/white" />
+
+            <TextView
+                android:id="@+id/textview_quit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_marginStart="15dp"
+                android:text="Sair da Conta"
+                android:textColor="@color/white" />
+
+            <com.google.android.material.bottomnavigation.BottomNavigationView
+                android:id="@+id/bottomNavigationView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/black"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:itemIconTint="@drawable/item_selector"
+                app:itemTextColor="@drawable/item_selector"
+                app:menu="@menu/bottom_nav_menu">
+            </com.google.android.material.bottomnavigation.BottomNavigationView>
+
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

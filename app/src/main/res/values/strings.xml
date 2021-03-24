@@ -25,6 +25,8 @@
     <string name="achievement_adv">Completou a categoria: Aventura</string>
     <string name="achievement_fiction">Completou a categoria: Ficçâo</string>
     <string name="user_profile_image">User profile image</string>
+    <string name="icon_thumb_up">icone polegar para cima</string>
+    <string name="source_code">Filme: Contra o Tempo</string>
 
 
 </resources>
