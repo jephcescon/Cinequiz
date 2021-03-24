@@ -6,7 +6,7 @@ object MovieSimulation {
 
     fun getMovie(): List<Movie>{
         val listMovies= mutableListOf<Movie>()
-        for (i in 1..10) {
+        for (i in 1..2) {
             listMovies.add(Movie("Filme $i Terror","Filme posição $i", R.drawable.deadpool,"Terror","Movie"))
             listMovies.add(Movie("Filme $i Romance","Filme posição $i", R.drawable.deadpool,"Romance","Movie"))
             listMovies.add(Movie("Filme $i Ficção","Filme posição $i", R.drawable.deadpool,"Ficção Científica","Movie"))
