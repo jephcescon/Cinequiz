@@ -19,7 +19,7 @@
         android:id="@+id/catalogFragment"
         android:name="com.example.cinequiz.catalog.CatalogFragment"
         android:label="@string/catalog"
-        tools:layout="@layout/fragment_catalog" />
+        tools:layout="@layout/fragment_catalog2" />
     <fragment
         android:id="@+id/profileFragment"
         android:name="com.example.cinequiz.profile.ProfileFragment"
