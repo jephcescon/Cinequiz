@@ -9,7 +9,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 
-class MainActivity : AppCompatActivity() {
+class LoginActivity : AppCompatActivity() {
     lateinit var tvNovoCadastro: TextView
     lateinit var tvEsqueciASenha: TextView
     lateinit var btnLogin: Button
@@ -23,7 +23,7 @@ class MainActivity : AppCompatActivity() {
         this.window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN); //enable full screen
 
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.activity_login)
 
         btnLogin = findViewById(R.id.btnLogin)
 

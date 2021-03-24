@@ -9,30 +9,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Cinequiz">
-
-
-        <activity android:name=".MainActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" android:theme="@android:style/Theme.NoTitleBar"/>
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-
+        <activity android:name=".EsqueciASenhaActivity"/>
+        <activity android:name=".CadastroActivity"/>
+        <activity android:name=".LoginActivity"/>
         <activity android:name=".SplashScreenActivity" android:theme="@style/Theme.AppCompat.NoActionBar">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-
-        <activity android:name=".CadastroActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" android:theme="@android:style/Theme.NoTitleBar"/>
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-
-        <activity android:name=".EsqueciASenhaActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" android:theme="@android:style/Theme.NoTitleBar"/>
                 <category android:name="android.intent.category.LAUNCHER" />
