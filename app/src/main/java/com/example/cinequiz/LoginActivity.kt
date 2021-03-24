@@ -28,7 +28,8 @@ class LoginActivity : AppCompatActivity() {
         btnLogin = findViewById(R.id.btnLogin)
 
         btnLogin.setOnClickListener {
-            Toast.makeText(this, "Logando...", Toast.LENGTH_LONG).show();
+            val intent = Intent(this,MainActivity::class.java)
+            startActivity(intent)
         }
 
         tvNovoCadastro = findViewById(R.id.tvNovo)

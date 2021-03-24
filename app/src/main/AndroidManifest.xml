@@ -13,7 +13,7 @@
         <activity android:name=".profile.AboutApp" />
         <activity android:name=".search.SearchMenu"/>
         <activity android:name=".catalog.details.MovieDetails"/>
-        <activity android:name=".MainActivity">
+        <activity android:name=".MainActivity"/>
 
         <activity android:name=".EsqueciASenhaActivity"/>
         <activity android:name=".CadastroActivity"/>
@@ -26,5 +26,4 @@
             </intent-filter>
         </activity>
     </application>
-
 </manifest>
