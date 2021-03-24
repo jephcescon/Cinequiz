@@ -10,8 +10,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Cinequiz">
         <activity android:name=".search.SearchMenu"/>
-<!--        <activity android:name=".catalog.details.MovieDetails"/>-->
-        <activity android:name=".catalog.details.MovieDetails">
+        <activity android:name=".catalog.details.MovieDetails"/>
+        <activity android:name=".MainActivity">
 
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
