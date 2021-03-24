@@ -31,4 +31,11 @@
     <string name="close_drawer">close drawer</string>
 
 
+    <string name="E_mail">E-mail</string>
+    <string name="Log_in">Log in</string>
+    <string name="Esqueceu_a_senha">Esqueceu a senha?</string>
+    <string name="novo_por_aqui_inscreva_se_agora">Novo por aqui? Inscreva-se agora</string>
+    <string name="ou">Ou</string>
+    <string name="Login_com_facebook">Login com Facebook</string>
+    <string name="Login_com_google">Login com Google</string>
 </resources>
