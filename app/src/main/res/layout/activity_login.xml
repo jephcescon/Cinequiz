@@ -72,6 +72,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/Log_in"
+        android:backgroundTint="#535050"
+        android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textInputLayout2" />
@@ -80,26 +82,25 @@
         android:id="@+id/tvEsqueciSenha"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
         android:text="@string/Esqueceu_a_senha"
+        android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.526"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnLogin"
-        android:textColor="@color/material_on_primary_disabled"
-        android:layout_marginTop="5dp"
-        />
+        app:layout_constraintTop_toBottomOf="@+id/btnLogin" />
 
     <TextView
         android:id="@+id/tvNovo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
         android:text="@string/novo_por_aqui_inscreva_se_agora"
+        android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.842"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvEsqueciSenha"
-        android:textColor="@color/material_on_primary_disabled"
-        android:layout_marginTop="5dp"
-        android:layout_marginBottom="50dp"
-        />
+        app:layout_constraintTop_toBottomOf="@+id/tvEsqueciSenha" />
 
     <View
         android:id="@+id/vwLinha"
@@ -121,7 +122,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toTopOf="@+id/btnFacebook"
-        android:textColor="@color/material_on_primary_disabled"
+        android:textColor="@color/white"
         android:layout_marginTop="5dp"
         />
 
@@ -137,15 +138,16 @@
 
     <Button
         android:id="@+id/btnFacebook"
-        android:layout_marginTop="5dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/Login_com_facebook"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/vwLinha"
+        android:layout_marginTop="20dp"
         android:backgroundTint="@color/facebook_blue"
-        />
+        android:text="@string/Login_com_facebook"
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.526"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/vwLinha" />
 
     <Button
         android:id="@+id/btnGoogle"
@@ -155,6 +157,7 @@
         android:text="@string/Login_com_google"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        android:textColor="@color/white"
         app:layout_constraintTop_toBottomOf="@+id/btnFacebook"
         android:backgroundTint="@color/google_red"
         />

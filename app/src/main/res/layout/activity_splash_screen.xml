@@ -18,7 +18,8 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="180dp"
-        android:src="@drawable/claquete"
+        android:background="@drawable/claquete"
+        android:visibility="gone"
         />
 
 </LinearLayout>
