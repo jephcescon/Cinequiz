@@ -9,8 +9,6 @@
     android:theme="@style/Theme.AppCompat.NoActionBar">
 
 
-
-
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout"
         android:layout_width="match_parent"

@@ -119,12 +119,9 @@ class CatalogFragment : Fragment() {
 
         //recycle movie
         bannerRecycle?.layoutManager = GridLayoutManager(view.context, 2)
+
         viewModel.movieLiveData.observe(viewLifecycleOwner) { movie->
-            bannerRecycle?.adapter = CatalogAdapter(movie) { position ->
-                val intent = Intent(view.context,MovieDetails::class.java)
-                intent.putExtra("BANNER", movie[position].imagem)
-                startActivity(intent)
-            }
+            bannerRecycle?.adapter = CatalogAdapter(movie) { _-> }
         }
         bannerRecycle?.let { ViewCompat.setNestedScrollingEnabled(it, false) };
 
@@ -138,21 +135,12 @@ class CatalogFragment : Fragment() {
         )
         drawerLayout?.addDrawerListener(toggle)
         viewModel.movieLiveData.observe(viewLifecycleOwner) { movie->
-            val image = intArrayOf(
-                movie[0].imagem,
-                movie[1].imagem,
-                movie[2].imagem,
-                movie[3].imagem,
-                movie[4].imagem
-            )
+            val image = intArrayOf()
             carousel?.setImageListener { position, imageView ->
                 imageView.setImageResource(image[position])
             }
             carousel?.pageCount = image.size
             carousel?.setImageClickListener { position->
-                val intent = Intent(view.context,MainActivity::class.java)
-                intent.putExtra("BANNER", movie[position].imagem)
-                startActivity(intent)
             }
         }
 
