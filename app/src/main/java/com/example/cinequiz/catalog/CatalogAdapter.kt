@@ -27,7 +27,7 @@ class CatalogAdapter(private val bannerList:List<PopularMoviesList>, val callbac
             callback(position)
         }
 
-        val url = "https://image.tmdb.org/t/p/original${imagePath.posterPath}"
+        val url = "https://image.tmdb.org/t/p/w500${imagePath.posterPath}"
         Picasso.get().load(url).into(holder.banner)
     }
 

@@ -11,12 +11,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Cinequiz">
-        <activity android:name=".profile.HelpProfile"></activity>
+        <activity android:name=".profile.HelpProfile"/>
         <activity android:name=".profile.AboutApp" />
         <activity android:name=".search.SearchMenu"/>
         <activity android:name=".catalog.details.MovieDetails"/>
         <activity android:name=".MainActivity"/>
-
         <activity android:name=".EsqueciASenhaActivity"/>
         <activity android:name=".CadastroActivity"/>
         <activity android:name=".LoginActivity"/>

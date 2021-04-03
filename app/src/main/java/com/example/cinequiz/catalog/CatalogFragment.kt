@@ -59,10 +59,12 @@ class CatalogFragment : Fragment() {
     private fun clickNavigation() {
         navigationView?.setNavigationItemSelectedListener { menuItem ->
             when (menuItem.itemId) {
+                TODO("Arthur")
                 R.id.movie -> {
                     Log.d("click", "Clicou em algo")
                     true
                 }
+                TODO("")
                 R.id.movie_fantasy -> {
                     Log.d("click", "Clicou em algo")
                     true
@@ -83,10 +85,12 @@ class CatalogFragment : Fragment() {
                     Log.d("click", "Clicou em algo")
                     true
                 }
+                TODO("Jepherson")
                 R.id.series -> {
                     Log.d("click", "Clicou em algo")
                     true
                 }
+                TODO("Pedro")
                 R.id.series_fantasy -> {
                     Log.d("click", "Clicou em algo")
                     true
