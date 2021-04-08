@@ -7,23 +7,28 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Adapter
 import android.widget.Button
+import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.widget.Toolbar
 import androidx.core.view.ViewCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
-import com.example.cinequiz.MainActivity
 import com.example.cinequiz.R
-import com.example.cinequiz.catalog.details.MovieDetails
+import com.example.cinequiz.model.popularMovieModel.PopularMoviesList
 import com.example.cinequiz.search.SearchMenu
+import com.google.android.material.snackbar.Snackbar
+import com.squareup.picasso.Picasso
 import com.synnapps.carouselview.CarouselView
+import okhttp3.internal.notify
 
 class CatalogFragment : Fragment() {
 
-    val search by lazy { view?.findViewById<Button>(R.id.searchButton) }
+    private val search by lazy { view?.findViewById<Button>(R.id.searchButton) }
     private val carousel by lazy { view?.findViewById<CarouselView>(R.id.carouselView) }
     private val bannerRecycle by lazy {
         view?.findViewById<androidx.recyclerview.widget.RecyclerView>(
@@ -40,6 +45,12 @@ class CatalogFragment : Fragment() {
 
     lateinit var viewModel: CatalogViewModel
 
+    private val recycleScroll by lazy {
+        RecycleScroll {
+            viewModel.popularMoviesNextPage()
+        }
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -53,83 +64,34 @@ class CatalogFragment : Fragment() {
         viewModel = ViewModelProvider(this).get(CatalogViewModel::class.java)
 
         createdView(view)
-        clickNavigation()
-    }
 
-    private fun clickNavigation() {
-        navigationView?.setNavigationItemSelectedListener { menuItem ->
-            when (menuItem.itemId) {
-                TODO("Arthur")
-                R.id.movie -> {
-                    Log.d("click", "Clicou em algo")
-                    true
-                }
-                TODO("")
-                R.id.movie_fantasy -> {
-                    Log.d("click", "Clicou em algo")
-                    true
-                }
-                R.id.movie_horror -> {
-                    Log.d("click", "Clicou em algo")
-                    true
-                }
-                R.id.movie_romance -> {
-                    Log.d("click", "Clicou em algo")
-                    true
-                }
-                R.id.movie_scifi -> {
-                    Log.d("click", "Clicou em algo")
-                    true
-                }
-                R.id.movie_thriller -> {
-                    Log.d("click", "Clicou em algo")
-                    true
-                }
-                TODO("Jepherson")
-                R.id.series -> {
-                    Log.d("click", "Clicou em algo")
-                    true
-                }
-                TODO("Pedro")
-                R.id.series_fantasy -> {
-                    Log.d("click", "Clicou em algo")
-                    true
-                }
-                R.id.series_horror -> {
-                    Log.d("click", "Clicou em algo")
-                    true
-                }
-                R.id.series_romance -> {
-                    Log.d("click", "Clicou em algo")
-                    true
-                }
-                R.id.series_scifi -> {
-                    Log.d("click", "Clicou em algo")
-                    true
-                }
-                R.id.series_thriller -> {
-                    Log.d("click", "Clicou em algo")
-                    true
-                }
-                else -> {
-                    Log.d("click", "Não cliclou em nada")
-                    false
-                }
+        viewModel.errorMessage.observe(viewLifecycleOwner) {
+            it?.let {
+                Snackbar.make(view,it,Snackbar.LENGTH_LONG).show()
             }
         }
     }
 
     private fun createdView(view: View) {
+        //navegação
+        navigationView?.let { clickNavigation(it,bannerRecycle,viewModel,carousel,viewLifecycleOwner,view) }
 
         //recycle movie
-        bannerRecycle?.layoutManager = GridLayoutManager(view.context, 2)
+        firstTime(bannerRecycle,viewModel,carousel,viewLifecycleOwner,view)
+//        val adapter = CatalogAdapter{ _ -> }
+//        bannerRecycle?.adapter = adapter
+//        bannerRecycle?.layoutManager = GridLayoutManager(view.context,2)
+//
+//        bannerRecycle?.addOnScrollListener(recycleScroll)
+//
+//        viewModel.movieLiveData.observe(viewLifecycleOwner){ popularMovies->
+//            setRequestingNextPage()
+//            adapter.addMovies(popularMovies)
+//        }
 
-        viewModel.movieLiveData.observe(viewLifecycleOwner) { movie->
-            bannerRecycle?.adapter = CatalogAdapter(movie) { _-> }
-        }
-        bannerRecycle?.let { ViewCompat.setNestedScrollingEnabled(it, false) };
 
-        //carousel
+
+        //configurando view do menu sanduiche
         val toggle = ActionBarDrawerToggle(
             view.context as Activity,
             drawerLayout,
@@ -138,22 +100,15 @@ class CatalogFragment : Fragment() {
             R.string.close_drawer
         )
         drawerLayout?.addDrawerListener(toggle)
-        viewModel.movieLiveData.observe(viewLifecycleOwner) { movie->
-            val image = intArrayOf()
-            carousel?.setImageListener { position, imageView ->
-                imageView.setImageResource(image[position])
-            }
-            carousel?.pageCount = image.size
-            carousel?.setImageClickListener { position->
-            }
-        }
 
         //BOTÃO DE PESQUISA
         search?.setOnClickListener {
             val intent = Intent(view.context, SearchMenu::class.java)
             startActivity(intent)
         }
-
     }
 
+    private fun setRequestingNextPage() {
+        recycleScroll.requesting = false
+    }
 }

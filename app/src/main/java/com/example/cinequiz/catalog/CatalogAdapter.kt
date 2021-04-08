@@ -1,5 +1,7 @@
 package com.example.cinequiz.catalog
 
+import android.icu.text.Transliterator
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,23 +10,22 @@ import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.cinequiz.R
 import com.example.cinequiz.model.popularMovieModel.PopularMoviesList
-import com.google.android.material.snackbar.Snackbar
 import com.squareup.picasso.Picasso
 
-class CatalogAdapter(private val bannerList:List<PopularMoviesList>, val callback :(Int)->Unit): RecyclerView.Adapter<CatalogAdapter.CatalogViewHolder>(){
-
+class CatalogAdapter(val callback :(PopularMoviesList)->Unit): RecyclerView.Adapter<CatalogAdapter.CatalogViewHolder>(){
+    var imagens= mutableListOf<PopularMoviesList>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CatalogViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.banner_catalog,parent,false)
         return CatalogViewHolder(view)
     }
 
-    override fun getItemCount(): Int = bannerList.size
+    override fun getItemCount(): Int = imagens.size
 
     override fun onBindViewHolder(holder: CatalogViewHolder, position: Int) {
-        val imagePath = bannerList[position]
+        val imagePath = imagens[position]
         holder.cardBanner.setOnClickListener{
-            callback(position)
+            callback(imagePath)
         }
 
         val url = "https://image.tmdb.org/t/p/w500${imagePath.posterPath}"
@@ -34,5 +35,15 @@ class CatalogAdapter(private val bannerList:List<PopularMoviesList>, val callbac
     inner class CatalogViewHolder(view: View):RecyclerView.ViewHolder(view){
         val cardBanner: CardView by lazy { view.findViewById<CardView>(R.id.cardBanner) }
         val banner: ImageView by lazy { view.findViewById<ImageView>(R.id.bannerCatalog) }
+    }
+
+    fun addMovies(movies : List<PopularMoviesList>){
+        imagens.addAll(movies)
+        notifyDataSetChanged()
+    }
+
+    fun resetRecycle(){
+        imagens.clear()
+        notifyDataSetChanged()
     }
 }

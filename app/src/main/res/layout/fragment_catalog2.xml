@@ -48,7 +48,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <androidx.core.widget.NestedScrollView
+    <ScrollView
         android:id="@+id/scrollView2"
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -62,7 +62,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
-
 
             <com.synnapps.carouselview.CarouselView
                 android:id="@+id/carouselView"
@@ -78,7 +77,8 @@
                 app:slideInterval="4000"
                 app:snap="@bool/default_circle_indicator_snap"
                 app:strokeColor="@color/black"
-                app:strokeWidth="@null" />
+                app:strokeWidth="@null"
+                />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/bannerRecycle"
@@ -90,8 +90,15 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-    </androidx.core.widget.NestedScrollView>
+    </ScrollView>
 
+
+<!--    <androidx.recyclerview.widget.RecyclerView-->
+<!--        android:id="@+id/bannerRecycle"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="0dp"-->
+<!--        app:layout_constraintBottom_toTopOf="@+id/bottomNavigationView"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/constraintLayout" />-->
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomNavigationView"
