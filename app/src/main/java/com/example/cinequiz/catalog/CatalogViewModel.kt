@@ -2,6 +2,8 @@ package com.example.cinequiz.catalog
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.example.cinequiz.model.discoverMovies.ListMoviesGenre
+import com.example.cinequiz.model.discoverMovies.MoviesByGenre
 import com.example.cinequiz.model.popularMovieModel.PopularMovies
 import com.example.cinequiz.model.popularMovieModel.PopularMoviesList
 import com.example.cinequiz.repository.MoviesRepository
@@ -15,6 +17,10 @@ class CatalogViewModel: ViewModel() {
     val movieLiveData: MutableLiveData<List<PopularMoviesList>> by lazy { MutableLiveData<List<PopularMoviesList>>() }
     val carouselLiveData: MutableLiveData<List<PopularMoviesList>> by lazy { MutableLiveData<List<PopularMoviesList>>() }
 
+    val movieGenreLiveData: MutableLiveData<List<ListMoviesGenre>> by lazy { MutableLiveData<List<ListMoviesGenre>>() }
+    val carouselGenreLiveData: MutableLiveData<List<ListMoviesGenre>> by lazy { MutableLiveData<List<ListMoviesGenre>>() }
+    lateinit var genre: String
+
     val startedLoading: MutableLiveData<Boolean> by lazy { MutableLiveData<Boolean>() }
     val pagingLoading: MutableLiveData<Boolean> by lazy { MutableLiveData<Boolean>() }
     val errorMessage: MutableLiveData<String> by lazy { MutableLiveData<String>() }
@@ -23,9 +29,10 @@ class CatalogViewModel: ViewModel() {
 
     private val repository = MoviesRepository()
 
-    init {
-        movieList()
-    }
+//    init {
+//        movieList()
+//    }
+
 
     private fun <T> separation(list: List<T>?): MutableList<List<T>> {
         val carouselRecycle = mutableListOf<List<T>>()
@@ -44,17 +51,15 @@ class CatalogViewModel: ViewModel() {
         return carouselRecycle
     }
 
-    private fun movieList() = CoroutineScope(IO).launch {
+    fun movieList() = CoroutineScope(IO).launch {
         try {
             startedLoading.postValue(true)
             repository.getPopularMovies().let { movies ->
                 updateNextPage(movies)
 
-                //Mudar a lógica para o carrousel
                 val separation = separation(movies.listMovies)
                 movieLiveData.postValue(separation[1])
                 carouselLiveData.postValue(separation[0])
-//                movieLiveData.postValue(movies.listMovies)
             }
         }catch (error:Throwable){
             ErrorApi(error, errorMessage)
@@ -70,7 +75,7 @@ class CatalogViewModel: ViewModel() {
     fun popularMoviesNextPage()= CoroutineScope(IO).launch {
         try {
             pagingLoading.postValue(true)
-            repository.getPopularMovies(nextPage).let {
+            repository.getPopularMovies(page = nextPage).let {
                 updateNextPage(it)
                 movieLiveData.postValue(it.listMovies)
             }
@@ -80,6 +85,42 @@ class CatalogViewModel: ViewModel() {
             pagingLoading.postValue(false)
         }
     }
+
+    fun genreMovieList() = CoroutineScope(IO).launch {
+        try {
+            startedLoading.postValue(true)
+            repository.getDiscoverMovies(genre = genre).let { movies->
+                updateNextPageMoviesGenre(movies)
+
+                val separation = separation(movies.listMoviesGenre)
+                movieGenreLiveData.postValue(separation[1])
+                carouselGenreLiveData.postValue(separation[0])
+            }
+        }catch (error:Throwable){
+            ErrorApi(error, errorMessage)
+        }finally {
+            startedLoading.postValue(false)
+        }
+    }
+
+    private fun updateNextPageMoviesGenre(movies: MoviesByGenre){
+        nextPage = movies.page?.plus(1) ?: 1
+    }
+
+    fun genreMoviesNextPage() = CoroutineScope(IO).launch {
+        try {
+            pagingLoading.postValue(true)
+            repository.getDiscoverMovies(page = nextPage,genre = genre).let { movies->
+                updateNextPageMoviesGenre(movies)
+                movieGenreLiveData.postValue(movies.listMoviesGenre)
+            }
+        }catch (error:Throwable){
+            ErrorApi(error, errorMessage)
+        }finally {
+            pagingLoading.postValue(false)
+        }
+    }
+
 }
 
 fun ErrorApi(error: Throwable, errorMessage: MutableLiveData<String>){

@@ -1,6 +1,5 @@
 package com.example.cinequiz.catalog
 
-import android.icu.text.Transliterator
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -9,11 +8,10 @@ import android.widget.ImageView
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.cinequiz.R
-import com.example.cinequiz.model.popularMovieModel.PopularMoviesList
 import com.squareup.picasso.Picasso
 
-class CatalogAdapter(val callback :(PopularMoviesList)->Unit): RecyclerView.Adapter<CatalogAdapter.CatalogViewHolder>(){
-    var imagens= mutableListOf<PopularMoviesList>()
+class CatalogAdapter(val callback :(ImageRecycle)->Unit): RecyclerView.Adapter<CatalogAdapter.CatalogViewHolder>(){
+    var imagens= mutableListOf<ImageRecycle>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CatalogViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.banner_catalog,parent,false)
@@ -28,7 +26,9 @@ class CatalogAdapter(val callback :(PopularMoviesList)->Unit): RecyclerView.Adap
             callback(imagePath)
         }
 
-        val url = "https://image.tmdb.org/t/p/w500${imagePath.posterPath}"
+        Log.d("filmes","${imagePath.id}")
+
+        val url = "https://image.tmdb.org/t/p/w500${imagePath.banner}"
         Picasso.get().load(url).into(holder.banner)
     }
 
@@ -37,7 +37,7 @@ class CatalogAdapter(val callback :(PopularMoviesList)->Unit): RecyclerView.Adap
         val banner: ImageView by lazy { view.findViewById<ImageView>(R.id.bannerCatalog) }
     }
 
-    fun addMovies(movies : List<PopularMoviesList>){
+    fun addMovies(movies : List<ImageRecycle>){
         imagens.addAll(movies)
         notifyDataSetChanged()
     }

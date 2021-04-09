@@ -45,11 +45,11 @@ class CatalogFragment : Fragment() {
 
     lateinit var viewModel: CatalogViewModel
 
-    private val recycleScroll by lazy {
-        RecycleScroll {
-            viewModel.popularMoviesNextPage()
-        }
-    }
+//    private val recycleScroll by lazy {
+//        RecycleScroll {
+//            viewModel.popularMoviesNextPage()
+//        }
+//    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -78,6 +78,8 @@ class CatalogFragment : Fragment() {
 
         //recycle movie
         firstTime(bannerRecycle,viewModel,carousel,viewLifecycleOwner,view)
+
+
 //        val adapter = CatalogAdapter{ _ -> }
 //        bannerRecycle?.adapter = adapter
 //        bannerRecycle?.layoutManager = GridLayoutManager(view.context,2)
@@ -108,7 +110,7 @@ class CatalogFragment : Fragment() {
         }
     }
 
-    private fun setRequestingNextPage() {
-        recycleScroll.requesting = false
-    }
+//    private fun setRequestingNextPage() {
+//        recycleScroll.requesting = false
+//    }
 }

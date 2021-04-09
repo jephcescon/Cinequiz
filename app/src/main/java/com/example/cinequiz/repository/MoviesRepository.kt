@@ -15,5 +15,7 @@ class MoviesRepository {
 
     private val moviesService = RetrofitMovieDB(url).create(service)
 
-    suspend fun getPopularMovies(page : Int = 1) = moviesService.getPopularMovies(page)
+    suspend fun getPopularMovies(page : Int = 1) = moviesService.getPopularMovies(page = page)
+
+    suspend fun getDiscoverMovies(page: Int = 1, genre : String = "") = moviesService.getDiscoverMovies(page = page,withGenre = genre)
 }
