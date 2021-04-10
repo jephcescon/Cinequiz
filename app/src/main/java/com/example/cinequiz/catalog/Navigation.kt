@@ -18,7 +18,9 @@ fun firstTime(bannerRecycle: RecyclerView?, viewModel: CatalogViewModel, carouse
     }
 
     //CallBack para passar o ID
-    val adapter = CatalogAdapter{ _ -> }
+    val adapter = CatalogAdapter{
+        Dados.postAll(it)
+    }
     bannerRecycle?.adapter = adapter
     bannerRecycle?.layoutManager = GridLayoutManager(view.context,2)
 
@@ -33,7 +35,7 @@ fun firstTime(bannerRecycle: RecyclerView?, viewModel: CatalogViewModel, carouse
 
         val banners = mutableListOf<ImageRecycle>()
         popularMovies.forEach {
-            banners.add(ImageRecycle(it.posterPath,it.id,true))
+            banners.add(ImageRecycle(it.posterPath,it.id,true,it.overview,it.voteAverage))
         }
         adapter.addMovies(banners)
     }
@@ -100,7 +102,7 @@ fun clickNavigation(navigationView:NavigationView,bannerRecycle: RecyclerView?, 
 
                     val banners = mutableListOf<ImageRecycle>()
                     listMovies.forEach {
-                        banners.add(ImageRecycle(it.posterPath,it.id,true))
+                        banners.add(ImageRecycle(it.posterPath,it.id,true,it.overview,it.voteAverage))
                     }
                      adapter.addMovies(banners)
                 }
@@ -139,7 +141,7 @@ fun clickNavigation(navigationView:NavigationView,bannerRecycle: RecyclerView?, 
 
                     val banners = mutableListOf<ImageRecycle>()
                     listMovies.forEach {
-                        banners.add(ImageRecycle(it.posterPath,it.id,true))
+                        banners.add(ImageRecycle(it.posterPath,it.id,true,it.overview,it.voteAverage))
                     }
                     adapter.addMovies(banners)
                 }

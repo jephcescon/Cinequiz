@@ -10,13 +10,13 @@ interface ServiceAPI {
 
     @GET("movie/popular")
     suspend fun getPopularMovies(
-        @Query("language") language: String = "pt_BR",
+        @Query("language") language: String = "pt-BR",
         @Query("page") page: Int
     ) : PopularMovies
 
     @GET("discover/movie")
     suspend fun getDiscoverMovies(
-        @Query("language") language: String = "pt_BR",
+        @Query("language") language: String = "pt-BR",
         @Query("sort_by") sortBy: String = "popularity.desc",
         @Query("page") page: Int,
         @Query("with_genres") withGenre: String
