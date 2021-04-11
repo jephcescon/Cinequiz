@@ -26,8 +26,6 @@ class CatalogAdapter(val callback :(ImageRecycle)->Unit): RecyclerView.Adapter<C
             callback(imagePath)
         }
 
-        Log.d("filmes","${imagePath.id}")
-
         val url = "https://image.tmdb.org/t/p/w500${imagePath.banner}"
         Picasso.get().load(url).into(holder.banner)
     }

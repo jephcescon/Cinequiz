@@ -26,6 +26,8 @@ class CatalogViewModel: ViewModel() {
     val errorMessage: MutableLiveData<String> by lazy { MutableLiveData<String>() }
 
     var nextPage = 0
+    var genreNextPage = 0
+
 
     private val repository = MoviesRepository()
 
@@ -104,13 +106,13 @@ class CatalogViewModel: ViewModel() {
     }
 
     private fun updateNextPageMoviesGenre(movies: MoviesByGenre){
-        nextPage = movies.page?.plus(1) ?: 1
+        genreNextPage = movies.page?.plus(1) ?: 1
     }
 
     fun genreMoviesNextPage() = CoroutineScope(IO).launch {
         try {
             pagingLoading.postValue(true)
-            repository.getDiscoverMovies(page = nextPage,genre = genre).let { movies->
+            repository.getDiscoverMovies(page = genreNextPage,genre = genre).let { movies->
                 updateNextPageMoviesGenre(movies)
                 movieGenreLiveData.postValue(movies.listMoviesGenre)
             }

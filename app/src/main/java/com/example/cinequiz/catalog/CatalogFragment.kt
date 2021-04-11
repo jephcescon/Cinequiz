@@ -73,11 +73,12 @@ class CatalogFragment : Fragment() {
     }
 
     private fun createdView(view: View) {
+        val nav = Navigation(viewModel)
         //navegação
-        navigationView?.let { clickNavigation(it,bannerRecycle,viewModel,carousel,viewLifecycleOwner,view) }
+        navigationView?.let { nav.clickNavigation(it,bannerRecycle,viewModel,carousel,viewLifecycleOwner,view) }
 
         //recycle movie
-        firstTime(bannerRecycle,viewModel,carousel,viewLifecycleOwner,view)
+        nav.firstTime(bannerRecycle,viewModel,carousel,viewLifecycleOwner,view)
 
 
 //        val adapter = CatalogAdapter{ _ -> }
