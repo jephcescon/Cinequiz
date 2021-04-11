@@ -54,7 +54,7 @@ class Navigation(viewModel: CatalogViewModel) {
 
             val banners = mutableListOf<ImageRecycle>()
             popularMovies.forEach {
-                banners.add(ImageRecycle(it.posterPath, it.id, true, it.overview, it.voteAverage))
+                banners.add(ImageRecycle(it.posterPath, it.id, true, it.overview, it.voteAverage, it.originalTitle))
             }
             adapter.addMovies(banners)
         }
@@ -177,12 +177,14 @@ class Navigation(viewModel: CatalogViewModel) {
                         it.id,
                         true,
                         it.overview,
-                        it.voteAverage
+                        it.voteAverage,
+                        it.originalTitle
                     )
                 )
             }
             adapter.addMovies(banners)
         }
+
 
         viewModel.carouselGenreLiveData.observe(viewLifecycleOwner) { categoryMovies ->
             val url = listOf(

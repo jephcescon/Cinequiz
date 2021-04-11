@@ -1,5 +1,6 @@
 package com.example.cinequiz.repository
 
+import com.example.cinequiz.catalog.Dados
 import com.example.cinequiz.network.RetrofitMovieDB
 import com.example.cinequiz.network.ServiceAPI
 
@@ -18,4 +19,6 @@ class MoviesRepository {
     suspend fun getPopularMovies(page : Int = 1) = moviesService.getPopularMovies(page = page)
 
     suspend fun getDiscoverMovies(page: Int = 1, genre : String = "") = moviesService.getDiscoverMovies(page = page,withGenre = genre)
+
+    suspend fun getMovieCredits() = moviesService.getActors(Dados.dados!!.id!!)
 }

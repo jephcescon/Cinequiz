@@ -19,13 +19,14 @@ class PlaceholderFragment : Fragment() {
     companion object {
         const val FRAGMENT_NAME = "fragment_name"
         const val BACKGROUND_COLOR = "background_color"
+        const val FRAGMENT_TITLE = "title"
 
         @JvmStatic
-        fun newInstance(name: String, backgroundColor: Int): PlaceholderFragment {
+        fun newInstance(name: String, title: String): PlaceholderFragment {
             return PlaceholderFragment().apply {
                 arguments = Bundle().apply {
-                    putString(FRAGMENT_NAME, name)
-                    putInt(BACKGROUND_COLOR, backgroundColor)
+                    putString(FRAGMENT_NAME, name);
+                    putString(FRAGMENT_TITLE, title)
                 }
             }
         }

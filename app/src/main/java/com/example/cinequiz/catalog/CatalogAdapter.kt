@@ -1,5 +1,6 @@
 package com.example.cinequiz.catalog
 
+import android.content.Intent
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -8,6 +9,8 @@ import android.widget.ImageView
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.cinequiz.R
+import com.example.cinequiz.catalog.details.MovieDetails
+import com.example.cinequiz.model.MovieCredits.Cast
 import com.squareup.picasso.Picasso
 
 class CatalogAdapter(val callback :(ImageRecycle)->Unit): RecyclerView.Adapter<CatalogAdapter.CatalogViewHolder>(){
@@ -28,6 +31,13 @@ class CatalogAdapter(val callback :(ImageRecycle)->Unit): RecyclerView.Adapter<C
 
         val url = "https://image.tmdb.org/t/p/w500${imagePath.banner}"
         Picasso.get().load(url).into(holder.banner)
+
+        holder.banner.setOnClickListener {
+            val intent = Intent(it.context, MovieDetails::class.java)
+            Dados.postAll(imagePath)
+            it.context.startActivity(intent)
+        }
+
     }
 
     inner class CatalogViewHolder(view: View):RecyclerView.ViewHolder(view){
@@ -39,6 +49,7 @@ class CatalogAdapter(val callback :(ImageRecycle)->Unit): RecyclerView.Adapter<C
         imagens.addAll(movies)
         notifyDataSetChanged()
     }
+
 
     fun resetRecycle(){
         imagens.clear()
