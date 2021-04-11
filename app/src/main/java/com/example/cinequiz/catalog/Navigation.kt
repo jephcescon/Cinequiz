@@ -92,110 +92,23 @@ class Navigation(viewModel: CatalogViewModel) {
                     true
                 }
                 R.id.movie_horror -> {
-                    Log.d("click", "Clicou em algo")
-                    true
-                }
-                R.id.movie_fantasy -> {
-                    val adapter = CatalogAdapter { _ -> }
-                    bannerRecycle?.adapter = adapter
-                    bannerRecycle?.layoutManager = GridLayoutManager(view.context, 2)
-
-                    bannerRecycle?.addOnScrollListener(recycleScrollGenreMovie)
-
-                    adapter.resetRecycle()
-                    viewModel.movieGenreLiveData.value = listOf()
-                    viewModel.genre = "28"
-                    viewModel.genreMovieList()
-
-                    viewModel.movieGenreLiveData.observe(viewLifecycleOwner) { listMovies ->
-                        Log.d("pagina","Genre fantasy = ${viewModel.genreNextPage}")
-                        recycleScrollGenreMovie.requesting = false
-
-                        val banners = mutableListOf<ImageRecycle>()
-                        listMovies.forEach {
-                            banners.add(
-                                ImageRecycle(
-                                    it.posterPath,
-                                    it.id,
-                                    true,
-                                    it.overview,
-                                    it.voteAverage
-                                )
-                            )
-                        }
-                        adapter.addMovies(banners)
-                    }
-
-                    viewModel.carouselGenreLiveData.observe(viewLifecycleOwner) { categoryMovies ->
-                        val url = listOf(
-                            "https://image.tmdb.org/t/p/w500${categoryMovies[0].backdropPath}",
-                            "https://image.tmdb.org/t/p/w500${categoryMovies[1].backdropPath}",
-                            "https://image.tmdb.org/t/p/w500${categoryMovies[2].backdropPath}",
-                            "https://image.tmdb.org/t/p/w500${categoryMovies[3].backdropPath}"
-                        )
-                        carousel?.setImageListener { position, imageView ->
-                            Picasso.get().load(url[position]).into(imageView)
-                        }
-                        carousel?.pageCount = categoryMovies.size
-                        //CallBack para passar o ID
-                        carousel?.setImageClickListener { position ->
-                        }
-                    }
+                    clickMovieGenre(bannerRecycle, view, viewModel, viewLifecycleOwner, carousel,"27")
                     true
                 }
                 R.id.movie_romance -> {
-                    val adapter = CatalogAdapter { _ -> }
-                    bannerRecycle?.adapter = adapter
-                    bannerRecycle?.layoutManager = GridLayoutManager(view.context, 2)
-
-                    bannerRecycle?.addOnScrollListener(recycleScrollGenreMovie)
-
-                    adapter.resetRecycle()
-                    viewModel.movieGenreLiveData.value = listOf()
-                    viewModel.genre = "10749"
-                    viewModel.genreMovieList()
-
-                    viewModel.movieGenreLiveData.observe(viewLifecycleOwner) { listMovies ->
-                        Log.d("pagina","Genre romance = ${viewModel.genreNextPage}")
-                        recycleScrollGenreMovie.requesting = false
-
-                        val banners = mutableListOf<ImageRecycle>()
-                        listMovies.forEach {
-                            banners.add(
-                                ImageRecycle(
-                                    it.posterPath,
-                                    it.id,
-                                    true,
-                                    it.overview,
-                                    it.voteAverage
-                                )
-                            )
-                        }
-                        adapter.addMovies(banners)
-                    }
-
-                    viewModel.carouselGenreLiveData.observe(viewLifecycleOwner) { categoryMovies ->
-                        val url = listOf(
-                            "https://image.tmdb.org/t/p/w500${categoryMovies[0].backdropPath}",
-                            "https://image.tmdb.org/t/p/w500${categoryMovies[1].backdropPath}",
-                            "https://image.tmdb.org/t/p/w500${categoryMovies[2].backdropPath}",
-                            "https://image.tmdb.org/t/p/w500${categoryMovies[3].backdropPath}"
-                        )
-                        carousel?.setImageListener { position, imageView ->
-                            Picasso.get().load(url[position]).into(imageView)
-                        }
-                        carousel?.pageCount = categoryMovies.size
-                        carousel?.setImageClickListener { position ->
-                        }
-                    }
+                    clickMovieGenre(bannerRecycle, view, viewModel, viewLifecycleOwner, carousel,"10749")
                     true
                 }
                 R.id.movie_scifi -> {
-                    Log.d("click", "Clicou em algo")
+                    clickMovieGenre(bannerRecycle, view, viewModel, viewLifecycleOwner, carousel,"878")
+                    true
+                }
+                R.id.movie_fantasy -> {
+                    clickMovieGenre(bannerRecycle, view, viewModel, viewLifecycleOwner, carousel,"28")
                     true
                 }
                 R.id.movie_thriller -> {
-                    Log.d("click", "Clicou em algo")
+                    clickMovieGenre(bannerRecycle, view, viewModel, viewLifecycleOwner, carousel,"53")
                     true
                 }
                 R.id.series -> {
@@ -226,6 +139,64 @@ class Navigation(viewModel: CatalogViewModel) {
                     Log.d("click", "Não cliclou em nada")
                     false
                 }
+            }
+        }
+    }
+
+    private fun clickMovieGenre(
+        bannerRecycle: RecyclerView?,
+        view: View,
+        viewModel: CatalogViewModel,
+        viewLifecycleOwner: LifecycleOwner,
+        carousel: CarouselView?,
+        genre:String
+    ) {
+
+        viewModel.genreNextPage = 0
+
+        val adapter = CatalogAdapter { _ -> }
+        bannerRecycle?.adapter = adapter
+        bannerRecycle?.layoutManager = GridLayoutManager(view.context, 2)
+
+        bannerRecycle?.addOnScrollListener(recycleScrollGenreMovie)
+
+        adapter.resetRecycle()
+        viewModel.movieGenreLiveData.value = listOf()
+        viewModel.genre = genre
+        viewModel.genreMovieList()
+
+        viewModel.movieGenreLiveData.observe(viewLifecycleOwner) { listMovies ->
+            Log.d("pagina", "Genre fantasy = ${viewModel.genreNextPage}")
+            recycleScrollGenreMovie.requesting = false
+
+            val banners = mutableListOf<ImageRecycle>()
+            listMovies.forEach {
+                banners.add(
+                    ImageRecycle(
+                        it.posterPath,
+                        it.id,
+                        true,
+                        it.overview,
+                        it.voteAverage
+                    )
+                )
+            }
+            adapter.addMovies(banners)
+        }
+
+        viewModel.carouselGenreLiveData.observe(viewLifecycleOwner) { categoryMovies ->
+            val url = listOf(
+                "https://image.tmdb.org/t/p/w500${categoryMovies[0].backdropPath}",
+                "https://image.tmdb.org/t/p/w500${categoryMovies[1].backdropPath}",
+                "https://image.tmdb.org/t/p/w500${categoryMovies[2].backdropPath}",
+                "https://image.tmdb.org/t/p/w500${categoryMovies[3].backdropPath}"
+            )
+            carousel?.setImageListener { position, imageView ->
+                Picasso.get().load(url[position]).into(imageView)
+            }
+            carousel?.pageCount = categoryMovies.size
+            //CallBack para passar o ID
+            carousel?.setImageClickListener { position ->
             }
         }
     }
