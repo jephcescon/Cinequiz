@@ -32,9 +32,10 @@ class MovieDetails : AppCompatActivity() {
     val search by lazy { findViewById<Button>(R.id.bt_search_movie_details) }
     val movieImage by lazy { findViewById<ImageView>(R.id.iv_movie_img) }
     val movieTitle by lazy { findViewById<TextView>(R.id.tv_movie_title) }
+    val movieCast by lazy { findViewById<TextView>(R.id.tv_sinopse_elenco) }
+    val voteAvarage by lazy { findViewById<TextView>(R.id.tv_voteAvarage) }
     val viewModelMovieDetails by lazy { ViewModelProvider(this).get(MovieDetailsViewModel::class.java) }
     var result = mutableListOf<Cast>()
-
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -44,41 +45,64 @@ class MovieDetails : AppCompatActivity() {
 
 
 
-        movieTitle.text = dados?.originalTitle
+        movieTitle.text = dados?.title
         val url = "https://image.tmdb.org/t/p/w500${dados?.banner}"
         Picasso.get().load(url).into(movieImage)
+        voteAvarage.text = dados?.vote.toString()
 
 
-
-//        viewModelMovieDetails.creditsLiveData.observe(this, Observer {
-//            it.cast.let { itchar -> result.addAll(itchar)
-//            }
-//            Log.d("Dados3", it.cast[0].name)
-//            Log.d("Dados4", result.size.toString())
-//        })
 
 
 
         viewModelMovieDetails.creditsLiveData.observe(this) { listAtores ->
             result.addAll(listAtores.cast)
-            Log.d("Dados7", result.size.toString())
-        }
+            
 
-        Log.d("Dados8", result.size.toString())
+            var cast = ""
+            for (item in listAtores.cast) {
+                cast = cast + "${item.name}  como: ${item.character} \n\n"
+            }
 
 
-        val fragments = getFragments()
-        val sectionsPagerAdapter = SectionsPagerAdapter(fragments, this)
+            fun getFragments(): List<Fragment> {
+                return listOf(
+                    PlaceholderFragment.newInstance(
+                        dados?.synopses.toString(), "Sinopse"
+                    ),
+                    PlaceholderFragment.newInstance(
+                        cast, "Elenco"
+                    )
+                )
+            }
 
-        viewPager.adapter = sectionsPagerAdapter
-        viewPager.offscreenPageLimit = 1
+            val fragments = getFragments()
+            val sectionsPagerAdapter = SectionsPagerAdapter(fragments, this)
 
-        TabLayoutMediator(tabs, viewPager) { tab, position ->
-            tab.text = fragments[position].arguments?.getString(
+            viewPager.adapter = sectionsPagerAdapter
+            viewPager.offscreenPageLimit = 1
+
+            TabLayoutMediator(tabs, viewPager) { tab, position ->
+                tab.text = fragments[position].arguments?.getString(
                     PlaceholderFragment.FRAGMENT_TITLE,
                     "Empty name"
-            )
-        }.attach()
+                )
+            }.attach()
+
+        }
+
+
+//        val fragments = getFragments()
+//        val sectionsPagerAdapter = SectionsPagerAdapter(fragments, this)
+//
+//        viewPager.adapter = sectionsPagerAdapter
+//        viewPager.offscreenPageLimit = 1
+//
+//        TabLayoutMediator(tabs, viewPager) { tab, position ->
+//            tab.text = fragments[position].arguments?.getString(
+//                    PlaceholderFragment.FRAGMENT_TITLE,
+//                    "Empty name"
+//            )
+//        }.attach()
 
 
         back.setOnClickListener {
@@ -92,15 +116,5 @@ class MovieDetails : AppCompatActivity() {
 
     }
 
-    private fun getFragments(): List<Fragment> {
-        return listOf(
-                PlaceholderFragment.newInstance(
-                        dados?.synopses.toString(), "Sinopse"
-                ),
-                PlaceholderFragment.newInstance(
-                        "Elenco", "Elenco"
-                )
-        )
-    }
 
 }

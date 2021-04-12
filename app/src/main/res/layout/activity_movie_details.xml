@@ -56,46 +56,18 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <ImageView
-        android:id="@+id/ic_star01"
-        android:layout_width="40px"
-        android:layout_height="40px"
-        android:layout_marginTop="353dp"
-        android:layout_marginStart="75dp"
+
+
+    <TextView
+        android:id="@+id/tv_voteAvarage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="83dp"
+        android:layout_marginTop="348dp"
         android:elevation="@android:dimen/app_icon_size"
-        app:srcCompat="@android:drawable/btn_star_big_on" />
-    <ImageView
-        android:id="@+id/ic_star02"
-        android:layout_width="40px"
-        android:layout_height="40px"
-        android:layout_marginTop="353dp"
-        android:layout_marginStart="90dp"
-        android:elevation="@android:dimen/app_icon_size"
-        app:srcCompat="@android:drawable/btn_star_big_on" />
-    <ImageView
-        android:id="@+id/ic_star03"
-        android:layout_width="40px"
-        android:layout_height="40px"
-        android:layout_marginTop="353dp"
-        android:layout_marginStart="105dp"
-        android:elevation="@android:dimen/app_icon_size"
-        app:srcCompat="@android:drawable/btn_star_big_on" />
-    <ImageView
-        android:id="@+id/ic_star04"
-        android:layout_width="40px"
-        android:layout_height="40px"
-        android:layout_marginTop="353dp"
-        android:layout_marginStart="120dp"
-        android:elevation="@android:dimen/app_icon_size"
-        app:srcCompat="@android:drawable/btn_star_big_on" />
-    <ImageView
-        android:id="@+id/ic_star05"
-        android:layout_width="40px"
-        android:layout_height="40px"
-        android:layout_marginTop="353dp"
-        android:layout_marginStart="135dp"
-        android:elevation="@android:dimen/app_icon_size"
-        app:srcCompat="@android:drawable/btn_star_big_on" />
+        android:text="OI"
+        android:textColor="@color/white"
+        android:textSize="20dp" />
 
 
 
@@ -123,6 +95,7 @@
             android:layout_height="wrap_content"
             android:text="Título do Filme"
             android:textSize="72px"
+            android:autoSizeTextType="uniform"
             android:textColor="@color/white"
             android:textStyle="bold"
             android:layout_marginStart="32dp"

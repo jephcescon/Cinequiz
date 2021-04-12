@@ -38,6 +38,7 @@ class Navigation(viewModel: CatalogViewModel) {
         //CallBack para passar o ID
         val adapter = CatalogAdapter {
             Dados.postAll(it)
+
         }
         bannerRecycle?.adapter = adapter
         bannerRecycle?.layoutManager = GridLayoutManager(view.context, 2)
@@ -178,7 +179,7 @@ class Navigation(viewModel: CatalogViewModel) {
                         true,
                         it.overview,
                         it.voteAverage,
-                        it.originalTitle
+                        it.title
                     )
                 )
             }
