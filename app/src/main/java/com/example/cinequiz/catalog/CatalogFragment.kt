@@ -19,6 +19,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.cinequiz.R
+import com.example.cinequiz.catalog.details.MovieDetails
 import com.example.cinequiz.model.popularMovieModel.PopularMoviesList
 import com.example.cinequiz.search.SearchMenu
 import com.google.android.material.snackbar.Snackbar
@@ -91,8 +92,6 @@ class CatalogFragment : Fragment() {
 //            setRequestingNextPage()
 //            adapter.addMovies(popularMovies)
 //        }
-
-
 
         //configurando view do menu sanduiche
         val toggle = ActionBarDrawerToggle(

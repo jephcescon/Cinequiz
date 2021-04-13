@@ -6,7 +6,17 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
+    <ScrollView
+        android:id="@+id/sv_sinopse_elenco"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:overScrollMode="never"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+     <TextView
         android:id="@+id/tv_sinopse_elenco"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -18,7 +28,6 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="@+id/parent"
         app:layout_constraintVertical_bias="0.066"
-        tools:layout_constraintLeft_creator="1"
-        tools:layout_constraintTop_creator="1" />
-
+        tools:layout_constraintLeft_creator="1"/>
+    </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>

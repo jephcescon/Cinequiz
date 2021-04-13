@@ -65,7 +65,7 @@
         android:layout_marginStart="83dp"
         android:layout_marginTop="348dp"
         android:elevation="@android:dimen/app_icon_size"
-        android:text="OI"
+        android:text="Nota"
         android:textColor="@color/white"
         android:textSize="20dp" />
 
@@ -91,10 +91,9 @@
 
         <TextView
             android:id="@+id/tv_movie_title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
             android:text="Título do Filme"
-            android:textSize="72px"
             android:autoSizeTextType="uniform"
             android:textColor="@color/white"
             android:textStyle="bold"

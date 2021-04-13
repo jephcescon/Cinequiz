@@ -36,8 +36,6 @@ class CatalogAdapter(val callback :(ImageRecycle)->Unit): RecyclerView.Adapter<C
             val intent = Intent(it.context, MovieDetails::class.java)
             Dados.postAll(imagePath)
             it.context.startActivity(intent)
-            Log.d("dados20", imagePath.synopses.toString())
-            Log.d("dados21", imagePath.title.toString())
         }
 
     }

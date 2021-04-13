@@ -32,7 +32,6 @@ class MovieDetails : AppCompatActivity() {
     val search by lazy { findViewById<Button>(R.id.bt_search_movie_details) }
     val movieImage by lazy { findViewById<ImageView>(R.id.iv_movie_img) }
     val movieTitle by lazy { findViewById<TextView>(R.id.tv_movie_title) }
-    val movieCast by lazy { findViewById<TextView>(R.id.tv_sinopse_elenco) }
     val voteAvarage by lazy { findViewById<TextView>(R.id.tv_voteAvarage) }
     val viewModelMovieDetails by lazy { ViewModelProvider(this).get(MovieDetailsViewModel::class.java) }
     var result = mutableListOf<Cast>()
@@ -49,9 +48,6 @@ class MovieDetails : AppCompatActivity() {
         val url = "https://image.tmdb.org/t/p/w500${dados?.banner}"
         Picasso.get().load(url).into(movieImage)
         voteAvarage.text = dados?.vote.toString()
-
-
-
 
 
         viewModelMovieDetails.creditsLiveData.observe(this) { listAtores ->
@@ -90,19 +86,6 @@ class MovieDetails : AppCompatActivity() {
 
         }
 
-
-//        val fragments = getFragments()
-//        val sectionsPagerAdapter = SectionsPagerAdapter(fragments, this)
-//
-//        viewPager.adapter = sectionsPagerAdapter
-//        viewPager.offscreenPageLimit = 1
-//
-//        TabLayoutMediator(tabs, viewPager) { tab, position ->
-//            tab.text = fragments[position].arguments?.getString(
-//                    PlaceholderFragment.FRAGMENT_TITLE,
-//                    "Empty name"
-//            )
-//        }.attach()
 
 
         back.setOnClickListener {
