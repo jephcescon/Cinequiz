@@ -15,6 +15,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.viewpager2.widget.ViewPager2
 
 import com.example.cinequiz.R
+import com.example.cinequiz.catalog.Dados
 import com.example.cinequiz.catalog.Dados.dados
 import com.example.cinequiz.model.MovieCredits.Cast
 import com.example.cinequiz.search.SearchMenu
@@ -26,14 +27,14 @@ import com.squareup.picasso.Picasso
 
 class MovieDetails : AppCompatActivity() {
 
-    val viewPager by lazy { findViewById<ViewPager2>(R.id.vp_movie_details) }
-    val tabs by lazy { findViewById<TabLayout>(R.id.tb_movie_details) }
-    val back by lazy { findViewById<Button>(R.id.bt_return_movie_details) }
-    val search by lazy { findViewById<Button>(R.id.bt_search_movie_details) }
-    val movieImage by lazy { findViewById<ImageView>(R.id.iv_movie_img) }
-    val movieTitle by lazy { findViewById<TextView>(R.id.tv_movie_title) }
-    val voteAvarage by lazy { findViewById<TextView>(R.id.tv_voteAvarage) }
-    val viewModelMovieDetails by lazy { ViewModelProvider(this).get(MovieDetailsViewModel::class.java) }
+    private val viewPager by lazy { findViewById<ViewPager2>(R.id.vp_movie_details) }
+    private val tabs by lazy { findViewById<TabLayout>(R.id.tb_movie_details) }
+    private val back by lazy { findViewById<Button>(R.id.bt_return_movie_details) }
+    private val search by lazy { findViewById<Button>(R.id.bt_search_movie_details) }
+    private val movieImage by lazy { findViewById<ImageView>(R.id.iv_movie_img) }
+    private val movieTitle by lazy { findViewById<TextView>(R.id.tv_movie_title) }
+    private val voteAvarage by lazy { findViewById<TextView>(R.id.tv_voteAvarage) }
+    private val viewModelMovieDetails by lazy { ViewModelProvider(this).get(MovieDetailsViewModel::class.java) }
     var result = mutableListOf<Cast>()
 
 
@@ -43,9 +44,8 @@ class MovieDetails : AppCompatActivity() {
 
 
 
-
         movieTitle.text = dados?.title
-        val url = "https://image.tmdb.org/t/p/w500${dados?.banner}"
+        val url = "https://image.tmdb.org/t/p/w500${dados?.backdrop}"
         Picasso.get().load(url).into(movieImage)
         voteAvarage.text = dados?.vote.toString()
 
@@ -55,23 +55,12 @@ class MovieDetails : AppCompatActivity() {
             
 
             var cast = ""
-            for (item in listAtores.cast) {
-                cast = cast + "${item.name}  como: ${item.character} \n\n"
+            listAtores.cast.forEach {
+                cast += "${it.name}  como: ${it.character} \n\n"
             }
 
 
-            fun getFragments(): List<Fragment> {
-                return listOf(
-                    PlaceholderFragment.newInstance(
-                        dados?.synopses.toString(), "Sinopse"
-                    ),
-                    PlaceholderFragment.newInstance(
-                        cast, "Elenco"
-                    )
-                )
-            }
-
-            val fragments = getFragments()
+            val fragments = getFragments(cast)
             val sectionsPagerAdapter = SectionsPagerAdapter(fragments, this)
 
             viewPager.adapter = sectionsPagerAdapter
@@ -99,5 +88,15 @@ class MovieDetails : AppCompatActivity() {
 
     }
 
-
+    fun getFragments(cast :String): List<Fragment> {
+        Log.wtf("nome", dados?.synopses.toString())
+        return listOf(
+            PlaceholderFragment.newInstance(
+                dados?.synopses.toString(), "Sinopse"
+            ),
+            PlaceholderFragment.newInstance(
+                cast, "Elenco"
+            )
+        )
+    }
 }

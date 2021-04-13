@@ -33,9 +33,7 @@ class CatalogAdapter(val callback :(ImageRecycle)->Unit): RecyclerView.Adapter<C
         Picasso.get().load(url).into(holder.banner)
 
         holder.banner.setOnClickListener {
-            val intent = Intent(it.context, MovieDetails::class.java)
-            Dados.postAll(imagePath)
-            it.context.startActivity(intent)
+            callback(imagePath)
         }
 
     }

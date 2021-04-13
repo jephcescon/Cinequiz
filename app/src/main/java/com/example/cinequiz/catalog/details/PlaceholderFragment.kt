@@ -1,6 +1,7 @@
 package com.example.cinequiz.catalog.details
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -32,25 +33,33 @@ class PlaceholderFragment : Fragment() {
         }
     }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         //inflando layout
         return inflater.inflate(R.layout.fragment_synopsis_cast, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         arguments?.let {
-            view.findViewById<TextView>(R.id.tv_sinopse_elenco).text =
+            Log.wtf("nome", FRAGMENT_NAME)
+            if (FRAGMENT_NAME.isBlank())
+                view.findViewById<TextView>(R.id.tv_sinopse_elenco).text =
+                    "Infelizmente esse filme não possui sinopse"
+            else
+                view.findViewById<TextView>(R.id.tv_sinopse_elenco).text =
                     it.getString(FRAGMENT_NAME, "Empty name")
 
             view.findViewById<ConstraintLayout>(R.id.parent).setBackgroundColor(
-                    ContextCompat.getColor(
-                            requireContext(), it.getInt(
-                            BACKGROUND_COLOR,
-                            R.color.black
+                ContextCompat.getColor(
+                    requireContext(), it.getInt(
+                        BACKGROUND_COLOR,
+                        R.color.black
                     )
-                    )
+                )
             )
-
         }
 
         super.onViewCreated(view, savedInstanceState)

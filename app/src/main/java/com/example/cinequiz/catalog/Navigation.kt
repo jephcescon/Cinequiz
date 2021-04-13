@@ -1,25 +1,26 @@
 package com.example.cinequiz.catalog
 
+import android.content.Intent
 import android.util.Log
 import android.view.View
 import androidx.lifecycle.LifecycleOwner
-import androidx.lifecycle.ViewModel
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.cinequiz.R
+import com.example.cinequiz.catalog.details.MovieDetails
 import com.google.android.material.navigation.NavigationView
 import com.squareup.picasso.Picasso
 import com.synnapps.carouselview.CarouselView
 
 class Navigation(viewModel: CatalogViewModel) {
 
-    val recycleScroll by lazy {
+    private val recycleScroll by lazy {
         RecycleScroll {
             viewModel.popularMoviesNextPage()
         }
     }
 
-    val recycleScrollGenreMovie by lazy {
+    private val recycleScrollGenreMovie by lazy {
         RecycleScroll {
             viewModel.genreMoviesNextPage()
         }
@@ -37,8 +38,9 @@ class Navigation(viewModel: CatalogViewModel) {
 
         //CallBack para passar o ID
         val adapter = CatalogAdapter {
+            val intent = Intent( view.context, MovieDetails::class.java)
             Dados.postAll(it)
-
+            view.context.startActivity(intent)
         }
         bannerRecycle?.adapter = adapter
         bannerRecycle?.layoutManager = GridLayoutManager(view.context, 2)
@@ -55,7 +57,7 @@ class Navigation(viewModel: CatalogViewModel) {
 
             val banners = mutableListOf<ImageRecycle>()
             popularMovies.forEach {
-                banners.add(ImageRecycle(it.posterPath, it.id, true, it.overview, it.voteAverage, it.originalTitle))
+                banners.add(ImageRecycle(it.posterPath, it.id, true, it.overview, it.voteAverage, it.originalTitle,it.backdropPath))
             }
             adapter.addMovies(banners)
         }
@@ -73,7 +75,11 @@ class Navigation(viewModel: CatalogViewModel) {
             }
             carousel?.pageCount = popularMovies.size
             //CallBack para passar o ID
-            carousel?.setImageClickListener { position ->
+            carousel?.setImageClickListener {
+                val date = ImageRecycle(popularMovies[it].posterPath,popularMovies[it].id,true,popularMovies[it].overview,popularMovies[it].voteAverage,popularMovies[it].title,popularMovies[it].backdropPath)
+                val intent = Intent( view.context, MovieDetails::class.java)
+                Dados.postAll(date)
+                view.context.startActivity(intent)
             }
         }
     }
@@ -155,7 +161,11 @@ class Navigation(viewModel: CatalogViewModel) {
 
         viewModel.genreNextPage = 0
 
-        val adapter = CatalogAdapter { _ -> }
+        val adapter = CatalogAdapter {
+            val intent = Intent( view.context, MovieDetails::class.java)
+            Dados.postAll(it)
+            view.context.startActivity(intent)
+        }
         bannerRecycle?.adapter = adapter
         bannerRecycle?.layoutManager = GridLayoutManager(view.context, 2)
 
@@ -179,14 +189,13 @@ class Navigation(viewModel: CatalogViewModel) {
                         true,
                         it.overview,
                         it.voteAverage,
-                        it.title
+                        it.title,
+                        it.backdropPath
                     )
                 )
             }
             adapter.addMovies(banners)
         }
-
-
         viewModel.carouselGenreLiveData.observe(viewLifecycleOwner) { categoryMovies ->
             val url = listOf(
                 "https://image.tmdb.org/t/p/w500${categoryMovies[0].backdropPath}",
@@ -199,7 +208,11 @@ class Navigation(viewModel: CatalogViewModel) {
             }
             carousel?.pageCount = categoryMovies.size
             //CallBack para passar o ID
-            carousel?.setImageClickListener { position ->
+            carousel?.setImageClickListener {
+                val date = ImageRecycle(categoryMovies[it].posterPath,categoryMovies[it].id,true,categoryMovies[it].overview,categoryMovies[it].voteAverage,categoryMovies[it].title,categoryMovies[it].backdropPath)
+                val intent = Intent( view.context, MovieDetails::class.java)
+                Dados.postAll(date)
+                view.context.startActivity(intent)
             }
         }
     }
