@@ -4,6 +4,7 @@ import com.example.cinequiz.model.MovieCredits.MovieCredits
 import com.example.cinequiz.model.discoverMovies.MoviesByGenre
 import com.example.cinequiz.model.movieGenres.ListGenres
 import com.example.cinequiz.model.popularMovieModel.PopularMovies
+import com.example.cinequiz.model.searchModel.Search
 import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.Query
@@ -31,5 +32,10 @@ interface ServiceAPI {
         @Query("language") language: String = "pt-BR"
     ) : MovieCredits
 
-
+    @GET("search/multi")
+    suspend fun search(
+        @Query("language") language: String = "pt-BR",
+        @Query("query") search:String,
+        @Query("page") page: Int
+    ) : Search
 }

@@ -10,8 +10,9 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_last_search"
         android:layout_width="match_parent"
-        android:layout_height="478dp"
+        android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_last_search"
         app:layout_constraintVertical_bias="0.99" />
@@ -65,29 +66,55 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/et_search_menu" />
 
-    <EditText
+
+<!--    <EditText-->
+<!--        android:id="@+id/et_search_menu"-->
+<!--        android:layout_width="397dp"-->
+<!--        android:layout_height="43dp"-->
+<!--        android:layout_marginTop="60dp"-->
+<!--        android:layout_marginEnd="12dp"-->
+<!--        android:background="#302D2D"-->
+<!--        android:ems="10"-->
+<!--        android:gravity="center"-->
+<!--        android:hint="Busque por filmes, séries, gêneros ..."-->
+<!--        android:inputType="textPersonName"-->
+<!--        android:textColorHint="#989393"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="parent" />-->
+
+    <androidx.appcompat.widget.SearchView
         android:id="@+id/et_search_menu"
-        android:layout_width="397dp"
-        android:layout_height="43dp"
-        android:layout_marginTop="60dp"
-        android:layout_marginEnd="12dp"
-        android:background="#302D2D"
-        android:ems="10"
-        android:gravity="center"
-        android:hint="Busque por filmes, séries, gêneros ..."
-        android:inputType="textPersonName"
-        android:textColorHint="#989393"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <ImageView
-        android:id="@+id/iv_lupa"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout"
+        app:iconifiedByDefault="false"
+        app:queryHint="Busque por filmes ou séries"
+        />
 
-        app:layout_constraintBottom_toBottomOf="@+id/et_search_menu"
-        app:layout_constraintStart_toStartOf="@+id/et_search_menu"
-        app:layout_constraintTop_toTopOf="@+id/et_search_menu"
-        app:srcCompat="@drawable/ic_baseline_search_24"
-        app:tint="@color/white"/>
-</androidx.constraintlayout.widget.ConstraintLayout>
+<!--    <com.google.android.material.textfield.TextInputLayout-->
+<!--        android:id="@+id/et_search_menu"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:textAlignment="center"-->
+<!--        app:endIconCheckable="true"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/constraintLayout">-->
+<!--        <com.google.android.material.textfield.TextInputEditText-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:inputType="text"-->
+<!--            android:maxLines="1"-->
+<!--            android:hint="Busque por filmes, séries, gêneros ..."-->
+<!--            android:layout_height="match_parent"/>-->
+
+<!--    </com.google.android.material.textfield.TextInputLayout>-->
+
+<!--        <ImageView-->
+<!--            android:id="@+id/iv_lupa"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--    -->
+<!--            app:layout_constraintBottom_toBottomOf="@+id/et_search_menu"-->
+<!--            app:layout_constraintStart_toStartOf="@+id/et_search_menu"-->
+<!--            app:layout_constraintTop_toTopOf="@+id/et_search_menu"-->
+<!--            app:srcCompat="@drawable/ic_baseline_search_24"-->
+<!--            app:tint="@color/white"/>-->
+    </androidx.constraintlayout.widget.ConstraintLayout>

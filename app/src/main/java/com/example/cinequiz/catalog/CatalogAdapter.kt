@@ -11,9 +11,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.cinequiz.R
 import com.example.cinequiz.catalog.details.MovieDetails
 import com.example.cinequiz.model.MovieCredits.Cast
+import com.example.cinequiz.model.discoverMovies.MoviesByGenre
 import com.squareup.picasso.Picasso
 
-class CatalogAdapter(val callback :(ImageRecycle)->Unit): RecyclerView.Adapter<CatalogAdapter.CatalogViewHolder>(){
+class CatalogAdapter (val callback :(ImageRecycle)->Unit): RecyclerView.Adapter<CatalogAdapter.CatalogViewHolder>(){
     var imagens= mutableListOf<ImageRecycle>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CatalogViewHolder {

@@ -3,6 +3,8 @@ package com.example.cinequiz.catalog
 import android.content.Intent
 import android.util.Log
 import android.view.View
+import android.view.View.GONE
+import android.view.View.VISIBLE
 import androidx.lifecycle.LifecycleOwner
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -26,6 +28,12 @@ class Navigation(viewModel: CatalogViewModel) {
         }
     }
 
+    private val recycleScrollSearch by lazy {
+        RecycleScroll {
+            viewModel.searchNextPage()
+        }
+    }
+
     fun firstTime(
         bannerRecycle: RecyclerView?,
         viewModel: CatalogViewModel,
@@ -34,11 +42,12 @@ class Navigation(viewModel: CatalogViewModel) {
         view: View
     ) {
 
+        carousel?.visibility = VISIBLE
         viewModel.nextPage = 0
 
         //CallBack para passar o ID
         val adapter = CatalogAdapter {
-            val intent = Intent( view.context, MovieDetails::class.java)
+            val intent = Intent(view.context, MovieDetails::class.java)
             Dados.postAll(it)
             view.context.startActivity(intent)
         }
@@ -52,12 +61,22 @@ class Navigation(viewModel: CatalogViewModel) {
         viewModel.movieList()
 
         viewModel.movieLiveData.observe(viewLifecycleOwner) { popularMovies ->
-            Log.d("pagina","Movie = ${viewModel.nextPage}")
+            Log.d("pagina", "Movie = ${viewModel.nextPage}")
             recycleScroll.requesting = false
 
             val banners = mutableListOf<ImageRecycle>()
             popularMovies.forEach {
-                banners.add(ImageRecycle(it.posterPath, it.id, true, it.overview, it.voteAverage, it.originalTitle,it.backdropPath))
+                banners.add(
+                    ImageRecycle(
+                        it.posterPath,
+                        it.id,
+                        true,
+                        it.overview,
+                        it.voteAverage,
+                        it.originalTitle,
+                        it.backdropPath
+                    )
+                )
             }
             adapter.addMovies(banners)
         }
@@ -76,8 +95,16 @@ class Navigation(viewModel: CatalogViewModel) {
             carousel?.pageCount = popularMovies.size
             //CallBack para passar o ID
             carousel?.setImageClickListener {
-                val date = ImageRecycle(popularMovies[it].posterPath,popularMovies[it].id,true,popularMovies[it].overview,popularMovies[it].voteAverage,popularMovies[it].title,popularMovies[it].backdropPath)
-                val intent = Intent( view.context, MovieDetails::class.java)
+                val date = ImageRecycle(
+                    popularMovies[it].posterPath,
+                    popularMovies[it].id,
+                    true,
+                    popularMovies[it].overview,
+                    popularMovies[it].voteAverage,
+                    popularMovies[it].title,
+                    popularMovies[it].backdropPath
+                )
+                val intent = Intent(view.context, MovieDetails::class.java)
                 Dados.postAll(date)
                 view.context.startActivity(intent)
             }
@@ -99,27 +126,61 @@ class Navigation(viewModel: CatalogViewModel) {
                     true
                 }
                 R.id.movie_horror -> {
-                    clickMovieGenre(bannerRecycle, view, viewModel, viewLifecycleOwner, carousel,"27")
+                    clickMovieGenre(
+                        bannerRecycle,
+                        view,
+                        viewModel,
+                        viewLifecycleOwner,
+                        carousel,
+                        "27"
+                    )
                     true
                 }
                 R.id.movie_romance -> {
-                    clickMovieGenre(bannerRecycle, view, viewModel, viewLifecycleOwner, carousel,"10749")
+                    clickMovieGenre(
+                        bannerRecycle,
+                        view,
+                        viewModel,
+                        viewLifecycleOwner,
+                        carousel,
+                        "10749"
+                    )
                     true
                 }
                 R.id.movie_scifi -> {
-                    clickMovieGenre(bannerRecycle, view, viewModel, viewLifecycleOwner, carousel,"878")
+                    clickMovieGenre(
+                        bannerRecycle,
+                        view,
+                        viewModel,
+                        viewLifecycleOwner,
+                        carousel,
+                        "878"
+                    )
                     true
                 }
                 R.id.movie_fantasy -> {
-                    clickMovieGenre(bannerRecycle, view, viewModel, viewLifecycleOwner, carousel,"28")
+                    clickMovieGenre(
+                        bannerRecycle,
+                        view,
+                        viewModel,
+                        viewLifecycleOwner,
+                        carousel,
+                        "28"
+                    )
                     true
                 }
                 R.id.movie_thriller -> {
-                    clickMovieGenre(bannerRecycle, view, viewModel, viewLifecycleOwner, carousel,"53")
+                    clickMovieGenre(
+                        bannerRecycle,
+                        view,
+                        viewModel,
+                        viewLifecycleOwner,
+                        carousel,
+                        "53"
+                    )
                     true
                 }
                 R.id.series -> {
-                    Log.d("click", "Clicou em algo")
                     true
                 }
                 R.id.series_fantasy -> {
@@ -150,19 +211,109 @@ class Navigation(viewModel: CatalogViewModel) {
         }
     }
 
+    internal fun search(
+        bannerRecycle: RecyclerView?,
+        view: View,
+        viewModel: CatalogViewModel,
+        viewLifecycleOwner: LifecycleOwner,
+        carousel: CarouselView?,
+        searchField: String
+    ) {
+
+        viewModel.searchNextPage = 0
+
+        val adapter = CatalogAdapter {
+            val intent = Intent(view.context, MovieDetails::class.java)
+            Dados.postAll(it)
+            view.context.startActivity(intent)
+        }
+        bannerRecycle?.adapter = adapter
+        bannerRecycle?.layoutManager = GridLayoutManager(view.context, 2)
+
+        bannerRecycle?.addOnScrollListener(recycleScrollSearch)
+
+        adapter.resetRecycle()
+        viewModel.searchLiveData.value = listOf()
+        viewModel.genre = searchField
+        viewModel.searchList()
+
+        viewModel.searchLiveData.observe(viewLifecycleOwner) { listMovies ->
+            recycleScrollSearch.requesting = false
+
+            val banners = mutableListOf<ImageRecycle>()
+            listMovies.forEach {
+                banners.add(
+                    ImageRecycle(
+                        it.posterPath,
+                        it.id,
+                        true,
+                        it.overview,
+                        it.voteAverage,
+                        it.title,
+                        it.backdropPath
+                    )
+                )
+            }
+            adapter.addMovies(banners)
+        }
+        viewModel.searchCarouselLiveData.observe(viewLifecycleOwner) { categoryMovies ->
+            val url = mutableListOf<String>()
+//                "https://image.tmdb.org/t/p/w500${categoryMovies[0].backdropPath}",
+//                "https://image.tmdb.org/t/p/w500${categoryMovies[1].backdropPath}",
+//                "https://image.tmdb.org/t/p/w500${categoryMovies[2].backdropPath}",
+//                "https://image.tmdb.org/t/p/w500${categoryMovies[3].backdropPath}"
+//            )
+            if (categoryMovies.isEmpty()){
+                carousel?.visibility = GONE
+            }else {
+                categoryMovies.forEach {
+                    if (it.backdropPath.isNullOrBlank()) {
+                        url.add(R.drawable.semimagem.toString())
+                    } else {
+                        url.add("https://image.tmdb.org/t/p/w500${it.backdropPath}")
+                    }
+                }
+
+                carousel?.setImageListener { position, imageView ->
+                    if (url[position].contains("https"))
+                        Picasso.get().load(url[position]).into(imageView)
+                    else
+                        imageView.setImageResource(url[position].toInt())
+                }
+                carousel?.pageCount = categoryMovies.size
+                //CallBack para passar o ID
+                carousel?.setImageClickListener {
+                    val date = ImageRecycle(
+                        categoryMovies[it].posterPath,
+                        categoryMovies[it].id,
+                        true,
+                        categoryMovies[it].overview,
+                        categoryMovies[it].voteAverage,
+                        categoryMovies[it].title,
+                        categoryMovies[it].backdropPath
+                    )
+                    val intent = Intent(view.context, MovieDetails::class.java)
+                    Dados.postAll(date)
+                    view.context.startActivity(intent)
+                }
+            }
+        }
+    }
+
     private fun clickMovieGenre(
         bannerRecycle: RecyclerView?,
         view: View,
         viewModel: CatalogViewModel,
         viewLifecycleOwner: LifecycleOwner,
         carousel: CarouselView?,
-        genre:String
+        genre: String
     ) {
 
+        carousel?.visibility = VISIBLE
         viewModel.genreNextPage = 0
 
         val adapter = CatalogAdapter {
-            val intent = Intent( view.context, MovieDetails::class.java)
+            val intent = Intent(view.context, MovieDetails::class.java)
             Dados.postAll(it)
             view.context.startActivity(intent)
         }
@@ -209,8 +360,16 @@ class Navigation(viewModel: CatalogViewModel) {
             carousel?.pageCount = categoryMovies.size
             //CallBack para passar o ID
             carousel?.setImageClickListener {
-                val date = ImageRecycle(categoryMovies[it].posterPath,categoryMovies[it].id,true,categoryMovies[it].overview,categoryMovies[it].voteAverage,categoryMovies[it].title,categoryMovies[it].backdropPath)
-                val intent = Intent( view.context, MovieDetails::class.java)
+                val date = ImageRecycle(
+                    categoryMovies[it].posterPath,
+                    categoryMovies[it].id,
+                    true,
+                    categoryMovies[it].overview,
+                    categoryMovies[it].voteAverage,
+                    categoryMovies[it].title,
+                    categoryMovies[it].backdropPath
+                )
+                val intent = Intent(view.context, MovieDetails::class.java)
                 Dados.postAll(date)
                 view.context.startActivity(intent)
             }

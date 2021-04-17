@@ -42,7 +42,7 @@
         android:title="         Fantasia" />
     <item
         android:id="@+id/series_thriller"
-        android:title="         Suspence" />
+        android:title="         Suspense" />
 
 
 </menu>
