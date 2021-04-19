@@ -1,0 +1,41 @@
+<resources>
+    <string name="app_name">Cinequiz</string>
+    <string name="home">Home</string>
+    <string name="quiz">Quiz</string>
+    <string name="catalog">Catálogo</string>
+    <string name="profile">Perfil</string>
+    <string name="conquers_tab">Conquistas</string>
+    <string name="recent_searches">Buscas recentes</string>
+    <string name="recent_matches">Partidas Recentes</string>
+    <string name="achievements">Conquistas</string>
+    <string name="welcome">Bem Vindo Fulano!</string>
+    <string name="won">Ganhou!</string>
+    <string name="matches_date">30/02</string>
+    <string name="achievements_row10">Alcançou 10 acertos seguidos!</string>
+    <string name="achievements_row9">Alcançou 9 acertos seguidos!</string>
+    <string name="achievements_row8">Alcançou 8 acertos seguidos!</string>
+    <string name="achievements_row7">Alcançou 7 acertos seguidos!</string>
+    <string name="achievements_row6">Alcançou 6 acertos seguidos!</string>
+    <string name="achievements_row5">Alcançou 5 acertos seguidos!</string>
+    <string name="achievements_row4">Alcançou 4 acertos seguidos!</string>
+    <string name="achievements_row3">Alcançou 3 acertos seguidos!</string>
+    <string name="achievements_row2">Alcançou 2 acertos seguidos!</string>
+    <string name="achievements_row1">Alcançou 1 acerto!</string>
+    <string name="achievement_horror">Completou categoria: Terror</string>
+    <string name="achievement_adv">Completou a categoria: Aventura</string>
+    <string name="achievement_fiction">Completou a categoria: Ficçâo</string>
+    <string name="user_profile_image">User profile image</string>
+    <string name="icon_thumb_up">icone polegar para cima</string>
+    <string name="source_code">Filme: Contra o Tempo</string>
+    <string name="open_drawer">open drawer</string>
+    <string name="close_drawer">close drawer</string>
+
+
+    <string name="E_mail">E-mail</string>
+    <string name="Log_in">Log in</string>
+    <string name="Esqueceu_a_senha">Esqueceu a senha?</string>
+    <string name="novo_por_aqui_inscreva_se_agora">Novo por aqui? Inscreva-se agora</string>
+    <string name="ou">Ou</string>
+    <string name="Login_com_facebook">Login com Facebook</string>
+    <string name="Login_com_google">Login com Google</string>
+</resources>

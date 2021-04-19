@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+    <item
+        android:id="@+id/movie"
+        android:title="FILMES" />
+
+    <item
+        android:id="@+id/movie_horror"
+        android:title="         Terror" />
+
+    <item
+        android:id="@+id/movie_romance"
+        android:title="         Romance" />
+    <item
+        android:id="@+id/movie_scifi"
+        android:title="         Ficção Científica" />
+    <item
+        android:id="@+id/movie_fantasy"
+        android:title="         Fantasia" />
+    <item
+        android:id="@+id/movie_thriller"
+        android:title="         Suspense" />
+
+
+    <item
+        android:id="@+id/series"
+        android:title="SÉRIES" />
+    <item
+        android:id="@+id/series_comedy"
+        android:title="         Comédia" />
+
+    <item
+        android:id="@+id/series_documentary"
+        android:title="         Documentário" />
+    <item
+        android:id="@+id/series_scifi"
+        android:title="         Ficção Científica" />
+    <item
+        android:id="@+id/series_crime"
+        android:title="         Criminal" />
+    <item
+        android:id="@+id/series_animation"
+        android:title="         Animação" />
+
+
+</menu>
