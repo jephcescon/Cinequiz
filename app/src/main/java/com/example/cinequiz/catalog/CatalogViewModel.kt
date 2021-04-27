@@ -184,7 +184,7 @@ class CatalogViewModel : ViewModel() {
     fun seriesFirstRequisition() = viewModelScope.launch {
         try {
             pagingLoading.postValue(true)
-            repository.getPopularSeries().let { series ->
+            repository.getPopularSeries().let { series->
                 seriesNextPage(series)
 
                 val separation = separation(series.listMovies)

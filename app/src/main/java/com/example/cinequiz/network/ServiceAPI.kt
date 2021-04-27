@@ -29,7 +29,6 @@ interface ServiceAPI {
         @Query("with_genres") withGenre: String
     ): MoviesByGenre
 
-
     @GET("movie/{movie_id}/credits")
     suspend fun getActors(
         @Path("movie_id") movieID : Int,

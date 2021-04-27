@@ -92,7 +92,7 @@ class Navigation(viewModel: CatalogViewModel) {
                         true,
                         it.overview,
                         it.voteAverage,
-                        it.originalTitle,
+                        it.title,
                         it.backdropPath
                     )
                 )

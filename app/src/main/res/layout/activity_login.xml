@@ -153,6 +153,7 @@
         android:id="@+id/btnGoogle"
         android:layout_marginTop="5dp"
         android:layout_width="match_parent"
+        android:onClick="sigIn"
         android:layout_height="wrap_content"
         android:text="@string/Login_com_google"
         app:layout_constraintEnd_toEndOf="parent"

@@ -13,9 +13,9 @@
         android:id="@+id/iv_logo_help_first"
         android:layout_width="190dp"
         android:layout_height="83dp"
-        android:layout_marginStart="108dp"
         android:layout_marginTop="40dp"
         android:background="@drawable/cine_logo"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

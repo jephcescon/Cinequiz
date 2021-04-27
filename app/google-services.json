@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "619270466140",
+    "project_id": "cinequiz-73fb4",
+    "storage_bucket": "cinequiz-73fb4.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:619270466140:android:88674182f7848c6cc79499",
+        "android_client_info": {
+          "package_name": "com.example.cinequiz"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "619270466140-4h5m35k8pukl02v3mkl36990b1laugb4.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.cinequiz",
+            "certificate_hash": "5534ea188d803eb1ecb3b9e98b650fca7391125c"
+          }
+        },
+        {
+          "client_id": "619270466140-2hrv960vg10g076i9diba5tahsp9usn8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC1Wb900b1Wx3pAR1SlKsS78K5TF3tXTk4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "619270466140-2hrv960vg10g076i9diba5tahsp9usn8.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
