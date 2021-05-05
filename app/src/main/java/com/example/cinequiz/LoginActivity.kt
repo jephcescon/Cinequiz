@@ -10,6 +10,7 @@ import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.ViewModelProviders
 import com.facebook.AccessToken
 import com.facebook.CallbackManager
 import com.facebook.FacebookCallback
@@ -21,19 +22,24 @@ import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
+import com.google.android.material.textfield.TextInputEditText
+import com.google.android.material.textfield.TextInputLayout
 import com.google.firebase.auth.FacebookAuthProvider
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
 
 class LoginActivity : AppCompatActivity() {
-    lateinit var tvNovoCadastro: TextView
-    lateinit var tvEsqueciASenha: TextView
-    lateinit var btnLogin: Button
+    private val tvEmail by lazy { findViewById<TextInputLayout>(R.id.emailLoginField) }
+    private val tvPassword by lazy { findViewById<TextInputLayout>(R.id.passField) }
+    private val fieldEmail by lazy { findViewById<TextInputEditText>(R.id.tvLoginEmail) }
+    private val fieldPassword by lazy { findViewById<TextInputEditText>(R.id.tvLoginPass) }
 
+    private lateinit var viewModel: LoginViewModel
     lateinit var firebaseAuth: FirebaseAuth
-    lateinit var googleSignInClient: GoogleSignInClient
 
+    lateinit var googleSignInClient: GoogleSignInClient
     private lateinit var callbackManager: CallbackManager
+
     private var loginManager = LoginManager.getInstance()
 
     private val btnFacebook by lazy { findViewById<Button>(R.id.btnFacebook) }
@@ -42,8 +48,10 @@ class LoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
+        viewModel = ViewModelProviders.of(this).get(LoginViewModel::class.java)
         firebaseAuth = FirebaseAuth.getInstance()
         callbackManager = CallbackManager.Factory.create()
+        fieldsValidate()
 
         val googleSignInOptions = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
             .requestIdToken(getString(R.string.default_web_client_id))
@@ -52,24 +60,6 @@ class LoginActivity : AppCompatActivity() {
             .build()
 
         googleSignInClient = GoogleSignIn.getClient(this,googleSignInOptions)
-
-        btnLogin = findViewById(R.id.btnLogin)
-        btnLogin.setOnClickListener {
-            val intent = Intent(this,MainActivity::class.java)
-            startActivity(intent)
-        }
-
-        tvNovoCadastro = findViewById(R.id.tvNovo)
-        tvNovoCadastro.setOnClickListener {
-            val intent = Intent(this, CadastroActivity::class.java)
-            startActivity(intent)
-        }
-
-        tvEsqueciASenha = findViewById(R.id.tvEsqueciSenha)
-        tvEsqueciASenha.setOnClickListener {
-            val intent = Intent(this, EsqueciASenhaActivity::class.java)
-            startActivity(intent)
-        }
 
         btnFacebook.setOnClickListener {
             signFacebook()
@@ -152,4 +142,58 @@ class LoginActivity : AppCompatActivity() {
             }
     }
 
+    fun fieldsValidate() {
+        viewModel.emailValidate.observe(this) {
+            if (it)
+                tvEmail.error = null
+            else {
+                tvEmail.error = "Preenchido incorretamente"
+                tvEmail.errorIconDrawable = null
+            }
+            navigation()
+        }
+
+        viewModel.passwordValidate.observe(this) {
+            if (it)
+                tvPassword.error = null
+            else {
+                tvPassword.error = "Preenchido incorretamente"
+                tvPassword.errorIconDrawable = null
+            }
+            navigation()
+        }
+    }
+
+    private fun navigation(){
+        if (viewModel.passwordValidate.value == true && viewModel.emailValidate.value == true){
+            sigInFirebase(fieldEmail.text.toString(),fieldPassword.text.toString())
+        }
+    }
+
+    private fun sigInFirebase(email: String, pass: String) {
+        firebaseAuth.signInWithEmailAndPassword(email,pass).addOnCompleteListener {task->
+            if (task.isSuccessful){
+                val intent = Intent(this,MainActivity::class.java)
+                startActivity(intent)
+            }else{
+                Log.d("error", task.exception?.message!!)
+            }
+        }
+    }
+    fun login(view: View){
+        val email = fieldEmail.text.toString()
+        val password = fieldPassword.text.toString()
+
+        viewModel.validateFields(email,password)
+    }
+
+    fun newUser(view: View){
+        val intent = Intent(this, CadastroActivity::class.java)
+        startActivity(intent)
+    }
+
+    fun forgetPass(view: View){
+        val intent = Intent(this, EsqueciASenhaActivity::class.java)
+        startActivity(intent)
+    }
 }
