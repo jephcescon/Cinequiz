@@ -92,9 +92,9 @@ class LoginActivity : AppCompatActivity() {
         firebaseAuth.signInWithCredential(credential)
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
-                    // Sign in success, update UI with the signed-in user's information
-                    Log.d("GoogleSign", "signInWithCredential:success")
-                    val user = firebaseAuth.currentUser
+                    val intent = Intent(this,MainActivity::class.java)
+                    startActivity(intent)
+                    finish()
                 } else {
                     // If sign in fails, display a message to the user.
                     Log.w("GoogleSign", "signInWithCredential:failure", task.exception)
@@ -132,9 +132,9 @@ class LoginActivity : AppCompatActivity() {
         firebaseAuth.signInWithCredential(credential)
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
-                    // Sign in success, update UI with the signed-in user's information
-                    Log.d("GoogleSign", "signInWithCredential:success")
-                    val user = firebaseAuth.currentUser
+                    val intent = Intent(this,MainActivity::class.java)
+                    startActivity(intent)
+                    finish()
                 } else {
                     // If sign in fails, display a message to the user.
                     Log.w("GoogleSign", "signInWithCredential:failure", task.exception)
@@ -175,6 +175,7 @@ class LoginActivity : AppCompatActivity() {
             if (task.isSuccessful){
                 val intent = Intent(this,MainActivity::class.java)
                 startActivity(intent)
+                finish()
             }else{
                 Log.d("error", task.exception?.message!!)
             }

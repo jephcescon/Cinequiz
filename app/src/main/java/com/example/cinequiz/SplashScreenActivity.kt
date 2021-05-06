@@ -4,9 +4,13 @@ import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import androidx.appcompat.app.AppCompatActivity
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 
 
 class SplashScreenActivity : AppCompatActivity() {
+    val firebaseAuth = Firebase.auth
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash_screen)
@@ -15,8 +19,17 @@ class SplashScreenActivity : AppCompatActivity() {
     }
 
     private fun mostrarLogin() {
-        val intent = Intent(this@SplashScreenActivity, LoginActivity::class.java)
-        startActivity(intent)
-        finish()
+        if (firebaseAuth.currentUser != null){
+            val intent = Intent(this,MainActivity::class.java)
+            startActivity(intent)
+            finish()
+//            val intent = Intent(this@SplashScreenActivity, LoginActivity::class.java)
+//            startActivity(intent)
+//            finish()
+        }else {
+            val intent = Intent(this@SplashScreenActivity, LoginActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
     }
 }

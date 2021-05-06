@@ -1,9 +1,11 @@
 package com.example.cinequiz
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.Button
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProviders
 import com.google.android.material.textfield.TextInputEditText
@@ -103,10 +105,12 @@ class CadastroActivity : AppCompatActivity() {
                 val profileUpdate = userProfileChangeRequest {
                     displayName = name
                 }
+                Toast.makeText(this,"Conta criada com sucesso",Toast.LENGTH_LONG).show()
                 user?.updateProfile(profileUpdate)
-                //Colocar intent para navegar para a tela inicial
+                val intent = Intent(this,MainActivity::class.java)
+                startActivity(intent)
+                finish()
             } else {
-                Log.d("error", task.exception?.message!!)
             }
         }
     }

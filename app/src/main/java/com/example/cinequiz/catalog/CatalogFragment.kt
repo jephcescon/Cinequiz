@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.widget.Toolbar
 import androidx.core.view.GravityCompat
@@ -21,7 +22,6 @@ import com.google.android.material.snackbar.Snackbar
 import com.synnapps.carouselview.CarouselView
 
 class CatalogFragment : Fragment() {
-
     private val search by lazy { view?.findViewById<Button>(R.id.searchButton) }
     private val carousel by lazy { view?.findViewById<CarouselView>(R.id.carouselView) }
     private val bannerRecycle by lazy {

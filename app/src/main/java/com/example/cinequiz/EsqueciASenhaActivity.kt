@@ -1,6 +1,7 @@
 package com.example.cinequiz
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.view.Window
 import android.view.WindowManager
@@ -29,6 +30,7 @@ class EsqueciASenhaActivity : AppCompatActivity() {
                 Toast.makeText(this,"Email enviado para recuperação de senha",Toast.LENGTH_LONG).show()
                 onBackPressed()
             }else{
+                Log.d("teste",task.exception?.message!!)
                 tvEmail.error = "E-mail invalido ou não cadastrado"
             }
         }
