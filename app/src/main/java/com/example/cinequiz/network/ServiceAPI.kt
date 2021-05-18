@@ -4,6 +4,7 @@ import com.example.cinequiz.model.MovieCredits.MovieCredits
 import com.example.cinequiz.model.discoverMovies.MoviesByGenre
 import com.example.cinequiz.model.discoverSeries.SeriesByGenre
 import com.example.cinequiz.model.popularMovieModel.PopularMovies
+import com.example.cinequiz.model.popularMovieModel.PopularMoviesList
 import com.example.cinequiz.model.popularSeriesModel.PopularSeries
 import com.example.cinequiz.model.searchModel.Search
 import com.example.cinequiz.model.searchModelSeries.SearchSeries
@@ -34,6 +35,12 @@ interface ServiceAPI {
         @Path("movie_id") movieID : Int,
         @Query("language") language: String = "pt-BR"
     ) : MovieCredits
+
+    @GET("movie/{movie_id}")
+    suspend fun getMovie(
+        @Path("movie_id") movieID : Int,
+        @Query("language") language: String = "pt-BR"
+    ) : PopularMoviesList
 
     @GET("search/multi")
     suspend fun search(

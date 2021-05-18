@@ -3,6 +3,7 @@ package com.example.cinequiz.repository
 import com.example.cinequiz.catalog.Dados
 import com.example.cinequiz.network.RetrofitMovieDB
 import com.example.cinequiz.network.ServiceAPI
+import com.example.cinequiz.search.Activity.SearchMenu
 
 
 class MoviesRepository {
@@ -21,6 +22,8 @@ class MoviesRepository {
     suspend fun getDiscoverMovies(page: Int = 1, genre : String = "") = serviceRepository.getDiscoverMovies(page = page,withGenre = genre)
 
     suspend fun getMovieCredits() = serviceRepository.getActors(Dados.dados!!.id!!)
+
+    suspend fun getMovie(movie:Int) = serviceRepository.getMovie(movieID = movie)
 
     suspend fun search(page: Int = 1, search : String = "") = serviceRepository.search(page = page,search = search)
 

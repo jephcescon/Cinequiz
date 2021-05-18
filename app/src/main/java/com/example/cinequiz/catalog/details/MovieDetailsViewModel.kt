@@ -27,7 +27,6 @@ class MovieDetailsViewModel : ViewModel() {
     }
 
 
-
     fun creditsList() = CoroutineScope(IO).launch {
         try {
             repository.getMovieCredits().let {
