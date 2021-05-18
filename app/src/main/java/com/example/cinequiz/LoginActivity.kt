@@ -59,7 +59,7 @@ class LoginActivity : AppCompatActivity() {
             .requestEmail()
             .build()
 
-        googleSignInClient = GoogleSignIn.getClient(this,googleSignInOptions)
+        googleSignInClient = GoogleSignIn.getClient(this, googleSignInOptions)
 
         btnFacebook.setOnClickListener {
             signFacebook()
@@ -81,8 +81,8 @@ class LoginActivity : AppCompatActivity() {
             } catch (e: ApiException) {
                 // Google Sign In failed, update UI appropriately
                 Log.w("GoogleSign", "Google sign in failed", e)
-            }catch (e: Exception) {
-                Log.d("error","error ao efeutuar login")
+            } catch (e: Exception) {
+                Log.d("error", "error ao efeutuar login")
             }
         }
     }
@@ -92,7 +92,7 @@ class LoginActivity : AppCompatActivity() {
         firebaseAuth.signInWithCredential(credential)
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
-                    val intent = Intent(this,MainActivity::class.java)
+                    val intent = Intent(this, MainActivity::class.java)
                     startActivity(intent)
                     finish()
                 } else {
@@ -102,14 +102,14 @@ class LoginActivity : AppCompatActivity() {
             }
     }
 
-    fun sigIn(view:View){
+    fun sigIn(view: View) {
         val signInIntent = googleSignInClient.signInIntent
-        startActivityForResult(signInIntent,200)
+        startActivityForResult(signInIntent, 200)
     }
 
-    private fun signFacebook(){
-        loginManager.logInWithReadPermissions(this, arrayListOf("email","public_profile"))
-        loginManager.registerCallback(callbackManager, object: FacebookCallback<LoginResult>{
+    private fun signFacebook() {
+        loginManager.logInWithReadPermissions(this, arrayListOf("email", "public_profile"))
+        loginManager.registerCallback(callbackManager, object : FacebookCallback<LoginResult> {
             override fun onSuccess(result: LoginResult?) {
                 result?.let { firebaseAuthWithFacebook(it.accessToken) }
 
@@ -132,7 +132,7 @@ class LoginActivity : AppCompatActivity() {
         firebaseAuth.signInWithCredential(credential)
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
-                    val intent = Intent(this,MainActivity::class.java)
+                    val intent = Intent(this, MainActivity::class.java)
                     startActivity(intent)
                     finish()
                 } else {
@@ -164,36 +164,37 @@ class LoginActivity : AppCompatActivity() {
         }
     }
 
-    private fun navigation(){
-        if (viewModel.passwordValidate.value == true && viewModel.emailValidate.value == true){
-            sigInFirebase(fieldEmail.text.toString(),fieldPassword.text.toString())
+    private fun navigation() {
+        if (viewModel.passwordValidate.value == true && viewModel.emailValidate.value == true) {
+            sigInFirebase(fieldEmail.text.toString(), fieldPassword.text.toString())
         }
     }
 
     private fun sigInFirebase(email: String, pass: String) {
-        firebaseAuth.signInWithEmailAndPassword(email,pass).addOnCompleteListener {task->
-            if (task.isSuccessful){
-                val intent = Intent(this,MainActivity::class.java)
+        firebaseAuth.signInWithEmailAndPassword(email, pass).addOnCompleteListener { task ->
+            if (task.isSuccessful) {
+                val intent = Intent(this, MainActivity::class.java)
                 startActivity(intent)
                 finish()
-            }else{
+            } else {
                 Log.d("error", task.exception?.message!!)
             }
         }
     }
-    fun login(view: View){
+
+    fun login(view: View) {
         val email = fieldEmail.text.toString()
         val password = fieldPassword.text.toString()
 
-        viewModel.validateFields(email,password)
+        viewModel.validateFields(email, password)
     }
 
-    fun newUser(view: View){
+    fun newUser(view: View) {
         val intent = Intent(this, CadastroActivity::class.java)
         startActivity(intent)
     }
 
-    fun forgetPass(view: View){
+    fun forgetPass(view: View) {
         val intent = Intent(this, EsqueciASenhaActivity::class.java)
         startActivity(intent)
     }

@@ -40,6 +40,7 @@
     <string name="Login_com_google">Login com Google</string>
     <string name="facebook_app_id">319161989570002</string>
     <string name="fb_login_protocol_scheme">fb319161989570002</string>
+    <string name="jogar">Jogar</string>
 
 
 </resources>

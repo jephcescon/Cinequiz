@@ -5,6 +5,7 @@ import com.example.cinequiz.model.discoverMovies.MoviesByGenre
 import com.example.cinequiz.model.discoverSeries.SeriesByGenre
 import com.example.cinequiz.model.popularMovieModel.PopularMovies
 import com.example.cinequiz.model.popularSeriesModel.PopularSeries
+import com.example.cinequiz.model.quizModel.Quiz
 import com.example.cinequiz.model.searchModel.Search
 import com.example.cinequiz.model.searchModelSeries.SearchSeries
 
@@ -14,6 +15,12 @@ import retrofit2.http.Path
 import retrofit2.http.Query
 
 interface ServiceAPI {
+
+    @GET("api.php?amount=10")
+    suspend fun getQuizQuestions(
+        @Query("category") category: Int = 11,
+        @Query("type") type: String = "multiple"
+    ) : Quiz
 
     @GET("movie/popular")
     suspend fun getPopularMovies(

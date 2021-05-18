@@ -11,23 +11,29 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Cinequiz">
-        <activity android:name=".profile.HelpProfile"/>
+        <activity android:name=".quiz.logic.ResultActivity"></activity>
+        <activity android:name=".quiz.logic.GameActivity" />
+        <activity android:name=".profile.HelpProfile" />
         <activity android:name=".profile.AboutApp" />
-        <activity android:name=".search.SearchMenu"/>
-        <activity android:name=".catalog.details.MovieDetails"/>
-        <activity android:name=".MainActivity"/>
-        <activity android:name=".EsqueciASenhaActivity"/>
-        <activity android:name=".CadastroActivity"/>
-        <activity android:name=".LoginActivity"/>
-        <activity android:name=".SplashScreenActivity" android:theme="@style/Theme.AppCompat.NoActionBar">
+        <activity android:name=".search.SearchMenu" />
+        <activity android:name=".catalog.details.MovieDetails" />
+        <activity android:name=".MainActivity" />
+        <activity android:name=".EsqueciASenhaActivity" />
+        <activity android:name=".CadastroActivity" />
+        <activity android:name=".LoginActivity" />
+        <activity
+            android:name=".SplashScreenActivity"
+            android:theme="@style/Theme.AppCompat.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <meta-data android:name="com.facebook.sdk.ApplicationId"
-            android:value="@string/facebook_app_id"/>
 
+        <meta-data
+            android:name="com.facebook.sdk.ApplicationId"
+            android:value="@string/facebook_app_id" />
     </application>
+
 </manifest>

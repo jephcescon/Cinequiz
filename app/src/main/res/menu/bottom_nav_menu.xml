@@ -5,11 +5,10 @@
         android:id="@+id/homeFragment"
         android:title="@string/home"
         android:icon="@drawable/ic_home" />
-    <!--<item
+    <item
         android:id="@+id/quizFragment"
         android:title="@string/quiz"
-        android:icon="@drawable/ic_game"
-        android:enabled="false"/>-->
+        android:icon="@drawable/ic_game" />
     <item
         android:id="@+id/catalogFragment"
         android:title="@string/catalog"

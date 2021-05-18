@@ -20,12 +20,14 @@ class SplashScreenActivity : AppCompatActivity() {
 
     private fun mostrarLogin() {
         if (firebaseAuth.currentUser != null){
-            val intent = Intent(this,MainActivity::class.java)
-            startActivity(intent)
-            finish()
-//            val intent = Intent(this@SplashScreenActivity, LoginActivity::class.java)
+            //Mudar após a apresentação
+//            val intent = Intent(this,MainActivity::class.java)
 //            startActivity(intent)
 //            finish()
+            val intent = Intent(this@SplashScreenActivity, LoginActivity::class.java)
+            startActivity(intent)
+            firebaseAuth.signOut()
+            finish()
         }else {
             val intent = Intent(this@SplashScreenActivity, LoginActivity::class.java)
             startActivity(intent)
