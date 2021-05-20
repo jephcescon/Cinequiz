@@ -1,16 +1,13 @@
 package com.example.cinequiz.search.adapter
 
-import android.content.Intent
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.Toast
-import android.widget.Toast.makeText
-import androidx.appcompat.view.menu.MenuView
 import androidx.recyclerview.widget.RecyclerView
-import com.example.cinequiz.MainActivity
 import com.example.cinequiz.R
-import com.example.cinequiz.search.SearchMenu
+import com.example.cinequiz.catalog.Dados
 import com.example.cinequiz.search.model.ItemSearch
+import com.squareup.picasso.Picasso
 
 class ItemSearchAdapter(val itemSearchList: MutableList<ItemSearch>) :
         RecyclerView.Adapter<ItemSearchViewHolder>() {
@@ -28,8 +25,10 @@ class ItemSearchAdapter(val itemSearchList: MutableList<ItemSearch>) :
     override fun onBindViewHolder(holder: ItemSearchViewHolder, position: Int) {
         val movieImage = holder.itemSearchMovieImg
         val movieName = holder.itemSearchMovieName
-        movieImage.setBackgroundResource(itemSearchList[position].capaDoFilme)
         movieName.text = itemSearchList[position].nomeDoFilme
+        Picasso.get().load("https://image.tmdb.org/t/p/w500${itemSearchList[position].imagePath}").into(movieImage)
+        //        movieImage.setBackgroundResource(itemSearchList[position].capaDoFilme)
+        Log.d("Deu",  itemSearchList.size.toString())
 
 
     }

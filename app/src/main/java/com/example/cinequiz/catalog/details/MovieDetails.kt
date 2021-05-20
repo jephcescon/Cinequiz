@@ -15,10 +15,9 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.viewpager2.widget.ViewPager2
 
 import com.example.cinequiz.R
-import com.example.cinequiz.catalog.Dados
 import com.example.cinequiz.catalog.Dados.dados
 import com.example.cinequiz.model.MovieCredits.Cast
-import com.example.cinequiz.search.SearchMenu
+import com.example.cinequiz.search.activity.SearchMenu
 
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
