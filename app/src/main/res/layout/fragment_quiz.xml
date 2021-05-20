@@ -18,7 +18,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <Button
-            android:id="@+id/searchButton"
+            android:id="@+id/infoBtn"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:backgroundTint="#00FFFFFF"

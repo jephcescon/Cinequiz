@@ -64,6 +64,9 @@ dependencies {
 //    Login Facebook
     implementation 'com.facebook.android:facebook-login:8.2.0'
 
+    //FireStore
+    implementation 'com.google.firebase:firebase-firestore-ktx'
+
     implementation 'com.synnapps:carouselview:0.1.5'
     implementation 'com.google.firebase:firebase-auth:19.3.1'
     testImplementation 'junit:junit:4.13.2'

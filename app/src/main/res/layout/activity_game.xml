@@ -108,7 +108,7 @@
                 app:cardCornerRadius="200dp">
 
                 <TextView
-                    android:id="@+id/answer2"
+                    android:id="@+id/scoreValue"
                     android:layout_gravity="center"
                     android:layout_width="match_parent"
                     android:textSize="20sp"

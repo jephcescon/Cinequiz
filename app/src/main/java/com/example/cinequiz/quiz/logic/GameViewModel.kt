@@ -22,6 +22,7 @@ class GameViewModel : ViewModel() {
     val quiz by lazy { MutableLiveData<Quiz>() }
     private val repository = QuizRepository()
     var questionActual = 0
+    var score = 0
 
     init {
         questionsList()

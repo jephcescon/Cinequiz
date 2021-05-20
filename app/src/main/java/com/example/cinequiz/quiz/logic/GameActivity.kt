@@ -1,16 +1,16 @@
 package com.example.cinequiz.quiz.logic
 
+import android.content.Intent
 import android.os.Bundle
 import android.os.CountDownTimer
-import android.os.PersistableBundle
 import android.util.Log
-import android.view.View
 import android.view.View.VISIBLE
 import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.cardview.widget.CardView
 import androidx.lifecycle.ViewModelProviders
+import com.example.cinequiz.MainActivity
 import com.example.cinequiz.R
 
 
@@ -18,7 +18,7 @@ class GameActivity : AppCompatActivity() {
     private lateinit var viewModel: GameViewModel
     private val question by lazy { findViewById<TextView>(R.id.question) }
     private val answer1 by lazy { findViewById<TextView>(R.id.answer1) }
-    private val answer2 by lazy { findViewById<TextView>(R.id.answer2) }
+    private val answer2 by lazy { findViewById<TextView>(R.id.scoreValue) }
     private val answer3 by lazy { findViewById<TextView>(R.id.answer3) }
     private val answer4 by lazy { findViewById<TextView>(R.id.answer4) }
     private val cardAnswer1 by lazy { findViewById<CardView>(R.id.cardAnswer1) }
@@ -51,7 +51,10 @@ class GameActivity : AppCompatActivity() {
                 setClickable(1)
                 startTimer()
             }else{
+                val intent = Intent(this, ResultActivity::class.java)
+                intent.putExtra("SCORE" , viewModel.score)
                 finish()
+                startActivity(intent)
             }
         }
     }
@@ -84,6 +87,7 @@ class GameActivity : AppCompatActivity() {
         val countDownTimer = object : CountDownTimer((50 * 1000).toLong(), 1000) {
             // 500 means, onTick function will be called at every 500 milliseconds
             override fun onTick(leftTimeInMilliseconds: Long) {
+                textTimer.isClickable = false
                 val seconds = leftTimeInMilliseconds / 1000
                 complete-=2
                 barTimer.progress = complete
@@ -118,6 +122,7 @@ class GameActivity : AppCompatActivity() {
         cardAnswer1.setOnClickListener {
             if (viewModel.answer1.value == viewModel.correctAnswer.value){
                 Log.d("Acertou","Acertou")
+                viewModel.score += 10
             }
             configurationAnswerClick(countDownTimer)
             setClickable(0)
@@ -126,6 +131,7 @@ class GameActivity : AppCompatActivity() {
         cardAnswer2.setOnClickListener {
             if (viewModel.answer2.value == viewModel.correctAnswer.value){
                 Log.d("Acertou","Acertou")
+                viewModel.score += 10
             }
             configurationAnswerClick(countDownTimer)
             setClickable(0)
@@ -134,6 +140,7 @@ class GameActivity : AppCompatActivity() {
         cardAnswer3.setOnClickListener {
             if (viewModel.answer3.value == viewModel.correctAnswer.value){
                 Log.d("Acertou","Acertou")
+                viewModel.score += 10
             }
             configurationAnswerClick(countDownTimer)
             setClickable(0)
@@ -142,6 +149,7 @@ class GameActivity : AppCompatActivity() {
         cardAnswer4.setOnClickListener {
             if (viewModel.answer4.value == viewModel.correctAnswer.value){
                 Log.d("Acertou","Acertou")
+                viewModel.score += 10
             }
             configurationAnswerClick(countDownTimer)
             setClickable(0)

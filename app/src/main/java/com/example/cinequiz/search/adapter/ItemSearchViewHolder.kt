@@ -10,6 +10,4 @@ class ItemSearchViewHolder(view: View)  : RecyclerView.ViewHolder(view) {
 
     val itemSearchMovieName by lazy { itemView.findViewById<TextView>(R.id.tv_last_search_item) }
     val itemSearchMovieImg by lazy { itemView.findViewById<ImageView>(R.id.iv_img_item_search) }
-
-
 }

@@ -10,4 +10,6 @@
     <color name="facebook_blue">#4267B2</color>
     <color name="google_red">#DB4437</color>
     <color name="disable">#3E3A3A</color>
+    <color name="loser">#FF0000</color>
+    <color name="winner">#37FF00</color>
 </resources>
