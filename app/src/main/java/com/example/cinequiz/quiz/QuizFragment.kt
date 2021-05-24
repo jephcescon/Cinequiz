@@ -36,7 +36,7 @@ class QuizFragment : Fragment() {
         info?.setOnClickListener {
             AlertDialog.Builder(view.context)
                 .setTitle("Regras")
-                .setMessage("1.Cada respota certa vale 10 pontos\n\n2.O tempo que você demora para responder não influencia na pontuação\n\n3.Somente é considerado ganhador se fizer mais de 60 pontos\n\n4.Cada pergunta só tem 1 alternativa correta")
+                .setMessage("\n1.Cada respota certa vale 10 pontos\n\n2.O tempo que você demora para responder não influencia na pontuação\n\n3.Somente é considerado ganhador se fizer mais de 60 pontos\n\n4.Cada pergunta só tem 1 alternativa correta")
                 .setNegativeButton("OK", null)
                 .create()
                 .show()

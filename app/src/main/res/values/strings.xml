@@ -43,6 +43,7 @@
     <string name="jogar">Jogar</string>
     <string name="voc_fez">Você fez</string>
     <string name="pontos">pontos.</string>
+    <string name="lose">Perdeu</string>
 
 
 </resources>
