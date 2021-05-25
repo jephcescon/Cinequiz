@@ -1,6 +1,7 @@
 package com.example.cinequiz.network
 
 import com.example.cinequiz.model.MovieCredits.MovieCredits
+import com.example.cinequiz.model.MovieData.MovieData
 import com.example.cinequiz.model.discoverMovies.MoviesByGenre
 import com.example.cinequiz.model.discoverSeries.SeriesByGenre
 import com.example.cinequiz.model.popularMovieModel.PopularMovies
@@ -40,7 +41,7 @@ interface ServiceAPI {
     suspend fun getMovieData(
         @Path("movie_id") movieID : Int,
 //        @Query("language") language: String = "pt-BR"
-    ) : PopularMoviesList
+    ) : MovieData
 
     @GET("search/multi")
     suspend fun search(

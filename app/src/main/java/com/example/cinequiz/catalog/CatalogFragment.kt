@@ -15,9 +15,14 @@ import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.cinequiz.R
+import com.example.cinequiz.search.FireManagerMovie.FireManager
+import com.example.cinequiz.search.FireManagerMovie.MovieIDs
 import com.example.cinequiz.search.activity.SearchMenu
 import com.example.cinequiz.search.model.ClickSearch
 import com.google.android.material.snackbar.Snackbar
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
 import com.synnapps.carouselview.CarouselView
 
 class CatalogFragment : Fragment() {
@@ -95,7 +100,6 @@ class CatalogFragment : Fragment() {
 
         //BOTÃO DE PESQUISA
         search?.setOnClickListener {
-            Log.d("teste", "${ClickSearch.searchTrue}")
             val intent = Intent(view.context, SearchMenu::class.java)
             startActivity(intent)
         }

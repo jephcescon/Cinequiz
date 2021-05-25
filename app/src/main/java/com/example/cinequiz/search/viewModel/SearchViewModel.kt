@@ -9,6 +9,7 @@ import androidx.lifecycle.ViewModel
 import com.example.cinequiz.R
 import com.example.cinequiz.catalog.Dados
 import com.example.cinequiz.catalog.ErrorApi
+import com.example.cinequiz.model.MovieData.MovieData
 import com.example.cinequiz.model.popularMovieModel.PopularMoviesList
 import com.example.cinequiz.repository.MoviesRepository
 import com.example.cinequiz.search.adapter.ItemSearchViewHolder
@@ -16,13 +17,15 @@ import com.example.cinequiz.search.model.ItemSearch
 import com.squareup.picasso.Picasso
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import okhttp3.internal.notify
 
 class SearchViewModel : ViewModel() {
 
     val errorMessage: MutableLiveData<String> by lazy { MutableLiveData<String>() }
 
-    val movies: MutableLiveData<PopularMoviesList> by lazy { MutableLiveData<PopularMoviesList>() }
+    val movies: MutableLiveData<MovieData> by lazy { MutableLiveData<MovieData>() }
 
     private val repository = MoviesRepository()
 
@@ -32,21 +35,24 @@ class SearchViewModel : ViewModel() {
 
 
     private fun moviesData() = CoroutineScope(Dispatchers.IO).launch {
-        try {
-            Log.d("IDs1", Dados.moviesIDsFromFirebase.size.toString())
-            Dados.moviesIDsFromFirebase.forEach {
-                Dados.postMovieID(it)
-                repository.getMovieData().let { moviesPopular ->
-                    movies.postValue(moviesPopular)
+        Dados.itemSearch.clear()
+        Dados.moviesIDsFromFirebase.forEach { movieID ->
+                try {
+
+                        Dados.postMovieID(movieID)
+                        repository.getMovieData().let { moviesData ->
+                            movies.postValue(moviesData)
+                        }
+                    delay(1000L)
+                        Dados.itemSearch.add(ItemSearch(movies.value?.backdropPath!!, movies.value?.title!!))
+
+
+
+                } catch (error: Throwable) {
+                    ErrorApi(error, errorMessage)
+                    Dados.itemSearch.add(ItemSearch("http://rockcontent.com/wp-content/uploads/2021/02/stage-en-error-1020.png", "Conteúdo indisponível"))
+                    Log.d("Erro", errorMessage.toString())
                 }
-                Dados.itemSearch.add(ItemSearch(movies.value?.backdropPath!!, movies.value?.title!!))
-                Log.d("itemsearch", Dados.itemSearch.size.toString())
             }
-
-
-        } catch (error: Throwable) {
-            ErrorApi(error, errorMessage)
-            Log.d("deu", errorMessage.toString())
-        }
     }
 }

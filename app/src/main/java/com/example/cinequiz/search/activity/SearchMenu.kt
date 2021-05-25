@@ -15,6 +15,7 @@ import com.example.cinequiz.search.adapter.ItemSearchAdapter
 import com.example.cinequiz.search.model.ClickSearch
 import com.example.cinequiz.search.model.ItemSearch
 import com.example.cinequiz.search.viewModel.SearchViewModel
+import okhttp3.internal.notify
 
 class SearchMenu : AppCompatActivity() {
 
@@ -22,7 +23,7 @@ class SearchMenu : AppCompatActivity() {
     private val btBackPress by lazy { findViewById<Button>(R.id.bt_return_search_movie) }
     private val searchField by lazy { findViewById<androidx.appcompat.widget.SearchView>(R.id.et_search_menu) }
     private val searchViewModel by lazy { ViewModelProvider(this).get(SearchViewModel::class.java) }
-    var result = ""
+//    var result = ""
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -30,12 +31,13 @@ class SearchMenu : AppCompatActivity() {
         setContentView(R.layout.activity_search)
 
         FireManager.getLastSearch()
-        Log.d("IDs2", Dados.moviesIDsFromFirebase.toString())
         val moviesList = getMovieSearchItem()
+
 
         recycle.layoutManager = LinearLayoutManager(this)
         val adapter = ItemSearchAdapter(moviesList)
         recycle.adapter = adapter
+        recycle.adapter?.notifyDataSetChanged()
 
         btBackPress.setOnClickListener {
             super.onBackPressed()
@@ -52,11 +54,10 @@ class SearchMenu : AppCompatActivity() {
     }
 
 
-    private fun getMovieSearchItem(): MutableList<ItemSearch> {
+     fun getMovieSearchItem(): MutableList<ItemSearch> {
         searchViewModel.movies.observe(this){
-
             Dados.itemSearch
-            Log.d("IDs3", Dados.itemSearch.size.toString())
+            recycle.adapter?.notifyDataSetChanged()
         }
         return Dados.itemSearch
 
