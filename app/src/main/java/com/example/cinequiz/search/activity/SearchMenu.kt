@@ -23,7 +23,7 @@ class SearchMenu : AppCompatActivity() {
     private val btBackPress by lazy { findViewById<Button>(R.id.bt_return_search_movie) }
     private val searchField by lazy { findViewById<androidx.appcompat.widget.SearchView>(R.id.et_search_menu) }
     private val searchViewModel by lazy { ViewModelProvider(this).get(SearchViewModel::class.java) }
-//    var result = ""
+
 
 
     override fun onCreate(savedInstanceState: Bundle?) {

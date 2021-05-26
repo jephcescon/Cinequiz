@@ -8,7 +8,12 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.cinequiz.MainActivity
 import com.example.cinequiz.R
+import com.example.cinequiz.catalog.Dados
+import com.example.cinequiz.search.FireManagerMovie.FireManager
+import com.example.cinequiz.search.activity.SearchMenu
+import com.example.cinequiz.search.model.ItemSearch
 
 class RecentSearchesFragment : Fragment() {
 
@@ -24,21 +29,16 @@ class RecentSearchesFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val movieList = mutableListOf<Movie> ()
-        movieList.add(Movie("Contra o Tempo", "Cinco alunos correm pra conseguir terminar o projeto PI a tempo", R.drawable.sourcecode,"Suspense","Filme"))
-        movieList.add(Movie("Contra o Tempo", "Cinco alunos correm pra conseguir terminar o projeto PI a tempo", R.drawable.sourcecode,"Suspense","Filme"))
-        movieList.add(Movie("Contra o Tempo", "Cinco alunos correm pra conseguir terminar o projeto PI a tempo", R.drawable.sourcecode,"Suspense","Filme"))
-        movieList.add(Movie("Contra o Tempo", "Cinco alunos correm pra conseguir terminar o projeto PI a tempo", R.drawable.sourcecode,"Suspense","Filme"))
-        movieList.add(Movie("Contra o Tempo", "Cinco alunos correm pra conseguir terminar o projeto PI a tempo", R.drawable.sourcecode,"Suspense","Filme"))
-        movieList.add(Movie("Contra o Tempo", "Cinco alunos correm pra conseguir terminar o projeto PI a tempo", R.drawable.sourcecode,"Suspense","Filme"))
-        movieList.add(Movie("Contra o Tempo", "Cinco alunos correm pra conseguir terminar o projeto PI a tempo", R.drawable.sourcecode,"Suspense","Filme"))
-        movieList.add(Movie("Contra o Tempo", "Cinco alunos correm pra conseguir terminar o projeto PI a tempo", R.drawable.sourcecode,"Suspense","Filme"))
-        movieList.add(Movie("Contra o Tempo", "Cinco alunos correm pra conseguir terminar o projeto PI a tempo", R.drawable.sourcecode,"Suspense","Filme"))
-        movieList.add(Movie("Contra o Tempo", "Cinco alunos correm pra conseguir terminar o projeto PI a tempo", R.drawable.sourcecode,"Suspense","Filme"))
-
         searchRecycler = view.findViewById(R.id.rec_searches_recycler)
         searchRecycler.layoutManager = GridLayoutManager(context,2)
-        val adapter = RecentSearchesAdapter(movieList)
+        FireManager.getLastSearch()
+        val moviesSearch = Dados.itemSearch
+        val adapter = RecentSearchesAdapter(moviesSearch)
         searchRecycler.adapter = adapter
+        searchRecycler.adapter?.notifyDataSetChanged()
+
+
     }
+
+
 }

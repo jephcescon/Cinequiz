@@ -43,14 +43,14 @@ class SearchViewModel : ViewModel() {
                         repository.getMovieData().let { moviesData ->
                             movies.postValue(moviesData)
                         }
-                    delay(1000L)
-                        Dados.itemSearch.add(ItemSearch(movies.value?.backdropPath!!, movies.value?.title!!))
+                    delay(300L)
+                        Dados.itemSearch.add(ItemSearch(movies.value?.backdropPath!!, movies.value?.title!!, movies.value!!.posterPath.toString()))
 
 
 
                 } catch (error: Throwable) {
                     ErrorApi(error, errorMessage)
-                    Dados.itemSearch.add(ItemSearch("http://rockcontent.com/wp-content/uploads/2021/02/stage-en-error-1020.png", "Conteúdo indisponível"))
+                    Dados.itemSearch.add(ItemSearch("http://rockcontent.com/wp-content/uploads/2021/02/stage-en-error-1020.png", "Conteúdo indisponível", ""))
                     Log.d("Erro", errorMessage.toString())
                 }
             }
