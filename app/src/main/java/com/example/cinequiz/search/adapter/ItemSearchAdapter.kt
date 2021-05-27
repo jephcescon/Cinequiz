@@ -25,7 +25,9 @@ class ItemSearchAdapter(val itemSearchList: MutableList<ItemSearch>) :
     override fun onBindViewHolder(holder: ItemSearchViewHolder, position: Int) {
         val movieImage = holder.itemSearchMovieImg
         val movieName = holder.itemSearchMovieName
+
         movieName.text = itemSearchList[position].nomeDoFilme
+
         if(itemSearchList[position].nomeDoFilme == "Conteúdo indisponível"){
             Picasso.get().load(itemSearchList[position].imagePath).resize(135,80).into(movieImage)
         } else Picasso.get().load("https://image.tmdb.org/t/p/w500${itemSearchList[position].imagePath}").resize(135,80).into(movieImage)

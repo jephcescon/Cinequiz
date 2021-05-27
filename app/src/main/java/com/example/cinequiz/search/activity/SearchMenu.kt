@@ -22,7 +22,6 @@ class SearchMenu : AppCompatActivity() {
     private val recycle by lazy { findViewById<RecyclerView>(R.id.rv_last_search) }
     private val btBackPress by lazy { findViewById<Button>(R.id.bt_return_search_movie) }
     private val searchField by lazy { findViewById<androidx.appcompat.widget.SearchView>(R.id.et_search_menu) }
-    private val searchViewModel by lazy { ViewModelProvider(this).get(SearchViewModel::class.java) }
 
 
 
@@ -35,6 +34,8 @@ class SearchMenu : AppCompatActivity() {
 
 
         recycle.layoutManager = LinearLayoutManager(this)
+        LinearLayoutManager(this).reverseLayout
+
         val adapter = ItemSearchAdapter(moviesList)
         recycle.adapter = adapter
         recycle.adapter?.notifyDataSetChanged()
@@ -55,11 +56,14 @@ class SearchMenu : AppCompatActivity() {
 
 
      fun getMovieSearchItem(): MutableList<ItemSearch> {
-        searchViewModel.movies.observe(this){
-            Dados.itemSearch
-            recycle.adapter?.notifyDataSetChanged()
-        }
-        return Dados.itemSearch
+         val movieSearchItens = mutableListOf<ItemSearch>()
+         movieSearchItens.clear()
+         var position = 0
+         while (position < Dados.moviesFirebase.size){
+             movieSearchItens.add(ItemSearch(Dados.moviesFirebase[position].cover, Dados.moviesFirebase[position].title, Dados.moviesFirebase[position].cover))
+             position++
+         }
+         return movieSearchItens
 
     }
 

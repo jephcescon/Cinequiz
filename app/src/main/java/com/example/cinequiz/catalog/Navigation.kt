@@ -276,7 +276,7 @@ class Navigation(viewModel: CatalogViewModel) {
 
 // SEARCH *****************************
 
-    internal fun search(
+    fun search(
         bannerRecycle: RecyclerView?,
         view: View,
         viewModel: CatalogViewModel,
@@ -290,7 +290,8 @@ class Navigation(viewModel: CatalogViewModel) {
         val adapter = CatalogAdapter {
             val intent = Intent(view.context, MovieDetails::class.java)
             Dados.postAll(it)
-            FireManager.recordSearch(it.id!!)
+//            FireManager.recordSearch(it.id, it.title, it.banner, it.backdrop)
+            FireManager.recordSearch(it.id, it.title!!, it.banner!!,it.backdrop!!)
             view.context.startActivity(intent)
         }
         bannerRecycle?.adapter = adapter
@@ -360,7 +361,7 @@ class Navigation(viewModel: CatalogViewModel) {
                     )
                     val intent = Intent(view.context, MovieDetails::class.java)
                     Dados.postAll(date)
-                    FireManager.recordSearch(date.id!!)
+                    FireManager.recordSearch(date.id, date.title!!, date.backdrop!!, date.banner!!)
                     view.context.startActivity(intent)
                 }
             }

@@ -15,12 +15,13 @@ object FireManager {
 
 
 
-    fun recordSearch(id: Int) {
+    fun recordSearch(id: Int?, title : String, cover: String, poster: String) {
         firebaseAuth.currentUser?.let { user ->
 
-            firestoreDb.collection("lastSearch")
+            firestoreDb.collection("users")
                 .document(user.uid)
-                .update("favoriteMovies",  FieldValue.arrayUnion(id))
+//                .set(BuscasRecentes(id, title, cover, poster))
+                .update("buscasRecentes", FieldValue.arrayUnion(BuscasRecentes(id, title, cover, poster)))
                 .addOnSuccessListener {
                     it
                 }
@@ -35,19 +36,21 @@ object FireManager {
 
         firebaseAuth.currentUser?.let { user ->
 
-            firestoreDb.collection("lastSearch")
+            firestoreDb.collection("users")
                 .document(user.uid)
                 .get()
                 .addOnSuccessListener {
-                    val moviesIds = it.toObject(MovieIDs::class.java)
-                    moviesIds?.favoriteMovies?.let { IDs -> Dados.postMoviesIDsFromFirebase(IDs) }
-                    Log.d("IDs8", Dados.moviesIDsFromFirebase.toString())
-
-                }
-                .addOnFailureListener {
                     it
-                }
-        }
-    }
+                    val moviesFromFirebase = it.toObject(MoviesFromFirebase::class.java)
+                    Log.d("teste2", it.data.toString())
+                    Log.d("teste2", moviesFromFirebase!!.buscasRecentes.toString())
+                    Log.d("teste2", moviesFromFirebase!!.buscasRecentes[0].cover.toString())
+                    Dados.moviesFirebase.clear()
+                    Dados.moviesFirebase.addAll(moviesFromFirebase.buscasRecentes)
 
-}
+                    }
+            .addOnFailureListener {
+                it
+            }
+        }
+    }}
