@@ -1,12 +1,15 @@
 package com.example.cinequiz.quiz.logic
 
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
 import android.os.CountDownTimer
+import android.text.Html
 import android.util.Log
 import android.view.View.VISIBLE
 import android.widget.ProgressBar
 import android.widget.TextView
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.cardview.widget.CardView
 import androidx.lifecycle.ViewModelProviders
@@ -61,23 +64,28 @@ class GameActivity : AppCompatActivity() {
 
     private fun textObserve() {
         viewModel.question.observe(this) {
-            question.text = it
+            val text = Html.fromHtml(it,Html.FROM_HTML_MODE_COMPACT)
+            question.text = text
         }
 
         viewModel.answer1.observe(this){
-            answer1.text = it
+            val text = Html.fromHtml(it,Html.FROM_HTML_MODE_COMPACT)
+            answer1.text = text
         }
 
         viewModel.answer2.observe(this){
-            answer2.text = it
+            val text = Html.fromHtml(it,Html.FROM_HTML_MODE_COMPACT)
+            answer2.text = text
         }
 
         viewModel.answer3.observe(this){
-            answer3.text = it
+            val text = Html.fromHtml(it,Html.FROM_HTML_MODE_COMPACT)
+            answer3.text = text
         }
 
         viewModel.answer4.observe(this){
-            answer4.text = it
+            val text = Html.fromHtml(it,Html.FROM_HTML_MODE_COMPACT)
+            answer4.text = text
         }
 
     }

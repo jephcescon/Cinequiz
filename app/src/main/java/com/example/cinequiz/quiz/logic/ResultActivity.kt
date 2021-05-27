@@ -41,10 +41,11 @@ class ResultActivity : AppCompatActivity() {
     private fun validateScore(point: Int) {
         if (point < 60){
             resultText.text = "Tente Novamente!"
-            scoreCard
+            resultImage.setImageResource(R.drawable.loser)
             scoreCard.backgroundTintList = ColorStateList.valueOf(getColor(R.color.loser))
         }else{
             resultText.text = "Parabéns!"
+            resultImage.setImageResource(R.drawable.winner)
             scoreCard.backgroundTintList = ColorStateList.valueOf(getColor(R.color.winner))
         }
     }
