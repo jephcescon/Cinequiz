@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.cinequiz.R
+import com.example.cinequiz.catalog.Dados
 import com.example.cinequiz.search.model.ItemSearch
 import com.squareup.picasso.Picasso
 
@@ -21,9 +22,8 @@ class RecentSearchesAdapter (private val recSearchesList: MutableList<ItemSearch
 
     override fun onBindViewHolder(holder: RecentSearchesViewHolder, position: Int) {
         val movieImage = holder.banner
-        if(recSearchesList[position].nomeDoFilme == "Conteúdo indisponível"){
-            Picasso.get().load(recSearchesList[position].imagePath).into(movieImage)
-        } else Picasso.get().load("https://image.tmdb.org/t/p/w500${recSearchesList[position].movieCover}").into(movieImage)
+        Picasso.get().load("https://image.tmdb.org/t/p/w500${Dados.moviesFirebase[position].poster}").into(movieImage)
+//        Picasso.get().load("https://image.tmdb.org/t/p/w500${recSearchesList[position].movieCover}").into(movieImage)
 
     }
 
