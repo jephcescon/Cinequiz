@@ -291,7 +291,7 @@ class Navigation(viewModel: CatalogViewModel) {
             val intent = Intent(view.context, MovieDetails::class.java)
             Dados.postAll(it)
 //            FireManager.recordSearch(it.id, it.title, it.banner, it.backdrop)
-            FireManager.recordSearch(it.id, it.title!!, it.banner!!,it.backdrop!!)
+            it.banner?.let { it1 -> FireManager.recordSearch(it.id, it.title!!, it1,it.backdrop!!) }
             view.context.startActivity(intent)
         }
         bannerRecycle?.adapter = adapter

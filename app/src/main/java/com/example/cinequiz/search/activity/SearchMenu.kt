@@ -1,21 +1,16 @@
 package com.example.cinequiz.search.activity
 
 import android.os.Bundle
-import android.util.Log
 import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.cinequiz.R
 import com.example.cinequiz.catalog.Dados
-import com.example.cinequiz.model.MovieCredits.Cast
 import com.example.cinequiz.search.FireManagerMovie.FireManager
 import com.example.cinequiz.search.adapter.ItemSearchAdapter
 import com.example.cinequiz.search.model.ClickSearch
 import com.example.cinequiz.search.model.ItemSearch
-import com.example.cinequiz.search.viewModel.SearchViewModel
-import okhttp3.internal.notify
 
 class SearchMenu : AppCompatActivity() {
 
@@ -31,6 +26,7 @@ class SearchMenu : AppCompatActivity() {
 
         FireManager.getLastSearch()
         val moviesList = getMovieSearchItem()
+
 
 
         recycle.layoutManager = LinearLayoutManager(this)
@@ -55,15 +51,18 @@ class SearchMenu : AppCompatActivity() {
     }
 
 
+
      fun getMovieSearchItem(): MutableList<ItemSearch> {
          val movieSearchItens = mutableListOf<ItemSearch>()
+         val moviesList = movieSearchItens.asReversed()
          movieSearchItens.clear()
          var position = 0
          while (position < Dados.moviesFirebase.size){
              movieSearchItens.add(ItemSearch(Dados.moviesFirebase[position].cover, Dados.moviesFirebase[position].title, Dados.moviesFirebase[position].cover))
              position++
          }
-         return movieSearchItens
+
+         return moviesList
 
     }
 

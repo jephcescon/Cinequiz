@@ -23,7 +23,6 @@ class RecentSearchesAdapter (private val recSearchesList: MutableList<ItemSearch
     override fun onBindViewHolder(holder: RecentSearchesViewHolder, position: Int) {
         val movieImage = holder.banner
         Picasso.get().load("https://image.tmdb.org/t/p/w500${Dados.moviesFirebase[position].poster}").into(movieImage)
-//        Picasso.get().load("https://image.tmdb.org/t/p/w500${recSearchesList[position].movieCover}").into(movieImage)
 
     }
 
