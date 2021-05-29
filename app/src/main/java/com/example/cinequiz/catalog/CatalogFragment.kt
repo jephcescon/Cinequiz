@@ -3,12 +3,17 @@ package com.example.cinequiz.catalog
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
+import android.view.View.GONE
+import android.view.View.VISIBLE
 import android.view.ViewGroup
+import android.view.animation.TranslateAnimation
 import android.widget.Button
-import android.widget.Toast
+import android.widget.ImageView
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.widget.Toolbar
 import androidx.core.view.GravityCompat
@@ -20,6 +25,7 @@ import com.example.cinequiz.search.SearchMenu
 import com.example.cinequiz.search.model.ClickSearch
 import com.google.android.material.snackbar.Snackbar
 import com.synnapps.carouselview.CarouselView
+
 
 class CatalogFragment : Fragment() {
     private val search by lazy { view?.findViewById<Button>(R.id.searchButton) }
@@ -36,6 +42,7 @@ class CatalogFragment : Fragment() {
             R.id.navigationView
         )
     }
+    private val carrouselVisibility by lazy { view?.findViewById<ImageView>(R.id.carrouselVisibility) }
 
     lateinit var viewModel: CatalogViewModel
 
@@ -59,10 +66,76 @@ class CatalogFragment : Fragment() {
 
         createdView(view)
 
+        carrouselVisibility?.setOnClickListener {
+            if (carousel?.visibility == VISIBLE) {
+                animationCloseCarrousel(carrouselVisibility!!)
+            } else
+                animationOpenCarrousel()
+        }
+
         viewModel.errorMessage.observe(viewLifecycleOwner) {
             it?.let {
                 Snackbar.make(view, it, Snackbar.LENGTH_LONG).show()
             }
+        }
+    }
+
+    private fun animationOpenCarrousel() {
+        carousel?.let {
+            it.visibility = VISIBLE
+            val animate = TranslateAnimation(
+                0f,  // fromXDelta
+                0f,  // toXDelta
+                -it.height.toFloat(),  // fromYDelta
+                0f
+            ) // toYDelta
+
+            animate.duration = 500
+            animate.fillAfter = true
+            it.startAnimation(animate)
+            carrouselVisibility?.startAnimation(animate)
+            bannerRecycle?.startAnimation(animate)
+
+            Handler(Looper.myLooper()!!).postDelayed(
+                {
+                    carrouselVisibility?.setImageResource(R.drawable.close_view)
+                }, 500
+            )
+        }
+    }
+
+    private fun animationCloseCarrousel(view: ImageView) {
+        carousel?.let {
+            val animate = TranslateAnimation(
+                0f,  // fromXDelta
+                0f,  // toXDelta
+                0f,  // fromYDelta
+                -it.height.toFloat()
+            ) // toYDelta
+
+            animate.duration = 500
+            animate.fillAfter = true
+
+            carrouselVisibility?.startAnimation(animate)
+            it.startAnimation(animate)
+            bannerRecycle?.startAnimation(animate)
+
+            Handler(Looper.myLooper()!!).postDelayed(
+                {
+                    it.visibility = GONE
+                    view.setImageResource(R.drawable.open_view)
+                    val animate2 = TranslateAnimation(
+                        0f,  // fromXDelta
+                        0f,  // toXDelta
+                        0f,  // fromYDelta
+                        0f
+                    ) // toYDelta
+                    animate2.duration = 0
+                    animate2.fillAfter = true
+                    bannerRecycle?.startAnimation(animate2)
+                    carrouselVisibility?.startAnimation(animate2)
+                }, 500
+            )
         }
     }
 
@@ -77,7 +150,8 @@ class CatalogFragment : Fragment() {
                 carousel,
                 viewLifecycleOwner,
                 view,
-                drawerLayout
+                drawerLayout,
+                carrouselVisibility
             )
         }
 
@@ -109,7 +183,8 @@ class CatalogFragment : Fragment() {
                     viewModel,
                     viewLifecycleOwner,
                     carousel,
-                    ClickSearch.textSearch
+                    ClickSearch.textSearch,
+                    carrouselVisibility
                 )
                 ClickSearch.searchTrue.postValue(false)
             }
@@ -118,7 +193,7 @@ class CatalogFragment : Fragment() {
     }
 
     fun closeDrawer() {
-        if(drawerLayout?.isDrawerOpen(GravityCompat.START) == true)
-        drawerLayout?.closeDrawer(GravityCompat.START)
+        if (drawerLayout?.isDrawerOpen(GravityCompat.START) == true)
+            drawerLayout?.closeDrawer(GravityCompat.START)
     }
 }

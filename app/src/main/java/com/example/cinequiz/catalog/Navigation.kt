@@ -1,10 +1,14 @@
 package com.example.cinequiz.catalog
 
 import android.content.Intent
+import android.os.Handler
+import android.os.Looper
 import android.util.Log
 import android.view.View
 import android.view.View.GONE
 import android.view.View.VISIBLE
+import android.view.animation.TranslateAnimation
+import android.widget.ImageView
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.lifecycle.LifecycleOwner
@@ -61,7 +65,6 @@ class Navigation(viewModel: CatalogViewModel) {
         val fragment = CatalogFragment()
 
         fragment.closeDrawer()
-        carousel?.visibility = VISIBLE
         viewModel.nextPage = 0
 
         //CallBack para passar o ID
@@ -137,7 +140,8 @@ class Navigation(viewModel: CatalogViewModel) {
         carousel: CarouselView?,
         viewLifecycleOwner: LifecycleOwner,
         view: View,
-        drawerLayout: DrawerLayout?
+        drawerLayout: DrawerLayout?,
+        carrouselVisibility : ImageView?
     ) {
         navigationView.setNavigationItemSelectedListener { menuItem ->
             try {
@@ -269,6 +273,30 @@ class Navigation(viewModel: CatalogViewModel) {
                 }
             }finally {
                 drawerLayout?.closeDrawer(GravityCompat.START)
+                carrouselVisibility?.visibility = VISIBLE
+                if (carousel?.visibility == GONE) {
+                    carousel.let {
+                        it.visibility = VISIBLE
+                        val animate = TranslateAnimation(
+                            0f,  // fromXDelta
+                            0f,  // toXDelta
+                            -it.height.toFloat(),  // fromYDelta
+                            0f
+                        ) // toYDelta
+
+                        animate.duration = 500
+                        animate.fillAfter = true
+                        it.startAnimation(animate)
+                        carrouselVisibility?.startAnimation(animate)
+                        bannerRecycle?.startAnimation(animate)
+
+                        Handler(Looper.myLooper()!!).postDelayed(
+                            {
+                                carrouselVisibility?.setImageResource(R.drawable.close_view)
+                            }, 500
+                        )
+                    }
+                }
             }
         }
     }
@@ -279,9 +307,9 @@ class Navigation(viewModel: CatalogViewModel) {
         viewModel: CatalogViewModel,
         viewLifecycleOwner: LifecycleOwner,
         carousel: CarouselView?,
-        searchField: String
+        searchField: String,
+        carrouselVisibility: ImageView?
     ) {
-
         viewModel.searchNextPage = 0
 
         val adapter = CatalogAdapter {
@@ -327,12 +355,37 @@ class Navigation(viewModel: CatalogViewModel) {
 //            )
             if (categoryMovies.isEmpty()){
                 carousel?.visibility = GONE
+                carrouselVisibility?.visibility = GONE
             }else {
                 categoryMovies.forEach {
                     if (it.backdropPath.isNullOrBlank()) {
                         url.add(R.drawable.semimagem.toString())
                     } else {
                         url.add("https://image.tmdb.org/t/p/w500${it.backdropPath}")
+                    }
+                }
+
+                if (carousel?.visibility == GONE){
+                    carousel.let {
+                        it.visibility = VISIBLE
+                        val animate = TranslateAnimation(
+                            0f,  // fromXDelta
+                            0f,  // toXDelta
+                            -it.height.toFloat(),  // fromYDelta
+                            0f
+                        ) // toYDelta
+
+                        animate.duration = 500
+                        animate.fillAfter = true
+                        it.startAnimation(animate)
+                        carrouselVisibility?.startAnimation(animate)
+                        bannerRecycle?.startAnimation(animate)
+
+                        Handler(Looper.myLooper()!!).postDelayed(
+                            {
+                                carrouselVisibility?.setImageResource(R.drawable.close_view)
+                            }, 500
+                        )
                     }
                 }
 
@@ -371,7 +424,6 @@ class Navigation(viewModel: CatalogViewModel) {
         genre: String
     ) {
 
-        carousel?.visibility = VISIBLE
         viewModel.genreNextPage = 0
 
         val adapter = CatalogAdapter {
@@ -437,13 +489,13 @@ class Navigation(viewModel: CatalogViewModel) {
             }
         }
     }
+
     fun seriesClick (bannerRecycle: RecyclerView?,
     viewModel: CatalogViewModel,
     carousel: CarouselView?,
     viewLifecycleOwner: LifecycleOwner,
     view: View
     ) {
-        carousel?.visibility = VISIBLE
         viewModel.seriesNextPage = 0
 
         //CallBack para passar o ID
@@ -511,6 +563,7 @@ class Navigation(viewModel: CatalogViewModel) {
             }
         }
     }
+
     private fun clickSeriesGenre(
         bannerRecycle: RecyclerView?,
         view: View,
@@ -520,7 +573,6 @@ class Navigation(viewModel: CatalogViewModel) {
         genre: String
     ) {
 
-        carousel?.visibility = VISIBLE
         viewModel.seriesGenreNextPage = 0
 
         val adapter = CatalogAdapter {
