@@ -40,7 +40,8 @@ class RecentMatchesFragment : Fragment() {
         matchesRecycler.layoutManager = LinearLayoutManager(context)
 
         viewModel.lastResults.observe(viewLifecycleOwner){
-            adapter.addList(it)
+            if (it != null)
+                adapter.addList(it)
         }
     }
  }

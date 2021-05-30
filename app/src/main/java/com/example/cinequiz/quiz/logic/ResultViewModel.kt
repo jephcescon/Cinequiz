@@ -2,6 +2,7 @@ package com.example.cinequiz.quiz.logic
 
 import android.util.Log
 import androidx.lifecycle.ViewModel
+import com.example.cinequiz.model.firestoreModels.GameInfo
 import com.example.cinequiz.model.firestoreModels.LastGame
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.ktx.firestore
@@ -19,9 +20,7 @@ class ResultViewModel : ViewModel() {
             lastGamesObject?.let {
                 fireStore.collection("users")
                     .document(user.uid)
-                    .collection("lastGame")
-                    .document("lastGame")
-                    .set(it)
+                    .set(GameInfo(it))
             }
         }
     }
@@ -30,12 +29,10 @@ class ResultViewModel : ViewModel() {
         firebaseAuth.currentUser?.let { user ->
             fireStore.collection("users")
                 .document(user.uid)
-                .collection("lastGame")
-                .document("lastGame")
                 .get()
                 .addOnSuccessListener {
-                    val lastGamesObject = it.toObject(LastGame::class.java)
-                    addScoreLastGame(organizeList(lastGamesObject, score))
+                    val lastGamesObject = it.toObject(GameInfo::class.java)
+                    addScoreLastGame(organizeList(lastGamesObject?.lastGame, score))
                 }
         }
     }
