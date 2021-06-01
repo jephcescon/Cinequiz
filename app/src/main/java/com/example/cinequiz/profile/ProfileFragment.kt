@@ -37,6 +37,7 @@ class ProfileFragment : Fragment() {
     private val logoff by lazy { view?.findViewById<TextView>(R.id.logoff) }
     private val picture by lazy { view?.findViewById<ImageView>(R.id.profileImageProfile) }
     private val displayName by lazy { view?.findViewById<TextView>(R.id.displayName) }
+    private val photoBtn by lazy { view?.findViewById<FloatingActionButton>(R.id.photoButton) }
 
     lateinit var viewModel: ProfileViewModel
     lateinit var googleSignIn: GoogleSignInClient
@@ -104,9 +105,6 @@ class ProfileFragment : Fragment() {
                 .create()
                 .show()
         }
-        picture?.setOnClickListener {
-            takePhoto()
-        }
 
         viewModel.name.observe(viewLifecycleOwner){
             displayName?.text = it
@@ -116,9 +114,13 @@ class ProfileFragment : Fragment() {
             if (it!=null)
                 Picasso.get().load(it).into(picture)
         }
+
+        photoBtn?.setOnClickListener {
+            takePhotoClick()
+        }
     }
 
-    private fun takePhoto() {
+    private fun takePhotoClick(){
         val permissions = listOf(Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE)
         if (permissionsHelper.requestAllPermission(permissions)) {
             openChooser()
@@ -131,13 +133,11 @@ class ProfileFragment : Fragment() {
         //takePhotoIntent
         val takePhotoIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
         val file = FileHelper.createFileInStorage(view?.context!!)
-        //val uri = FileProvider.getUriForFile(view?.context!!, FILE_AUTHORITY, file)
+        val uri = file?.let { FileProvider.getUriForFile(view?.context!!, FILE_AUTHORITY, it) }
 
         fileShare = file
 
-        //takePhotoIntent.putExtra(MediaStore.EXTRA_OUTPUT, uri)
-
-
+        takePhotoIntent.putExtra(MediaStore.EXTRA_OUTPUT, uri)
 
         //pickImageIntent
         val pickIntent = Intent()
@@ -172,11 +172,13 @@ class ProfileFragment : Fragment() {
                     fileShare!!
                 )
             }
+            viewModel.changeProfileImage(imageUri)
         } else if (isIntentFromFiles(requestCode, resultCode, intent)) {
             val pic = intent?.data as Uri
             imageUri = pic
             picture?.background = null
             picture?.setImageURI(pic)
+            viewModel.changeProfileImage(pic)
         }
     }
 
