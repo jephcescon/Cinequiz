@@ -83,6 +83,7 @@ class MovieDetails : AppCompatActivity() {
         search.setOnClickListener {
             val intent = Intent(this, SearchMenu::class.java)
             startActivity(intent)
+            finish()
         }
 
     }

@@ -30,7 +30,6 @@ class SearchMenu : AppCompatActivity() {
 
 
         recycle.layoutManager = LinearLayoutManager(this)
-        LinearLayoutManager(this).reverseLayout
 
         val adapter = ItemSearchAdapter(moviesList)
         recycle.adapter = adapter
@@ -43,7 +42,9 @@ class SearchMenu : AppCompatActivity() {
         searchField.setOnClickListener {
             ClickSearch.setValue()
             ClickSearch.textSearch = searchField.query.toString()
+            finish()
             super.onBackPressed()
+
         }
 
 

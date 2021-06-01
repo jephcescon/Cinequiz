@@ -14,6 +14,7 @@ import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.cinequiz.R
+import com.example.cinequiz.search.FireManagerMovie.FireManager
 import com.example.cinequiz.search.activity.SearchMenu
 import com.example.cinequiz.search.model.ClickSearch
 import com.google.android.material.snackbar.Snackbar
@@ -95,6 +96,7 @@ class CatalogFragment : Fragment() {
         //BOTÃO DE PESQUISA
         search?.setOnClickListener {
             val intent = Intent(view.context, SearchMenu::class.java)
+            FireManager.getLastSearch()
             startActivity(intent)
         }
 

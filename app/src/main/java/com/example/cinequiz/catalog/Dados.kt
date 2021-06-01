@@ -27,9 +27,9 @@ object Dados {
         movieIDtoSearch = movieID.buscasRecentes
     }
 
-    fun postMoviesDataFromFirebase(movieID: MutableList<BuscasRecentes>){
-        moviesFirebase = movieID
-    }
+//    fun postMoviesDataFromFirebase(movieID: MutableList<BuscasRecentes>){
+//        moviesFirebase = movieID
+//    }
 
 
 
