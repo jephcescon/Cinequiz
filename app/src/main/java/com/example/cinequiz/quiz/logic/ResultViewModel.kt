@@ -43,7 +43,7 @@ class ResultViewModel : ViewModel() {
         Log.d("data",currentTime)
         val lastGames = lastGamesObject ?: LastGame(mutableListOf(), mutableListOf())
 
-        if (lastGames.lastGame.size < 10) {
+        if (lastGames.lastGame.size < 20) {
             lastGames.lastGame.add(0,score)
             lastGames.date.add(0,currentTime)
         } else {

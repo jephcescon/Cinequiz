@@ -51,6 +51,7 @@
         <ImageView
             android:id="@+id/profileImage"
             android:layout_width="match_parent"
+            android:scaleType="centerCrop"
             android:layout_height="match_parent"
             android:src="@drawable/claquete"/>
     </androidx.cardview.widget.CardView>

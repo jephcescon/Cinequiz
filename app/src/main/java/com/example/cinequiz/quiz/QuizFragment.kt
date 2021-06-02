@@ -4,19 +4,30 @@ import android.app.AlertDialog
 import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.ImageView
 import androidx.navigation.fragment.findNavController
 import com.example.cinequiz.R
 import com.example.cinequiz.quiz.logic.GameActivity
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.ktx.storage
+import com.squareup.picasso.Picasso
 import com.synnapps.carouselview.CarouselView
 
 class QuizFragment : Fragment() {
     private val btnPlay by lazy { view?.findViewById<Button>(R.id.play) }
     private val info by lazy { view?.findViewById<Button>(R.id.infoBtn) }
+    private val profileImage by lazy { view?.findViewById<ImageView>(R.id.profileImage) }
+
+    private val firebaseAuth = Firebase.auth
+    private val firebaseStorage = Firebase.storage
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -40,6 +51,23 @@ class QuizFragment : Fragment() {
                 .setNegativeButton("OK", null)
                 .create()
                 .show()
+        }
+
+        configUserInfo()
+    }
+
+    private fun configUserInfo() {
+        val user = firebaseAuth.currentUser
+        user?.let { userVerification->
+            firebaseStorage.getReference("uploads")
+                .child(user.uid)
+                .downloadUrl
+                .addOnSuccessListener { uri ->
+                    Picasso.get().load(uri).into(profileImage)
+                }.addOnFailureListener {
+                    Picasso.get().load(userVerification.photoUrl).into(profileImage)
+                }
+
         }
     }
 }

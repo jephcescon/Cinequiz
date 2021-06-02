@@ -2,12 +2,10 @@ package com.example.cinequiz.profile
 
 import android.net.Uri
 import android.util.Log
-import android.widget.Toast
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.firebase.auth.ktx.auth
-import com.google.firebase.auth.ktx.userProfileChangeRequest
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.ktx.storage
@@ -53,7 +51,6 @@ class ProfileViewModel : ViewModel() {
                 .child(user.uid)
                 .downloadUrl
                 .addOnSuccessListener { uri ->
-                    Log.d("work", "work")
                     photo.postValue(uri)
                 }.addOnFailureListener {
                     photo.postValue(userVerification.photoUrl)
