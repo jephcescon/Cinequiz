@@ -19,17 +19,19 @@
             android:id="@+id/iv_img_item_search"
             android:layout_width="135dp"
             android:layout_height="80dp"
-            android:background="@drawable/filme" />
+            android:background="#00151515" />
 
         <TextView
             android:id="@+id/tv_last_search_item"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="160dp"
-            android:layout_marginTop="30dp"
+            android:layout_width="180dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="150dp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginTop="1dp"
             android:text="Última Busca"
+            android:autoSizeTextType="none"
             android:textColor="@color/white"
-            android:textSize="15dp" />
+             />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/fb_item_search"

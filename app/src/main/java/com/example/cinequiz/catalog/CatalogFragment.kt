@@ -3,8 +3,6 @@ package com.example.cinequiz.catalog
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -13,7 +11,7 @@ import android.view.View.VISIBLE
 import android.view.ViewGroup
 import android.view.animation.TranslateAnimation
 import android.widget.Button
-import android.widget.ImageView
+import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.widget.Toolbar
 import androidx.core.view.GravityCompat
@@ -21,7 +19,8 @@ import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.cinequiz.R
-import com.example.cinequiz.search.SearchMenu
+import com.example.cinequiz.search.FireManagerMovie.FireManager
+import com.example.cinequiz.search.activity.SearchMenu
 import com.example.cinequiz.search.model.ClickSearch
 import com.google.android.material.snackbar.Snackbar
 import com.synnapps.carouselview.CarouselView
@@ -150,8 +149,7 @@ class CatalogFragment : Fragment() {
                 carousel,
                 viewLifecycleOwner,
                 view,
-                drawerLayout,
-                carrouselVisibility
+                drawerLayout
             )
         }
 
@@ -170,8 +168,8 @@ class CatalogFragment : Fragment() {
 
         //BOTÃO DE PESQUISA
         search?.setOnClickListener {
-            Log.d("teste", "${ClickSearch.searchTrue}")
             val intent = Intent(view.context, SearchMenu::class.java)
+            FireManager.getLastSearch()
             startActivity(intent)
         }
 

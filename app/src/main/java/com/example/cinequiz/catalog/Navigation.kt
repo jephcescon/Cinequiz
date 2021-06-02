@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.cinequiz.R
 import com.example.cinequiz.catalog.details.MovieDetails
+import com.example.cinequiz.search.FireManagerMovie.FireManager
 import com.google.android.material.navigation.NavigationView
 import com.squareup.picasso.Picasso
 import com.synnapps.carouselview.CarouselView
@@ -301,7 +302,9 @@ class Navigation(viewModel: CatalogViewModel) {
         }
     }
 
-    internal fun search(
+// SEARCH *****************************
+
+    fun search(
         bannerRecycle: RecyclerView?,
         view: View,
         viewModel: CatalogViewModel,
@@ -315,6 +318,8 @@ class Navigation(viewModel: CatalogViewModel) {
         val adapter = CatalogAdapter {
             val intent = Intent(view.context, MovieDetails::class.java)
             Dados.postAll(it)
+            FireManager.recordSearch(it.id, it.title, it.backdrop, it.banner)
+            FireManager.getLastSearch()
             view.context.startActivity(intent)
         }
         bannerRecycle?.adapter = adapter
@@ -409,6 +414,8 @@ class Navigation(viewModel: CatalogViewModel) {
                     )
                     val intent = Intent(view.context, MovieDetails::class.java)
                     Dados.postAll(date)
+                    FireManager.recordSearch(date.id, date.title, date.backdrop, date.banner)
+                    FireManager.getLastSearch()
                     view.context.startActivity(intent)
                 }
             }

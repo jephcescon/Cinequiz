@@ -22,6 +22,10 @@ class MoviesRepository {
 
     suspend fun getMovieCredits() = serviceRepository.getActors(Dados.dados!!.id!!)
 
+
+//    suspend fun getMovieData() = serviceRepository.getMovieData(Dados.movieIDtoSearch!!)
+
+
     suspend fun search(page: Int = 1, search : String = "") = serviceRepository.search(page = page,search = search)
 
     suspend fun getPopularSeries(page : Int = 1) = serviceRepository.getPopularSeries(page = page)

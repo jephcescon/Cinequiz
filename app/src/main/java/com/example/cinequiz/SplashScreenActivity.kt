@@ -25,6 +25,7 @@ class SplashScreenActivity : AppCompatActivity() {
             val intent = Intent(this,MainActivity::class.java)
             startActivity(intent)
             finish()
+
 //            val intent = Intent(this@SplashScreenActivity, LoginActivity::class.java)
 //            startActivity(intent)
 //            firebaseAuth.signOut()

@@ -1,6 +1,5 @@
 package com.example.cinequiz.model.popularMovieModel
 
-
 import com.google.gson.annotations.SerializedName
 
 data class PopularMoviesList(
@@ -8,7 +7,7 @@ data class PopularMoviesList(
     val adult: Boolean?,
     @SerializedName("backdrop_path")
     val backdropPath: String?,
-    @SerializedName("genre_ids")
+    @SerializedName("genres")
     val genreIds: List<Int>?,
     @SerializedName("id")
     val id: Int?,

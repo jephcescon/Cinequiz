@@ -9,7 +9,6 @@ import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment.findNavController
 import androidx.navigation.ui.setupWithNavController
-import com.example.cinequiz.profile.CallbackToControlLogin
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 
