@@ -10,7 +10,7 @@ object Dados {
     var cast : List<Cast>? = null
     var movieIDtoSearch = mutableListOf<BuscasRecentes>()
     var moviesFirebase = mutableListOf<BuscasRecentes>()
-    var itemSearch = mutableListOf<ItemSearch>()
+
 
 
 
@@ -27,9 +27,7 @@ object Dados {
         movieIDtoSearch = movieID.buscasRecentes
     }
 
-//    fun postMoviesDataFromFirebase(movieID: MutableList<BuscasRecentes>){
-//        moviesFirebase = movieID
-//    }
+
 
 
 

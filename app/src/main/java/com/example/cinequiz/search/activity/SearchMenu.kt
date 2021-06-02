@@ -6,11 +6,9 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.cinequiz.R
-import com.example.cinequiz.catalog.Dados
 import com.example.cinequiz.search.FireManagerMovie.FireManager
 import com.example.cinequiz.search.adapter.ItemSearchAdapter
 import com.example.cinequiz.search.model.ClickSearch
-import com.example.cinequiz.search.model.ItemSearch
 
 class SearchMenu : AppCompatActivity() {
 
@@ -25,7 +23,7 @@ class SearchMenu : AppCompatActivity() {
         setContentView(R.layout.activity_search)
 
         FireManager.getLastSearch()
-        val moviesList = getMovieSearchItem()
+        val moviesList = FireManager.getMovieSearchItem()
 
 
 
@@ -53,19 +51,19 @@ class SearchMenu : AppCompatActivity() {
 
 
 
-     fun getMovieSearchItem(): MutableList<ItemSearch> {
-         val movieSearchItens = mutableListOf<ItemSearch>()
-         val moviesList = movieSearchItens.asReversed()
-         movieSearchItens.clear()
-         var position = 0
-         while (position < Dados.moviesFirebase.size){
-             movieSearchItens.add(ItemSearch(Dados.moviesFirebase[position].cover, Dados.moviesFirebase[position].title, Dados.moviesFirebase[position].cover))
-             position++
-         }
-
-         return moviesList
-
-    }
+//     fun getMovieSearchItem(): MutableList<ItemSearch> {
+//         val movieSearchItens = mutableListOf<ItemSearch>()
+//         val moviesList = movieSearchItens.asReversed()
+//         movieSearchItens.clear()
+//         var position = 0
+//         while (position < Dados.moviesFirebase.size){
+//             movieSearchItens.add(ItemSearch(Dados.moviesFirebase[position].cover, Dados.moviesFirebase[position].title, Dados.moviesFirebase[position].cover))
+//             position++
+//         }
+//
+//         return moviesList
+//
+//    }
 
 
 }

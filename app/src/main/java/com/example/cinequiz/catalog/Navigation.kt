@@ -290,8 +290,7 @@ class Navigation(viewModel: CatalogViewModel) {
         val adapter = CatalogAdapter {
             val intent = Intent(view.context, MovieDetails::class.java)
             Dados.postAll(it)
-//            FireManager.recordSearch(it.id, it.title, it.banner, it.backdrop)
-            it.banner?.let { it1 -> FireManager.recordSearch(it.id, it.title!!, it1,it.backdrop!!) }
+            FireManager.recordSearch(it.id, it.title, it.backdrop, it.banner)
             FireManager.getLastSearch()
             view.context.startActivity(intent)
         }
@@ -362,7 +361,7 @@ class Navigation(viewModel: CatalogViewModel) {
                     )
                     val intent = Intent(view.context, MovieDetails::class.java)
                     Dados.postAll(date)
-                    FireManager.recordSearch(date.id, date.title!!, date.backdrop!!, date.banner!!)
+                    FireManager.recordSearch(date.id, date.title, date.backdrop, date.banner)
                     FireManager.getLastSearch()
                     view.context.startActivity(intent)
                 }
