@@ -11,7 +11,9 @@ import android.view.View.VISIBLE
 import android.view.ViewGroup
 import android.view.animation.TranslateAnimation
 import android.widget.Button
-import android.widget.Toast
+import android.widget.ImageView
+import android.os.Handler
+import android.os.Looper
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.widget.Toolbar
 import androidx.core.view.GravityCompat
@@ -149,7 +151,8 @@ class CatalogFragment : Fragment() {
                 carousel,
                 viewLifecycleOwner,
                 view,
-                drawerLayout
+                drawerLayout,
+                carrouselVisibility
             )
         }
 

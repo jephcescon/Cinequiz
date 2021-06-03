@@ -2,7 +2,7 @@ package com.example.cinequiz.home.recentMatch
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.cinequiz.model.firestoreModels.GameInfo
+import com.example.cinequiz.model.firestoreModels.FireBaseData
 import com.example.cinequiz.model.firestoreModels.LastGame
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.ktx.firestore
@@ -21,7 +21,7 @@ class RecentMatchViewModel:ViewModel() {
                 .document(user.uid)
                 .get()
                 .addOnSuccessListener {
-                    val lastGameObject = it.toObject(GameInfo::class.java)
+                    val lastGameObject = it.toObject(FireBaseData::class.java)
                     lastResults.postValue(lastGameObject?.lastGame)
                 }
         }

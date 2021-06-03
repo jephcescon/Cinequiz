@@ -2,12 +2,12 @@ package com.example.cinequiz.quiz.logic
 
 import android.util.Log
 import androidx.lifecycle.ViewModel
-import com.example.cinequiz.model.firestoreModels.GameInfo
+import com.example.cinequiz.model.firestoreModels.FireBaseData
 import com.example.cinequiz.model.firestoreModels.LastGame
 import com.google.firebase.auth.ktx.auth
+import com.google.firebase.firestore.SetOptions
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
-import java.sql.Time
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -20,7 +20,7 @@ class ResultViewModel : ViewModel() {
             lastGamesObject?.let {
                 fireStore.collection("users")
                     .document(user.uid)
-                    .set(GameInfo(it))
+                    .set(FireBaseData(it), SetOptions.merge())
             }
         }
     }
@@ -31,8 +31,9 @@ class ResultViewModel : ViewModel() {
                 .document(user.uid)
                 .get()
                 .addOnSuccessListener {
-                    val lastGamesObject = it.toObject(GameInfo::class.java)
-                    addScoreLastGame(organizeList(lastGamesObject?.lastGame, score))
+                    val lastGamesObject = it.toObject(FireBaseData::class.java)
+                    val listOrganized = organizeList(lastGamesObject?.lastGame,score)
+                    addScoreLastGame(listOrganized)
                 }
         }
     }

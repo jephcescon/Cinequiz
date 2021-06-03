@@ -2,9 +2,11 @@ package com.example.cinequiz.search.FireManagerMovie
 
 import android.util.Log
 import com.example.cinequiz.catalog.Dados
+import com.example.cinequiz.model.firestoreModels.FireBaseData
 import com.example.cinequiz.search.model.ItemSearch
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FieldValue
+import com.google.firebase.firestore.SetOptions
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 
@@ -20,17 +22,11 @@ object FireManager {
 
             firestoreDb.collection("users")
                 .document(user.uid)
-//                .set(BuscasRecentes(id, title, cover, poster))
+//                .set(BuscasRecentes(id, title!!, cover!!, poster!!), SetOptions.merge())
                 .update(
                     "buscasRecentes",
                     FieldValue.arrayUnion(BuscasRecentes(id, title!!, cover!!, poster!!))
                 )
-                .addOnSuccessListener {
-                    it
-                }
-                .addOnFailureListener {
-                    it
-                }
         }
 
     }

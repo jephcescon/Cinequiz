@@ -2,17 +2,20 @@ package com.example.cinequiz
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.Window
-import android.view.WindowManager
-import androidx.core.view.GravityCompat
-import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.findNavController
-import androidx.navigation.fragment.NavHostFragment.findNavController
 import androidx.navigation.ui.setupWithNavController
+import com.example.cinequiz.model.firestoreModels.StartFireBase
+import com.example.cinequiz.profile.CallbackToControlLogin
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.firestore.SetOptions
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
 
 
-class MainActivity : AppCompatActivity(),CallbackToControlLogin {
+class MainActivity : AppCompatActivity(), CallbackToControlLogin {
+    private var fireStore = Firebase.firestore
+    private var firebaseAuth = Firebase.auth
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -24,9 +27,19 @@ class MainActivity : AppCompatActivity(),CallbackToControlLogin {
 
         setupActionBarWithNavController(navController, appBarConfiguration)*/
         bottomNavigationView.setupWithNavController(navController)
+
+        startFirebase()
     }
 
     override fun logoutClick() {
         finish()
+    }
+
+    private fun startFirebase() {
+        firebaseAuth.currentUser?.let { user ->
+            fireStore.collection("users")
+                .document(user.uid)
+                .set(StartFireBase("Cinequiz"), SetOptions.merge())
+        }
     }
 }
