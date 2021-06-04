@@ -47,7 +47,7 @@ interface ServiceAPI {
     @GET("movie/{movie_id}")
     suspend fun getMovieData(
         @Path("movie_id") movieID : Int,
-//        @Query("language") language: String = "pt-BR"
+        @Query("language") language: String = "pt-BR"
     ) : MovieData
 
     @GET("search/multi")
