@@ -15,7 +15,8 @@
         android:layout_height="match_parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:openDrawer="start">
+        tools:openDrawer="start"
+        >
 
         <include layout="@layout/fragment_catalog2" />
 

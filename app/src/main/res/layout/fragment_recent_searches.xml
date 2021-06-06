@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/black"
-    tools:context="home.RecentSearchesFragment">
+    tools:context=".home.recentSearch.RecentSearchesFragment">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rec_searches_recycler"

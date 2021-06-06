@@ -45,7 +45,12 @@ class CatalogAdapter (val callback :(ImageRecycle)->Unit): RecyclerView.Adapter<
     }
 
     fun addMovies(movies : List<ImageRecycle>){
-        imagens.addAll(movies)
+        movies.forEach{ imageRecycle ->
+            if (imageRecycle.banner != null && imageRecycle.backdrop != null){
+                imagens.add(imageRecycle)
+            }
+        }
+        //imagens.addAll(movies)
         notifyDataSetChanged()
     }
 

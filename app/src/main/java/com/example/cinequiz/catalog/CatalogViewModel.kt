@@ -52,11 +52,6 @@ class CatalogViewModel : ViewModel() {
 
     private val repository = MoviesRepository()
 
-//    init {
-//        movieList()
-//    }
-
-
     private fun <T> separation(list: List<T>?): MutableList<List<T>> {
         val carouselRecycle = mutableListOf<List<T>>()
         val carousel = mutableListOf<T>()

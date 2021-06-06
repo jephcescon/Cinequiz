@@ -1,4 +1,4 @@
-package com.example.cinequiz.home
+package com.example.cinequiz.home.recentSearch
 
 import android.view.LayoutInflater
 import android.view.View
@@ -6,12 +6,11 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.cinequiz.R
-import com.example.cinequiz.catalog.Dados
-import com.example.cinequiz.search.model.ItemSearch
+import com.example.cinequiz.search.fireManagerMovie.BuscasRecentes
 import com.squareup.picasso.Picasso
 
 
-class RecentSearchesAdapter (private val recSearchesList: MutableList<ItemSearch>): RecyclerView.Adapter<RecentSearchesAdapter.RecentSearchesViewHolder>(){
+class RecentSearchesAdapter (private val recSearchesList: MutableList<BuscasRecentes>): RecyclerView.Adapter<RecentSearchesAdapter.RecentSearchesViewHolder>(){
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecentSearchesViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.rec_searches_items,parent,false)
@@ -22,7 +21,7 @@ class RecentSearchesAdapter (private val recSearchesList: MutableList<ItemSearch
 
     override fun onBindViewHolder(holder: RecentSearchesViewHolder, position: Int) {
         val movieImage = holder.banner
-        Picasso.get().load("https://image.tmdb.org/t/p/w500${Dados.moviesFirebase[position].poster}").into(movieImage)
+        Picasso.get().load("https://image.tmdb.org/t/p/w500${recSearchesList[position].poster}").into(movieImage)
 
     }
 

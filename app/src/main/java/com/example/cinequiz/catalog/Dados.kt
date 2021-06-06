@@ -1,9 +1,8 @@
 package com.example.cinequiz.catalog
 
 import com.example.cinequiz.model.MovieCredits.Cast
-import com.example.cinequiz.search.FireManagerMovie.BuscasRecentes
-import com.example.cinequiz.search.FireManagerMovie.MoviesFromFirebase
-import com.example.cinequiz.search.model.ItemSearch
+import com.example.cinequiz.search.fireManagerMovie.BuscasRecentes
+import com.example.cinequiz.search.fireManagerMovie.MoviesFromFirebase
 
 object Dados {
     var dados: ImageRecycle? = null

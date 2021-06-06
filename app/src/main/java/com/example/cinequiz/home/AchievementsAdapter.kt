@@ -6,7 +6,6 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.cinequiz.R
-import com.example.cinequiz.search.FireManagerMovie.FireManager
 
 class AchievementsAdapter(val goalsList: MutableList<Achievement>) :
     RecyclerView.Adapter<AchievementsAdapter.AchievementsViewHolder>() {

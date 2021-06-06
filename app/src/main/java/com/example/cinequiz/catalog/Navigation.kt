@@ -16,7 +16,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.cinequiz.R
 import com.example.cinequiz.catalog.details.MovieDetails
-import com.example.cinequiz.search.FireManagerMovie.FireManager
+import com.example.cinequiz.search.fireManagerMovie.FireManager
 import com.google.android.material.navigation.NavigationView
 import com.squareup.picasso.Picasso
 import com.synnapps.carouselview.CarouselView

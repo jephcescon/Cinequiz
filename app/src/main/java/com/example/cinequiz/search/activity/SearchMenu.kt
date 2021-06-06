@@ -6,7 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.cinequiz.R
-import com.example.cinequiz.search.FireManagerMovie.FireManager
+import com.example.cinequiz.search.fireManagerMovie.FireManager
 import com.example.cinequiz.search.adapter.ItemSearchAdapter
 import com.example.cinequiz.search.model.ClickSearch
 

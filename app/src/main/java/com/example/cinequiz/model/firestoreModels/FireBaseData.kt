@@ -1,7 +1,5 @@
 package com.example.cinequiz.model.firestoreModels
 
-import com.example.cinequiz.search.FireManagerMovie.BuscasRecentes
-
 class FireBaseData() {
     var lastGame = LastGame()
 

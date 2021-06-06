@@ -3,7 +3,6 @@ package com.example.cinequiz.catalog
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.View.GONE
@@ -21,7 +20,7 @@ import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.cinequiz.R
-import com.example.cinequiz.search.FireManagerMovie.FireManager
+import com.example.cinequiz.search.fireManagerMovie.FireManager
 import com.example.cinequiz.search.activity.SearchMenu
 import com.example.cinequiz.search.model.ClickSearch
 import com.google.android.material.snackbar.Snackbar

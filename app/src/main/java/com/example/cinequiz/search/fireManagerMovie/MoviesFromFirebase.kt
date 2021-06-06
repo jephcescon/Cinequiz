@@ -1,4 +1,4 @@
-package com.example.cinequiz.search.FireManagerMovie
+package com.example.cinequiz.search.fireManagerMovie
 
 class MoviesFromFirebase() {
  var buscasRecentes = arrayListOf<BuscasRecentes>()

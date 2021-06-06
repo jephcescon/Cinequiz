@@ -1,9 +1,11 @@
-package com.example.cinequiz.home
+package com.example.cinequiz.home.container
 
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
+import com.example.cinequiz.home.AchievementsFragment
 import com.example.cinequiz.home.recentMatch.RecentMatchesFragment
+import com.example.cinequiz.home.recentSearch.RecentSearchesFragment
 
 
 class HomePagerAdapter(fm: FragmentManager) : FragmentPagerAdapter(fm) {
