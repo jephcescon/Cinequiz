@@ -24,6 +24,7 @@
         <activity android:name=".profile.AboutApp" />
         <activity android:name=".search.activity.SearchMenu"/>
         <activity android:name=".catalog.details.MovieDetails"/>
+        <activity android:name=".catalog.details.MovieDetailsForSearch"/>
         <activity android:name=".MainActivity"/>
         <activity android:name=".EsqueciASenhaActivity"/>
         <activity android:name=".CadastroActivity"/>

@@ -18,7 +18,9 @@ import com.example.cinequiz.R
 import com.example.cinequiz.catalog.Dados
 import com.example.cinequiz.catalog.Dados.dados
 import com.example.cinequiz.model.MovieCredits.Cast
+import com.example.cinequiz.model.MovieData.MovieData
 import com.example.cinequiz.search.activity.SearchMenu
+import com.example.cinequiz.search.viewModel.SearchViewModel
 
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
@@ -35,12 +37,25 @@ class MovieDetails : AppCompatActivity() {
     private val movieTitle by lazy { findViewById<TextView>(R.id.tv_movie_title) }
     private val voteAvarage by lazy { findViewById<TextView>(R.id.tv_voteAvarage) }
     private val viewModelMovieDetails by lazy { ViewModelProvider(this).get(MovieDetailsViewModel::class.java) }
+    private val searchViewModel by lazy { ViewModelProvider(this).get(SearchViewModel::class.java) }
     var result = mutableListOf<Cast>()
+    var movieDetails = mutableListOf<MovieDetailsModel>()
+
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_movie_details)
+
+        searchViewModel.movies.observe(this) {  movieData ->
+            movieDetails.addAll(
+                listOf(MovieDetailsModel(movieData.backdropPath, movieData.title, movieData.voteAverage, movieData.overview))
+            )
+        }
+
+        searchViewModel.creditsLiveData.observe(this) {
+            result.addAll(it.cast)
+        }
 
 
 

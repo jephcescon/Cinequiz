@@ -54,7 +54,9 @@ object FireManager {
 //        movieSearchItens.clear()
         var position = 0
         while (position < Dados.moviesFirebase.size) {
-            movieSearchItens.add(ItemSearch(Dados.moviesFirebase[position].cover, Dados.moviesFirebase[position].title, Dados.moviesFirebase[position].cover))
+            movieSearchItens.add(ItemSearch(Dados.moviesFirebase[position].cover, Dados.moviesFirebase[position].title, Dados.moviesFirebase[position].cover,
+                Dados.moviesFirebase[position].id!!
+            ))
             position++
         }
 
