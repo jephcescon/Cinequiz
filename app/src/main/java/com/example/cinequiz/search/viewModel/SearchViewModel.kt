@@ -26,9 +26,9 @@ class SearchViewModel : ViewModel() {
 
     private val repository = MoviesRepository()
 
-    fun seriesData() = CoroutineScope(Dispatchers.IO).launch {
+    fun seriesData(id:Int) = CoroutineScope(Dispatchers.IO).launch {
         try {
-            repository.getSeries().let { moviesData ->
+            repository.getSeries(id = id).let { moviesData ->
                 series.postValue(moviesData)
             }
 
@@ -36,6 +36,18 @@ class SearchViewModel : ViewModel() {
             ErrorApi(error, errorMessage)
         }
     }
+
+    fun creditsListTv() = viewModelScope.launch {
+        try {
+            repository.getSeriesActors().let {
+                seriesCreditsLiveData.postValue(it)
+            }
+        }
+        catch (error: Throwable) {
+            ErrorApi(error, errorMessage)
+        }
+    }
+
 
     fun moviesData() = CoroutineScope(Dispatchers.IO).launch {
         try {
@@ -48,24 +60,12 @@ class SearchViewModel : ViewModel() {
         }
     }
 
-
     fun creditsList() = CoroutineScope(Dispatchers.IO).launch {
         try {
             repository.getMovieCredits2().let {
                 creditsLiveData.postValue(it)
                 Dados.postActors(it.cast)
                 Log.d("Dados", Dados.cast.toString())
-            }
-        }
-        catch (error: Throwable) {
-            ErrorApi(error, errorMessage)
-        }
-    }
-
-    fun creditsListTv() = viewModelScope.launch {
-        try {
-            repository.getSeriesActors().let {
-                seriesCreditsLiveData.postValue(it)
             }
         }
         catch (error: Throwable) {

@@ -321,6 +321,7 @@ class Navigation(viewModel: CatalogViewModel) {
             FireManager.recordSearch(it.id, it.title, it.backdrop, it.banner)
             FireManager.getLastSearch()
             intent.putExtra("MOVIE",it.movies)
+            intent.putExtra("ID",it.id)
             view.context.startActivity(intent)
         }
         bannerRecycle?.adapter = adapter
@@ -432,6 +433,7 @@ class Navigation(viewModel: CatalogViewModel) {
                         FireManager.recordSearch(date.id, date.title, date.backdrop, date.banner)
                         FireManager.getLastSearch()
                         intent.putExtra("MOVIE",date.movies)
+                        intent.putExtra("ID",date.id)
                         view.context.startActivity(intent)
                     }else {
                         val date = ImageRecycle(
@@ -448,6 +450,7 @@ class Navigation(viewModel: CatalogViewModel) {
                         FireManager.recordSearch(date.id, date.title, date.backdrop, date.banner)
                         FireManager.getLastSearch()
                         intent.putExtra("MOVIE",date.movies)
+                        intent.putExtra("ID",date.id)
                         view.context.startActivity(intent)
                     }
                 }

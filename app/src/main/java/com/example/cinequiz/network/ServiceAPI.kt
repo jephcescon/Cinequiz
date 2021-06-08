@@ -81,7 +81,7 @@ interface ServiceAPI {
 
     @GET("tv/{tv_id}")
     suspend fun getSeries(
-        @Path("tv_id") movieID : Int,
+        @Path("tv_id") tvID : Int,
         @Query("language") language: String = "pt-BR"
     ) : TvID
 
