@@ -27,8 +27,8 @@ class RecentSearchesAdapter (private val recSearchesList: MutableList<BuscasRece
         val movieImage = holder.banner
         Picasso.get().load("https://image.tmdb.org/t/p/w500${recSearchesList[position].poster}").into(movieImage)
 
-        movieImage.setOnClickListener {
-            Dados.moviesFirebase[position].id?.let { it1 -> Dados.sendIDToSearch(it1) }
+        holder.itemView.setOnClickListener {
+            recSearchesList[position].id?.let { it1 -> Dados.sendIDToSearch(it1) }
             val intent = Intent(it.context, MovieDetailsForSearch::class.java)
             it.context.startActivity(intent)
         }

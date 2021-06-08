@@ -33,8 +33,6 @@ object Dados {
 //        SearchViewModel().movies
 //        Log.d("viewModel", SearchViewModel().movies.value.toString())
         Log.d("viewModel", movieID.toString())
-
-
     }
 
 

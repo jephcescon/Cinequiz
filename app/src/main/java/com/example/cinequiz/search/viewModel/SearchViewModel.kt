@@ -16,9 +16,7 @@ import kotlinx.coroutines.launch
 class SearchViewModel : ViewModel() {
 
     val errorMessage: MutableLiveData<String> by lazy { MutableLiveData<String>() }
-
     val movies: MutableLiveData<MovieData> by lazy { MutableLiveData<MovieData>() }
-
     val creditsLiveData : MutableLiveData<MovieCredits> by lazy { MutableLiveData<MovieCredits>() }
 
     private val repository = MoviesRepository()
