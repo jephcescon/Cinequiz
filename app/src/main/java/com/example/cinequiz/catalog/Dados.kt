@@ -1,6 +1,5 @@
 package com.example.cinequiz.catalog
 
-import android.graphics.Movie
 import android.util.Log
 import com.example.cinequiz.model.MovieCredits.Cast
 import com.example.cinequiz.model.MovieData.MovieData
@@ -28,10 +27,11 @@ object Dados {
         movieIDtoSearch = movieID.buscasRecentes
     }
 
-    fun sendIDToSearch(ID: Int) {
-        movieID = ID
-//        SearchViewModel().movies
-//        Log.d("viewModel", SearchViewModel().movies.value.toString())
+    fun sendIDToSearch(ID: Int?) {
+        if (ID != null) {
+            movieID = ID
+        }
+
         Log.d("viewModel", movieID.toString())
     }
 

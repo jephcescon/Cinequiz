@@ -76,7 +76,7 @@ class MovieDetailsForSearch : AppCompatActivity() {
             }
         }else{
             searchViewModel.creditsListTv()
-            id?.let { searchViewModel.seriesData(it) }
+            id?.let { searchViewModel.seriesData() }
 
             searchViewModel.series.observe(this) { serieData ->
 

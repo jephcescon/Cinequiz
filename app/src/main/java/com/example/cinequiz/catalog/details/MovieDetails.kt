@@ -73,6 +73,7 @@ class MovieDetails : AppCompatActivity() {
                     cast += "${it.name}  como: ${it.character} \n\n"
                 }
                 adapterCast(cast)
+                Dados.type = null
             }
         }else {
             viewModelMovieDetails.creditsListTv()

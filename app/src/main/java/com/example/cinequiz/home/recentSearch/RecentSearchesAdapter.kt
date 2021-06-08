@@ -10,7 +10,6 @@ import com.example.cinequiz.R
 import com.example.cinequiz.search.fireManagerMovie.BuscasRecentes
 import com.example.cinequiz.catalog.Dados
 import com.example.cinequiz.catalog.details.MovieDetailsForSearch
-import com.example.cinequiz.search.model.ItemSearch
 import com.squareup.picasso.Picasso
 
 
@@ -30,6 +29,8 @@ class RecentSearchesAdapter (private val recSearchesList: MutableList<BuscasRece
         holder.itemView.setOnClickListener {
             recSearchesList[position].id?.let { it1 -> Dados.sendIDToSearch(it1) }
             val intent = Intent(it.context, MovieDetailsForSearch::class.java)
+            intent.putExtra("MOVIE",recSearchesList[position].type)
+            intent.putExtra("ID",recSearchesList[position].id)
             it.context.startActivity(intent)
         }
 

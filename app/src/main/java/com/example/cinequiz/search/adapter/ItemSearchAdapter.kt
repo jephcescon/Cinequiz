@@ -3,19 +3,11 @@ package com.example.cinequiz.search.adapter
 import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.Toast
-import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.ViewModelProviders
-import androidx.lifecycle.get
 import androidx.recyclerview.widget.RecyclerView
 import com.example.cinequiz.R
 import com.example.cinequiz.catalog.Dados
-import com.example.cinequiz.catalog.details.MovieDetails
 import com.example.cinequiz.catalog.details.MovieDetailsForSearch
-import com.example.cinequiz.catalog.details.MovieDetailsViewModel
-import com.example.cinequiz.home.recentMatch.RecentMatchViewModel
 import com.example.cinequiz.search.model.ItemSearch
-import com.example.cinequiz.search.viewModel.SearchViewModel
 import com.squareup.picasso.Picasso
 
 class ItemSearchAdapter(val itemSearchList: MutableList<ItemSearch>) :
@@ -47,6 +39,8 @@ class ItemSearchAdapter(val itemSearchList: MutableList<ItemSearch>) :
         holder.fabItemSearch.setOnClickListener {
             Dados.sendIDToSearch(itemSearchList[position].movieID)
             val intent = Intent(it.context, MovieDetailsForSearch::class.java)
+            intent.putExtra("ID", itemSearchList[position].movieID)
+            intent.putExtra("MOVIE", itemSearchList[position].type)
             it.context.startActivity(intent)
         }
 

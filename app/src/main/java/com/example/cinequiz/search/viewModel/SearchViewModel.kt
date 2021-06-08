@@ -26,9 +26,11 @@ class SearchViewModel : ViewModel() {
 
     private val repository = MoviesRepository()
 
-    fun seriesData(id:Int) = CoroutineScope(Dispatchers.IO).launch {
+    // SERIES ***********************
+
+    fun seriesData() = CoroutineScope(Dispatchers.IO).launch {
         try {
-            repository.getSeries(id = id).let { moviesData ->
+            repository.getSeries().let { moviesData ->
                 series.postValue(moviesData)
             }
 
@@ -36,6 +38,7 @@ class SearchViewModel : ViewModel() {
             ErrorApi(error, errorMessage)
         }
     }
+
 
     fun creditsListTv() = viewModelScope.launch {
         try {
@@ -48,6 +51,7 @@ class SearchViewModel : ViewModel() {
         }
     }
 
+    // MOVIES **************************
 
     fun moviesData() = CoroutineScope(Dispatchers.IO).launch {
         try {

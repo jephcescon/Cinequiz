@@ -15,7 +15,7 @@ object FireManager {
     private var firebaseAuth = FirebaseAuth.getInstance()
 
 
-    fun recordSearch(id: Int?, title: String?, cover: String?, poster: String?) {
+    fun recordSearch(id: Int?, title: String?, cover: String?, poster: String?, type: Boolean?) {
         firebaseAuth.currentUser?.let { user ->
 
             firestoreDb.collection("users")
@@ -23,7 +23,7 @@ object FireManager {
 //                .set(BuscasRecentes(id, title!!, cover!!, poster!!), SetOptions.merge())
                 .update(
                     "buscasRecentes",
-                    FieldValue.arrayUnion(BuscasRecentes(id, title, cover, poster))
+                    FieldValue.arrayUnion(BuscasRecentes(id, title, cover, poster, type))
                 )
         }
 
@@ -55,7 +55,7 @@ object FireManager {
         var position = 0
         while (position < Dados.moviesFirebase.size) {
             movieSearchItens.add(ItemSearch(Dados.moviesFirebase[position].cover, Dados.moviesFirebase[position].title, Dados.moviesFirebase[position].cover,
-                Dados.moviesFirebase[position].id!!
+                Dados.moviesFirebase[position].id!!, Dados.moviesFirebase[position].type
             ))
             position++
         }

@@ -16,7 +16,6 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.cinequiz.R
 import com.example.cinequiz.catalog.details.MovieDetails
-import com.example.cinequiz.catalog.details.MovieDetailsForSearch
 import com.example.cinequiz.search.fireManagerMovie.FireManager
 import com.google.android.material.navigation.NavigationView
 import com.squareup.picasso.Picasso
@@ -72,6 +71,7 @@ class Navigation(viewModel: CatalogViewModel) {
         val adapter = CatalogAdapter {
             val intent = Intent(view.context, MovieDetails::class.java)
             Dados.postAll(it)
+            Dados.sendIDToSearch(it.id)
             view.context.startActivity(intent)
         }
         bannerRecycle?.adapter = adapter
@@ -129,6 +129,7 @@ class Navigation(viewModel: CatalogViewModel) {
                 )
                 val intent = Intent(view.context, MovieDetails::class.java)
                 Dados.postAll(date)
+                Dados.sendIDToSearch(date.id)
                 view.context.startActivity(intent)
             }
         }
@@ -318,10 +319,9 @@ class Navigation(viewModel: CatalogViewModel) {
         val adapter = CatalogAdapter {
             val intent = Intent(view.context, MovieDetails::class.java)
             Dados.postAll(it)
-            FireManager.recordSearch(it.id, it.title, it.backdrop, it.banner)
+            FireManager.recordSearch(it.id, it.title, it.backdrop, it.banner, it.movies)
             FireManager.getLastSearch()
-            intent.putExtra("MOVIE",it.movies)
-            intent.putExtra("ID",it.id)
+            Dados.sendIDToSearch(it.id)
             view.context.startActivity(intent)
         }
         bannerRecycle?.adapter = adapter
@@ -368,11 +368,7 @@ class Navigation(viewModel: CatalogViewModel) {
         }
         viewModel.searchCarouselLiveData.observe(viewLifecycleOwner) { categoryMovies ->
             val url = mutableListOf<String>()
-//                "https://image.tmdb.org/t/p/w500${categoryMovies[0].backdropPath}",
-//                "https://image.tmdb.org/t/p/w500${categoryMovies[1].backdropPath}",
-//                "https://image.tmdb.org/t/p/w500${categoryMovies[2].backdropPath}",
-//                "https://image.tmdb.org/t/p/w500${categoryMovies[3].backdropPath}"
-//            )
+
             if (categoryMovies.isEmpty()) {
                 carousel?.visibility = GONE
                 carrouselVisibility?.visibility = GONE
@@ -428,12 +424,11 @@ class Navigation(viewModel: CatalogViewModel) {
                             categoryMovies[it].name,
                             categoryMovies[it].backdropPath
                         )
-                        val intent = Intent(view.context, MovieDetailsForSearch::class.java)
+                        val intent = Intent(view.context, MovieDetails::class.java)
                         Dados.postAll(date)
-                        FireManager.recordSearch(date.id, date.title, date.backdrop, date.banner)
+                        FireManager.recordSearch(date.id, date.title, date.backdrop, date.banner, date.movies)
                         FireManager.getLastSearch()
-                        intent.putExtra("MOVIE",date.movies)
-                        intent.putExtra("ID",date.id)
+                        Dados.sendIDToSearch(date.id)
                         view.context.startActivity(intent)
                     }else {
                         val date = ImageRecycle(
@@ -445,12 +440,11 @@ class Navigation(viewModel: CatalogViewModel) {
                             categoryMovies[it].title,
                             categoryMovies[it].backdropPath
                         )
-                        val intent = Intent(view.context, MovieDetailsForSearch::class.java)
+                        val intent = Intent(view.context, MovieDetails::class.java)
                         Dados.postAll(date)
-                        FireManager.recordSearch(date.id, date.title, date.backdrop, date.banner)
+                        FireManager.recordSearch(date.id, date.title, date.backdrop, date.banner, date.movies)
                         FireManager.getLastSearch()
-                        intent.putExtra("MOVIE",date.movies)
-                        intent.putExtra("ID",date.id)
+                        Dados.sendIDToSearch(date.id)
                         view.context.startActivity(intent)
                     }
                 }
@@ -472,6 +466,7 @@ class Navigation(viewModel: CatalogViewModel) {
         val adapter = CatalogAdapter {
             val intent = Intent(view.context, MovieDetails::class.java)
             Dados.postAll(it)
+            Dados.sendIDToSearch(it.id)
             view.context.startActivity(intent)
         }
         bannerRecycle?.adapter = adapter
@@ -528,6 +523,7 @@ class Navigation(viewModel: CatalogViewModel) {
                 )
                 val intent = Intent(view.context, MovieDetails::class.java)
                 Dados.postAll(date)
+                Dados.sendIDToSearch(date.id)
                 view.context.startActivity(intent)
             }
         }
@@ -547,6 +543,7 @@ class Navigation(viewModel: CatalogViewModel) {
             val intent = Intent(view.context, MovieDetails::class.java)
             Dados.postAll(it)
             Dados.type = "s"
+            Dados.sendIDToSearch(it.id)
             view.context.startActivity(intent)
         }
         bannerRecycle?.adapter = adapter
@@ -605,6 +602,7 @@ class Navigation(viewModel: CatalogViewModel) {
                 val intent = Intent(view.context, MovieDetails::class.java)
                 Dados.postAll(date)
                 Dados.type = "s"
+                Dados.sendIDToSearch(date.id)
                 view.context.startActivity(intent)
             }
         }
@@ -625,6 +623,7 @@ class Navigation(viewModel: CatalogViewModel) {
             val intent = Intent(view.context, MovieDetails::class.java)
             Dados.postAll(it)
             Dados.type = "s"
+            Dados.sendIDToSearch(it.id)
             view.context.startActivity(intent)
         }
         bannerRecycle?.adapter = adapter
@@ -682,6 +681,7 @@ class Navigation(viewModel: CatalogViewModel) {
                 val intent = Intent(view.context, MovieDetails::class.java)
                 Dados.postAll(date)
                 Dados.type = "s"
+                Dados.sendIDToSearch(date.id)
                 view.context.startActivity(intent)
             }
         }
