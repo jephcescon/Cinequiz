@@ -32,38 +32,79 @@ class MovieDetailsForSearch : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_movie_details)
-
-        searchViewModel.movies.observe(this) { movieData ->
-
-            movieTitle.text = movieData.title
-            val url = "https://image.tmdb.org/t/p/w500${movieData.backdropPath}"
-            Picasso.get().load(url).into(movieImage)
-            voteAvarage.text = movieData.voteAverage.toString()
+        val intent = intent.extras
+        val type = intent?.getBoolean("MOVIE")
 
 
-            searchViewModel.creditsLiveData.observe(this) { listAtores ->
+        if (type == true) {
+            searchViewModel.moviesData()
+            searchViewModel.creditsList()
 
-                var cast = ""
-                listAtores.cast.forEach {
-                    cast += "${it.name}  como: ${it.character} \n\n"
+            searchViewModel.movies.observe(this) { movieData ->
+
+
+                movieTitle.text = movieData.title
+                val url = "https://image.tmdb.org/t/p/w500${movieData.backdropPath}"
+                Picasso.get().load(url).into(movieImage)
+                voteAvarage.text = movieData.voteAverage.toString()
+
+
+                searchViewModel.creditsLiveData.observe(this) { listAtores ->
+
+                    var cast = ""
+                    listAtores.cast.forEach {
+                        cast += "${it.name}  como: ${it.character} \n\n"
+                    }
+
+
+                    val fragments = getFragments(cast, movieData.overview)
+                    val sectionsPagerAdapter = SectionsPagerAdapter(fragments, this)
+
+                    viewPager.adapter = sectionsPagerAdapter
+                    viewPager.offscreenPageLimit = 1
+
+                    TabLayoutMediator(tabs, viewPager) { tab, position ->
+                        tab.text = fragments[position].arguments?.getString(
+                            PlaceholderFragment.FRAGMENT_TITLE,
+                            "Empty name"
+                        )
+                    }.attach()
                 }
-
-
-                val fragments = getFragments(cast, movieData.overview)
-                val sectionsPagerAdapter = SectionsPagerAdapter(fragments, this)
-
-                viewPager.adapter = sectionsPagerAdapter
-                viewPager.offscreenPageLimit = 1
-
-                TabLayoutMediator(tabs, viewPager) { tab, position ->
-                    tab.text = fragments[position].arguments?.getString(
-                        PlaceholderFragment.FRAGMENT_TITLE,
-                        "Empty name"
-                    )
-                }.attach()
             }
+        }else{
+            searchViewModel.creditsListTv()
+            searchViewModel.seriesData()
+
+            searchViewModel.series.observe(this) { serieData ->
 
 
+                movieTitle.text = serieData.name
+                val url = "https://image.tmdb.org/t/p/w500${serieData.backdropPath}"
+                Picasso.get().load(url).into(movieImage)
+                voteAvarage.text = serieData.voteAverage.toString()
+
+
+                searchViewModel.seriesCreditsLiveData.observe(this) { listAtores ->
+
+                    var cast = ""
+                    listAtores.cast.forEach {
+                        cast += "${it.name}  como: ${it.character} \n\n"
+                    }
+
+                    val fragments = getFragments(cast, serieData.overview)
+                    val sectionsPagerAdapter = SectionsPagerAdapter(fragments, this)
+
+                    viewPager.adapter = sectionsPagerAdapter
+                    viewPager.offscreenPageLimit = 1
+
+                    TabLayoutMediator(tabs, viewPager) { tab, position ->
+                        tab.text = fragments[position].arguments?.getString(
+                            PlaceholderFragment.FRAGMENT_TITLE,
+                            "Empty name"
+                        )
+                    }.attach()
+                }
+            }
         }
 
 

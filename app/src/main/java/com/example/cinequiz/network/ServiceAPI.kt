@@ -6,11 +6,11 @@ import com.example.cinequiz.model.SeriesCredits.SeriesCredits
 import com.example.cinequiz.model.discoverMovies.MoviesByGenre
 import com.example.cinequiz.model.discoverSeries.SeriesByGenre
 import com.example.cinequiz.model.popularMovieModel.PopularMovies
-import com.example.cinequiz.model.popularMovieModel.PopularMoviesList
 import com.example.cinequiz.model.popularSeriesModel.PopularSeries
 import com.example.cinequiz.model.quizModel.Quiz
 import com.example.cinequiz.model.searchModel.Search
 import com.example.cinequiz.model.searchModelSeries.SearchSeries
+import com.example.cinequiz.model.tv.TvID
 
 
 import retrofit2.http.GET
@@ -78,6 +78,12 @@ interface ServiceAPI {
         @Path("tv_id") movieID : Int,
         @Query("language") language: String = "pt-BR"
     ) : SeriesCredits
+
+    @GET("tv/{tv_id}")
+    suspend fun getSeries(
+        @Path("tv_id") movieID : Int,
+        @Query("language") language: String = "pt-BR"
+    ) : TvID
 
     @GET("search/multi")
     suspend fun searchSeries(

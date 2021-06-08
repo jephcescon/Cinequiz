@@ -16,13 +16,13 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.cinequiz.R
 import com.example.cinequiz.catalog.details.MovieDetails
+import com.example.cinequiz.catalog.details.MovieDetailsForSearch
 import com.example.cinequiz.search.fireManagerMovie.FireManager
 import com.google.android.material.navigation.NavigationView
 import com.squareup.picasso.Picasso
 import com.synnapps.carouselview.CarouselView
 
 class Navigation(viewModel: CatalogViewModel) {
-
 
 
     private val recycleScroll by lazy {
@@ -32,7 +32,7 @@ class Navigation(viewModel: CatalogViewModel) {
     }
 
     private val seriesRecycleScroll by lazy {
-        RecycleScroll{
+        RecycleScroll {
             viewModel.seriesAnotherPage()
         }
     }
@@ -49,7 +49,7 @@ class Navigation(viewModel: CatalogViewModel) {
         }
 
     }
-    private val recycleScrollGenreSeries by lazy{
+    private val recycleScrollGenreSeries by lazy {
         RecycleScroll {
             viewModel.seriesGenreAnotherPage()
         }
@@ -142,7 +142,7 @@ class Navigation(viewModel: CatalogViewModel) {
         viewLifecycleOwner: LifecycleOwner,
         view: View,
         drawerLayout: DrawerLayout?,
-        carrouselVisibility : ImageView?
+        carrouselVisibility: ImageView?
     ) {
         navigationView.setNavigationItemSelectedListener { menuItem ->
             try {
@@ -272,7 +272,7 @@ class Navigation(viewModel: CatalogViewModel) {
                         false
                     }
                 }
-            }finally {
+            } finally {
                 drawerLayout?.closeDrawer(GravityCompat.START)
                 carrouselVisibility?.visibility = VISIBLE
                 if (carousel?.visibility == GONE) {
@@ -320,6 +320,7 @@ class Navigation(viewModel: CatalogViewModel) {
             Dados.postAll(it)
             FireManager.recordSearch(it.id, it.title, it.backdrop, it.banner)
             FireManager.getLastSearch()
+            intent.putExtra("MOVIE",it.movies)
             view.context.startActivity(intent)
         }
         bannerRecycle?.adapter = adapter
@@ -334,20 +335,33 @@ class Navigation(viewModel: CatalogViewModel) {
 
         viewModel.searchLiveData.observe(viewLifecycleOwner) { listMovies ->
             recycleScrollSearch.requesting = false
-
             val banners = mutableListOf<ImageRecycle>()
             listMovies.forEach {
-                banners.add(
-                    ImageRecycle(
-                        it.posterPath,
-                        it.id,
-                        true,
-                        it.overview,
-                        it.voteAverage,
-                        it.title,
-                        it.backdropPath
+                if (it.mediaType == "tv") {
+                    banners.add(
+                        ImageRecycle(
+                            it.posterPath,
+                            it.id,
+                            false,
+                            it.overview,
+                            it.voteAverage,
+                            it.name,
+                            it.backdropPath
+                        )
                     )
-                )
+                } else {
+                    banners.add(
+                        ImageRecycle(
+                            it.posterPath,
+                            it.id,
+                            true,
+                            it.overview,
+                            it.voteAverage,
+                            it.title,
+                            it.backdropPath
+                        )
+                    )
+                }
             }
             adapter.addMovies(banners)
         }
@@ -358,10 +372,10 @@ class Navigation(viewModel: CatalogViewModel) {
 //                "https://image.tmdb.org/t/p/w500${categoryMovies[2].backdropPath}",
 //                "https://image.tmdb.org/t/p/w500${categoryMovies[3].backdropPath}"
 //            )
-            if (categoryMovies.isEmpty()){
+            if (categoryMovies.isEmpty()) {
                 carousel?.visibility = GONE
                 carrouselVisibility?.visibility = GONE
-            }else {
+            } else {
                 categoryMovies.forEach {
                     if (it.backdropPath.isNullOrBlank()) {
                         url.add(R.drawable.semimagem.toString())
@@ -370,7 +384,7 @@ class Navigation(viewModel: CatalogViewModel) {
                     }
                 }
 
-                if (carousel?.visibility == GONE){
+                if (carousel?.visibility == GONE) {
                     carousel.let {
                         it.visibility = VISIBLE
                         val animate = TranslateAnimation(
@@ -403,20 +417,39 @@ class Navigation(viewModel: CatalogViewModel) {
                 carousel?.pageCount = categoryMovies.size
                 //CallBack para passar o ID
                 carousel?.setImageClickListener {
-                    val date = ImageRecycle(
-                        categoryMovies[it].posterPath,
-                        categoryMovies[it].id,
-                        true,
-                        categoryMovies[it].overview,
-                        categoryMovies[it].voteAverage,
-                        categoryMovies[it].title,
-                        categoryMovies[it].backdropPath
-                    )
-                    val intent = Intent(view.context, MovieDetails::class.java)
-                    Dados.postAll(date)
-                    FireManager.recordSearch(date.id, date.title, date.backdrop, date.banner)
-                    FireManager.getLastSearch()
-                    view.context.startActivity(intent)
+                    if (categoryMovies[it].mediaType == "tv"){
+                        val date = ImageRecycle(
+                            categoryMovies[it].posterPath,
+                            categoryMovies[it].id,
+                            false,
+                            categoryMovies[it].overview,
+                            categoryMovies[it].voteAverage,
+                            categoryMovies[it].name,
+                            categoryMovies[it].backdropPath
+                        )
+                        val intent = Intent(view.context, MovieDetailsForSearch::class.java)
+                        Dados.postAll(date)
+                        FireManager.recordSearch(date.id, date.title, date.backdrop, date.banner)
+                        FireManager.getLastSearch()
+                        intent.putExtra("MOVIE",date.movies)
+                        view.context.startActivity(intent)
+                    }else {
+                        val date = ImageRecycle(
+                            categoryMovies[it].posterPath,
+                            categoryMovies[it].id,
+                            true,
+                            categoryMovies[it].overview,
+                            categoryMovies[it].voteAverage,
+                            categoryMovies[it].title,
+                            categoryMovies[it].backdropPath
+                        )
+                        val intent = Intent(view.context, MovieDetailsForSearch::class.java)
+                        Dados.postAll(date)
+                        FireManager.recordSearch(date.id, date.title, date.backdrop, date.banner)
+                        FireManager.getLastSearch()
+                        intent.putExtra("MOVIE",date.movies)
+                        view.context.startActivity(intent)
+                    }
                 }
             }
         }
@@ -497,11 +530,12 @@ class Navigation(viewModel: CatalogViewModel) {
         }
     }
 
-    private fun seriesClick (bannerRecycle: RecyclerView?,
-                             viewModel: CatalogViewModel,
-                             carousel: CarouselView?,
-                             viewLifecycleOwner: LifecycleOwner,
-                             view: View
+    private fun seriesClick(
+        bannerRecycle: RecyclerView?,
+        viewModel: CatalogViewModel,
+        carousel: CarouselView?,
+        viewLifecycleOwner: LifecycleOwner,
+        view: View
     ) {
         viewModel.seriesNextPage = 0
 

@@ -1,6 +1,5 @@
 package com.example.cinequiz.model.searchModel
 
-
 import com.google.gson.annotations.SerializedName
 
 data class SearchResult(
