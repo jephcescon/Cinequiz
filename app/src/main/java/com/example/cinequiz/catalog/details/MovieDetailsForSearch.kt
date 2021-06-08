@@ -34,7 +34,9 @@ class MovieDetailsForSearch : AppCompatActivity() {
         setContentView(R.layout.activity_movie_details)
         val intent = intent.extras
         val type = intent?.getBoolean("MOVIE")
-        val id = intent!!.getInt("ID")
+        var id:Int? = null
+        if(intent?.getInt("ID") != null)
+            id = intent.getInt("ID")
 
 
         if (type == true) {
@@ -74,7 +76,7 @@ class MovieDetailsForSearch : AppCompatActivity() {
             }
         }else{
             searchViewModel.creditsListTv()
-            searchViewModel.seriesData(id)
+            id?.let { searchViewModel.seriesData(it) }
 
             searchViewModel.series.observe(this) { serieData ->
 
