@@ -15,6 +15,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.viewpager2.widget.ViewPager2
 
 import com.example.cinequiz.R
+import com.example.cinequiz.catalog.Dados
 import com.example.cinequiz.catalog.Dados.dados
 import com.example.cinequiz.model.MovieCredits.Cast
 import com.example.cinequiz.search.activity.SearchMenu
@@ -49,31 +50,26 @@ class MovieDetails : AppCompatActivity() {
         voteAvarage.text = dados?.vote.toString()
 
 
-        viewModelMovieDetails.creditsLiveData.observe(this) { listAtores ->
-            result.addAll(listAtores.cast)
-            
-
-            var cast = ""
-            listAtores.cast.forEach {
-                cast += "${it.name}  como: ${it.character} \n\n"
+        if (Dados.type == null) {
+            viewModelMovieDetails.creditsList()
+            viewModelMovieDetails.creditsLiveData.observe(this) { listAtores ->
+                var cast = ""
+                listAtores.cast.forEach {
+                    cast += "${it.name}  como: ${it.character} \n\n"
+                }
+                adapterCast(cast)
             }
-
-
-            val fragments = getFragments(cast)
-            val sectionsPagerAdapter = SectionsPagerAdapter(fragments, this)
-
-            viewPager.adapter = sectionsPagerAdapter
-            viewPager.offscreenPageLimit = 1
-
-            TabLayoutMediator(tabs, viewPager) { tab, position ->
-                tab.text = fragments[position].arguments?.getString(
-                    PlaceholderFragment.FRAGMENT_TITLE,
-                    "Empty name"
-                )
-            }.attach()
-
+        }else {
+            viewModelMovieDetails.creditsListTv()
+            viewModelMovieDetails.seriesCreditsLiveData.observe(this) { listAtores ->
+                var cast = ""
+                listAtores.cast.forEach {
+                    cast += "${it.name}  como: ${it.character} \n\n"
+                }
+                adapterCast(cast)
+                Dados.type = null
+            }
         }
-
 
 
         back.setOnClickListener {
@@ -86,6 +82,21 @@ class MovieDetails : AppCompatActivity() {
             finish()
         }
 
+    }
+
+    private fun adapterCast(cast: String) {
+        val fragments = getFragments(cast)
+        val sectionsPagerAdapter = SectionsPagerAdapter(fragments, this)
+
+        viewPager.adapter = sectionsPagerAdapter
+        viewPager.offscreenPageLimit = 1
+
+        TabLayoutMediator(tabs, viewPager) { tab, position ->
+            tab.text = fragments[position].arguments?.getString(
+                PlaceholderFragment.FRAGMENT_TITLE,
+                "Empty name"
+            )
+        }.attach()
     }
 
     fun getFragments(cast :String): List<Fragment> {

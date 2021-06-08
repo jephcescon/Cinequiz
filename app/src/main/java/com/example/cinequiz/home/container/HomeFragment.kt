@@ -57,7 +57,7 @@ class HomeFragment : Fragment() {
                 }.addOnFailureListener {
                     Picasso.get().load(userVerification.photoUrl).into(profileImage)
                 }.addOnCompleteListener {
-                    profileName?.text = "Bem vindo ${userVerification.displayName} !"
+                    profileName?.text = "Olá ${userVerification.displayName} !"
                 }
         }
     }

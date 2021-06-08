@@ -5,11 +5,11 @@ import com.example.cinequiz.search.fireManagerMovie.BuscasRecentes
 import com.example.cinequiz.search.fireManagerMovie.MoviesFromFirebase
 
 object Dados {
+    var type: String? = null
     var dados: ImageRecycle? = null
     var cast : List<Cast>? = null
     var movieIDtoSearch = mutableListOf<BuscasRecentes>()
     var moviesFirebase = mutableListOf<BuscasRecentes>()
-
 
 
 
@@ -25,9 +25,4 @@ object Dados {
     fun postMovieID(movieID : MoviesFromFirebase){
         movieIDtoSearch = movieID.buscasRecentes
     }
-
-
-
-
-
 }

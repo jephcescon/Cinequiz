@@ -2,6 +2,7 @@ package com.example.cinequiz.network
 
 import com.example.cinequiz.model.MovieCredits.MovieCredits
 import com.example.cinequiz.model.MovieData.MovieData
+import com.example.cinequiz.model.SeriesCredits.SeriesCredits
 import com.example.cinequiz.model.discoverMovies.MoviesByGenre
 import com.example.cinequiz.model.discoverSeries.SeriesByGenre
 import com.example.cinequiz.model.popularMovieModel.PopularMovies
@@ -47,7 +48,7 @@ interface ServiceAPI {
     @GET("movie/{movie_id}")
     suspend fun getMovieData(
         @Path("movie_id") movieID : Int,
-//        @Query("language") language: String = "pt-BR"
+        @Query("language") language: String = "pt-BR"
     ) : MovieData
 
     @GET("search/multi")
@@ -72,11 +73,11 @@ interface ServiceAPI {
     ): SeriesByGenre
 
 //    Ver com o Paulo
-//    @GET("tv/{tv_id}/credits")
-//    suspend fun getSeriesActors(
-//        @Path("movie_id") movieID : Int,
-//        @Query("language") language: String = "pt-BR"
-//    ) : SeriesCredits
+    @GET("tv/{tv_id}/credits")
+    suspend fun getSeriesActors(
+        @Path("tv_id") movieID : Int,
+        @Query("language") language: String = "pt-BR"
+    ) : SeriesCredits
 
     @GET("search/multi")
     suspend fun searchSeries(

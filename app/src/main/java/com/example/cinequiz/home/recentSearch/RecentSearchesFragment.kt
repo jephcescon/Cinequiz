@@ -36,6 +36,4 @@ class RecentSearchesFragment : Fragment() {
             searchRecycler?.adapter = adapter
         }
     }
-
-
 }

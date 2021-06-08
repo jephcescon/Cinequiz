@@ -22,6 +22,7 @@ class MoviesRepository {
 
     suspend fun getMovieCredits() = serviceRepository.getActors(Dados.dados!!.id!!)
 
+    suspend fun getSeriesActors() = serviceRepository.getSeriesActors(Dados.dados!!.id!!)
 
 //    suspend fun getMovieData() = serviceRepository.getMovieData(Dados.movieIDtoSearch!!)
 

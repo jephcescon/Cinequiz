@@ -497,11 +497,11 @@ class Navigation(viewModel: CatalogViewModel) {
         }
     }
 
-    fun seriesClick (bannerRecycle: RecyclerView?,
-    viewModel: CatalogViewModel,
-    carousel: CarouselView?,
-    viewLifecycleOwner: LifecycleOwner,
-    view: View
+    private fun seriesClick (bannerRecycle: RecyclerView?,
+                             viewModel: CatalogViewModel,
+                             carousel: CarouselView?,
+                             viewLifecycleOwner: LifecycleOwner,
+                             view: View
     ) {
         viewModel.seriesNextPage = 0
 
@@ -509,6 +509,7 @@ class Navigation(viewModel: CatalogViewModel) {
         val adapter = CatalogAdapter {
             val intent = Intent(view.context, MovieDetails::class.java)
             Dados.postAll(it)
+            Dados.type = "s"
             view.context.startActivity(intent)
         }
         bannerRecycle?.adapter = adapter
@@ -533,7 +534,7 @@ class Navigation(viewModel: CatalogViewModel) {
                         true,
                         it.overview,
                         it.voteAverage,
-                        it.originalName,
+                        it.name,
                         it.backdropPath
                     )
                 )
@@ -561,11 +562,12 @@ class Navigation(viewModel: CatalogViewModel) {
                     true,
                     popularSeries[it].overview,
                     popularSeries[it].voteAverage,
-                    popularSeries[it].originalName,
+                    popularSeries[it].name,
                     popularSeries[it].backdropPath
                 )
                 val intent = Intent(view.context, MovieDetails::class.java)
                 Dados.postAll(date)
+                Dados.type = "s"
                 view.context.startActivity(intent)
             }
         }
@@ -585,6 +587,7 @@ class Navigation(viewModel: CatalogViewModel) {
         val adapter = CatalogAdapter {
             val intent = Intent(view.context, MovieDetails::class.java)
             Dados.postAll(it)
+            Dados.type = "s"
             view.context.startActivity(intent)
         }
         bannerRecycle?.adapter = adapter
@@ -610,7 +613,7 @@ class Navigation(viewModel: CatalogViewModel) {
                         true,
                         it.overview,
                         it.voteAverage,
-                        it.originalName,
+                        it.name,
                         it.backdropPath
                     )
                 )
@@ -636,11 +639,12 @@ class Navigation(viewModel: CatalogViewModel) {
                     true,
                     categorySeries[it].overview,
                     categorySeries[it].voteAverage,
-                    categorySeries[it].originalName,
+                    categorySeries[it].name,
                     categorySeries[it].backdropPath
                 )
                 val intent = Intent(view.context, MovieDetails::class.java)
                 Dados.postAll(date)
+                Dados.type = "s"
                 view.context.startActivity(intent)
             }
         }
