@@ -58,19 +58,27 @@
 
 
 
-    <TextView
+<!--    <TextView-->
+<!--        android:id="@+id/tv_voteAvarage"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginStart="83dp"-->
+<!--        android:layout_marginTop="348dp"-->
+<!--        android:elevation="@android:dimen/app_icon_size"-->
+<!--        android:text="Nota"-->
+<!--        android:textColor="@color/white"-->
+<!--        android:textSize="20dp" />-->
+
+    <RatingBar
         android:id="@+id/tv_voteAvarage"
+        style="@style/Widget.AppCompat.RatingBar.Small"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="83dp"
-        android:layout_marginTop="348dp"
+        android:layout_marginStart="80dp"
+        android:layout_marginTop="355dp"
+        android:numStars="5"
         android:elevation="@android:dimen/app_icon_size"
-        android:text="Nota"
-        android:textColor="@color/white"
-        android:textSize="20dp" />
-
-
-
+        android:progressTint="@color/google_red" />
 
 
 
@@ -100,18 +108,16 @@
             android:layout_marginStart="32dp"
             android:layout_marginTop="15dp"/>
 
+
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
             android:text="Crítica:"
             android:textColor="@color/white"
             android:textSize="35px"
-            android:textStyle="bold"
-            android:layout_marginStart="32dp"/>
-
-
-
-
+            android:textStyle="bold" />
 
 
         <com.google.android.material.tabs.TabLayout
@@ -132,18 +138,7 @@
         android:layout_height="match_parent"
         app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
-<!--    <com.google.android.material.bottomnavigation.BottomNavigationView-->
-<!--        android:id="@+id/bottomNavigationView_movie_details"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:background="@color/black"-->
-<!--        app:layout_constraintBottom_toBottomOf="parent"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:itemIconTint="@drawable/item_selector"-->
-<!--        app:itemTextColor="@drawable/item_selector"-->
-<!--        app:menu="@menu/bottom_nav_menu"-->
-<!--        android:layout_gravity="bottom"/>-->
+
 
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

@@ -2,14 +2,18 @@ package com.example.cinequiz.catalog.details
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.widget.Button
 import android.widget.ImageView
+import android.widget.RatingBar
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.viewpager2.widget.ViewPager2
 import com.example.cinequiz.R
+import com.example.cinequiz.catalog.Dados
+import com.example.cinequiz.catalog.Dados.dados
 import com.example.cinequiz.search.activity.SearchMenu
 import com.example.cinequiz.search.viewModel.SearchViewModel
 import com.google.android.material.tabs.TabLayout
@@ -25,7 +29,7 @@ class MovieDetailsForSearch : AppCompatActivity() {
     private val search by lazy { findViewById<Button>(R.id.bt_search_movie_details) }
     private val movieImage by lazy { findViewById<ImageView>(R.id.iv_movie_img) }
     private val movieTitle by lazy { findViewById<TextView>(R.id.tv_movie_title) }
-    private val voteAvarage by lazy { findViewById<TextView>(R.id.tv_voteAvarage) }
+    private val voteAvarage by lazy { findViewById<RatingBar>(R.id.tv_voteAvarage) }
     private val searchViewModel by lazy { ViewModelProvider(this).get(SearchViewModel::class.java) }
 
 
@@ -49,7 +53,9 @@ class MovieDetailsForSearch : AppCompatActivity() {
                 movieTitle.text = movieData.title
                 val url = "https://image.tmdb.org/t/p/w500${movieData.backdropPath}"
                 Picasso.get().load(url).into(movieImage)
-                voteAvarage.text = movieData.voteAverage.toString()
+                val vote = movieData.voteAverage
+                voteAvarage.rating = ((vote*5)/10).toFloat()
+                Log.d("NOTA2", voteAvarage.rating.toString())
 
 
                 searchViewModel.creditsLiveData.observe(this) { listAtores ->
@@ -84,7 +90,12 @@ class MovieDetailsForSearch : AppCompatActivity() {
                 movieTitle.text = serieData.name
                 val url = "https://image.tmdb.org/t/p/w500${serieData.backdropPath}"
                 Picasso.get().load(url).into(movieImage)
-                voteAvarage.text = serieData.voteAverage.toString()
+                val vote = serieData.voteAverage
+                val vote2 = ((vote?.times(5))?.div(10))?.toFloat()
+                if (vote2 != null) {
+                    voteAvarage.rating = vote2
+                    Log.d("Nota", voteAvarage.rating.toString())
+                }
 
 
                 searchViewModel.seriesCreditsLiveData.observe(this) { listAtores ->

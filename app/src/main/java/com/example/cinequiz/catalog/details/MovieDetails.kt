@@ -6,6 +6,7 @@ import android.util.Log
 
 import android.widget.Button
 import android.widget.ImageView
+import android.widget.RatingBar
 import android.widget.TextView
 
 import androidx.appcompat.app.AppCompatActivity
@@ -35,7 +36,7 @@ class MovieDetails : AppCompatActivity() {
     private val search by lazy { findViewById<Button>(R.id.bt_search_movie_details) }
     private val movieImage by lazy { findViewById<ImageView>(R.id.iv_movie_img) }
     private val movieTitle by lazy { findViewById<TextView>(R.id.tv_movie_title) }
-    private val voteAvarage by lazy { findViewById<TextView>(R.id.tv_voteAvarage) }
+    private val voteAvarage by lazy { findViewById<RatingBar>(R.id.tv_voteAvarage) }
     private val viewModelMovieDetails by lazy { ViewModelProvider(this).get(MovieDetailsViewModel::class.java) }
     private val searchViewModel by lazy { ViewModelProvider(this).get(SearchViewModel::class.java) }
     var result = mutableListOf<Cast>()
@@ -62,7 +63,8 @@ class MovieDetails : AppCompatActivity() {
         movieTitle.text = dados?.title
         val url = "https://image.tmdb.org/t/p/w500${dados?.backdrop}"
         Picasso.get().load(url).into(movieImage)
-        voteAvarage.text = dados?.vote.toString()
+        val vote = dados?.vote!!
+        voteAvarage.rating = ((vote*5)/10).toFloat()
 
 
         if (Dados.type == null) {
