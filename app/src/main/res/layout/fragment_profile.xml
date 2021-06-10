@@ -91,45 +91,63 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/cardView2" />
 
-    <LinearLayout
+    <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
+        app:cardCornerRadius="10dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
         app:layout_constraintBottom_toTopOf="@+id/linearLayout3"
         app:layout_constraintTop_toBottomOf="@+id/displayName">
 
-        <TextView
-            android:id="@+id/changePass"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="15dp"
-            android:layout_marginTop="10dp"
-            android:text="Mudar senha"
-            android:textColor="@color/white"
-            android:textSize="@dimen/browser_actions_context_menu_min_padding" />
+            android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/textview_about"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="15dp"
-            android:layout_marginTop="15dp"
-            android:text="Sobre o App"
-            android:textColor="@color/white"
-            android:textSize="@dimen/browser_actions_context_menu_min_padding" />
+            <TextView
+                android:id="@+id/changePass"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:text="Mudar senha"
+                android:layout_marginBottom="10dp"
+                android:textColor="@color/white"
+                android:textSize="@dimen/browser_actions_context_menu_min_padding" />
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/white" />
 
-        <TextView
-            android:id="@+id/textview_help"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="15dp"
-            android:layout_marginTop="15dp"
-            android:layout_marginBottom="10dp"
-            android:text="Ajuda"
-            android:textColor="@color/white"
-            android:textSize="@dimen/browser_actions_context_menu_min_padding" />
+            <TextView
+                android:id="@+id/textview_about"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:text="Sobre o App"
+                android:layout_marginBottom="10dp"
+                android:textColor="@color/white"
+                android:textSize="@dimen/browser_actions_context_menu_min_padding" />
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/white" />
 
-    </LinearLayout>
+            <TextView
+                android:id="@+id/textview_help"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:text="Ajuda"
+                android:textColor="@color/white"
+                android:textSize="@dimen/browser_actions_context_menu_min_padding" />
+
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
 
     <LinearLayout
         android:id="@+id/linearLayout3"
